@@ -65,11 +65,11 @@
 
     <actuator>
         <!-- Actuatprs for the palm -->
-        <position ctrlrange="-1 1" joint="revolute_base_hand" name="actuator_base_hand" kp="5"/>
+        <position ctrlrange="-1.3 1.3" joint="revolute_base_hand" name="actuator_base_hand" kp="4"/>
 
         <!-- Actuators for the thumb -->
-        <position ctrlrange="-1 1" joint="revolute_thumb" name="actuator_thumb" kp="2" />
-        <position ctrlrange="-1 1" joint="revolute_proximal_thumb" name="actuator_proximal_thumb" kp="2" />
+        <position ctrlrange="-1.5 1.5" joint="revolute_thumb" name="actuator_thumb" kp="4" />
+        <position ctrlrange="-3 1" joint="revolute_proximal_thumb" name="actuator_proximal_thumb" kp="2" />
         <position ctrlrange="-1 1" joint="revolute_medial_thumb" name="actuator_medial_thumb" kp="2" />
         <position ctrlrange="-1 1" joint="revolute_distal_thumb" name="actuator_distal_thumb" kp="2" />
     
