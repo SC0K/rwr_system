@@ -1,0 +1,108 @@
+<mujoco model="titans_hand_structure">
+        <body name="base" pos="0 0 0">
+            <geom mesh="connector" name="connector_geom" />
+            <body name="hand">
+                <joint name="revolute_base_hand" pos="0 0 0.0295" axis="0 1 0" limited="true" range="-1.5707 1.5707"/>
+                <geom mesh="palm" name="palm_geom" />
+
+                <body name="thumb">
+                    <joint name="revolute_thumb" pos="0 0.03375066 0.0623" axis="0 0.342 0.939" limited="true" range="-1.5707 0.786"/>
+                    <geom mesh="thumbHinge" name="thumb_hinge" />
+                    <body name="f_proximal_thumb">
+                        <joint name="revolute_proximal_thumb" pos="0 0.05580889 0.06733190" axis="1 0 0" limited="true" range="-3.141592 0"/>
+                        <geom mesh="f_proximal_thumb" name="f_proximal_geom_thumb" />
+                        <body name="f_medial_thumb">
+                            <joint name="revolute_medial_thumb" axis="0 1 0" pos="-0.00682572 0.06231091 0.10204161" limited="true" range="0 1.5707"/>
+                            <geom mesh="f_medial_thumb" name="f_medial_geom_thumb" />
+                            <body name="f_distal_thumb_virtual">
+                                <body name="f_distal_thumb">
+                                    <joint name="revolute_distal_thumb" axis="0 1 0" pos="-0.00444824 0.06230108 0.13012679" limited="true" range="0 1.5707"/>
+                                    <geom mesh="f_distal_thumb" name="f_distal_geom_thumb" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+
+                <body name="finger_1">
+                    <geom mesh="f_base_1" name="f_base_geom_1" />
+                    <body name="f_joint_1">
+                        <joint name="revolute_joint_1" pos="0.00885185 0.03410852 0.11250719" axis="1 0 0" limited="true" range="-0.393 0.393"/>
+                        <geom mesh="f_joint_1" name="f_joint_geom_1" />
+                        <body name="f_proximal_1">
+                            <joint name="revolute_proximal_1" axis="0 1 0" pos="0.00001 0.03961 0.12431" limited="true" range="0 1.5707"/>
+                            <geom mesh="f_proximal_1" name="f_proximal_geom_1" />
+                            <body name="f_medial_1">
+                                <joint name="revolute_medial_1" axis="0 1 0" pos="0.00213 0.04061 0.16771" limited="true" range="0 1.5707"/>
+                                <geom mesh="f_medial_1" name="f_medial_geom_1" />
+                                <body name="f_distal_1">
+                                    <joint name="revolute_distal_1" axis="0 1 0" pos="0.00520 0.04011 0.19559" limited="true" range="0 1.5707"/>
+                                    <geom mesh="f_distal_1" name="f_distal_geom_1" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+
+                <body name="finger_2">
+                    <geom mesh="f_base_2" name="f_base_geom_2" />
+                    <body name="f_joint_2">
+                        <joint name="revolute_joint_2" pos="0.00883 0.01416 0.11076" axis="1 0 0" limited="true" range="-0.393 0.393"/>
+                        <geom mesh="f_joint_2" name="f_joint_geom_2" />
+                        <body name="f_proximal_2">
+                            <joint name="revolute_proximal_2" axis="0 0.9848 0.17365" pos="0.00000 0.01853 0.12351" limited="true" range="0 1.5707"/>
+                            <geom mesh="f_proximal_2" name="f_proximal_geom_2" />
+                            <body name="f_medial_2">
+                                <joint name="revolute_medial_2" axis="0 0.9848 0.17365" pos="0.00206 0.01099 0.16626" limited="true" range="0 1.5707"/>
+                                <geom mesh="f_medial_2" name="f_medial_geom_2" />
+                                <body name="f_distal_2">
+                                    <joint name="revolute_distal_2" axis="0 0.9848 0.17365" pos="0.00508 0.00442 0.19341" limited="true" range="0 1.5707"/>
+                                    <geom mesh="f_distal_2" name="f_distal_geom_2" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+
+                <body name="finger_3">
+                    <geom mesh="f_base_3" name="f_base_geom_3" />
+                    <body name="f_joint_3">
+                        <joint name="revolute_joint_3" pos="0.00876 -0.00519 0.10558" axis="1 0 0" limited="true" range="-0.393 0.393"/>
+                        <geom mesh="f_joint_3" name="f_joint_geom_3" />
+                        <body name="f_proximal_3">
+                            <joint name="revolute_proximal_3" axis="0 0.9400032368 0.341165524" pos="-0.00006 -0.00308 0.11890" limited="true" range="0 1.5707"/>
+                            <geom mesh="f_proximal_3" name="f_proximal_geom_3" />
+                            <body name="f_medial_3">
+                                <joint name="revolute_medial_3" axis="0 0.9400032368 0.341165524" pos="0.00194 -0.01793 0.15968" limited="true" range="0 1.5707"/>
+                                <geom mesh="f_medial_3" name="f_medial_geom_3" />
+                                <body name="f_distal_3">
+                                    <joint name="revolute_distal_3" axis="0 0.9400032368 0.341165524" pos="0.00491 -0.02748 0.18588" limited="true" range="0 1.5707"/>
+                                    <geom mesh="f_distal_3" name="f_distal_geom_3" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+
+                <body name="finger_4">
+                    <geom mesh="f_base_4" name="f_base_geom_4" />
+                    <body name="f_joint_4">
+                        <joint name="revolute_joint_4" pos="0.00865 -0.02332 0.09807" axis="1 0 0" limited="true" range="-0.393 0.393"/>
+                        <geom mesh="f_joint_4" name="f_joint_geom_4" />
+                        <body name="f_proximal_4">
+                            <joint name="revolute_proximal_4" axis="0 0.9067486699 0.4216714948" pos="-0.00016 -0.02237 0.11152" limited="true" range="0 1.5707"/>
+                            <geom mesh="f_proximal_4" name="f_proximal_geom_4" />
+                            <body name="f_medial_4">
+                                <joint name="revolute_medial_4" axis="0 0.9067486699 0.4216714948" pos="0.00168 -0.04072 0.15086" limited="true" range="0 1.5707"/>
+                                <geom mesh="f_medial_4" name="f_medial_geom_4" />
+                                <body name="f_distal_4">
+                                    <joint name="revolute_distal_4" axis="0 0.9067486699 0.4216714948" pos="0.00453 -0.05252 0.17613" limited="true" range="0 1.5707"/>
+                                    <geom mesh="f_distal_4" name="f_distal_geom_4" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+</mujoco>
