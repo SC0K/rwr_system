@@ -128,10 +128,10 @@ def get_hand_center_and_rotation(
     thumb_base, index_base, middle_base, ring_base, pinky_base, wrist=None
 ):
     """
-    Get the center of the hand and the rotation matrix of the hand
-    x axis is the direction from ring to index finger base
-    y axis is the direction from wrist to middle finger base
-    z axis goes from the palm if the hand is right hand, otherwise it goes to the palm
+    Get the center of the hand and the rotation matrix of the hand,
+    x axis is the direction from ring to index finger base,
+    y axis is the direction from wrist to middle finger base,
+    z axis goes from the palm if the hand is right hand, otherwise it goes to the palm,
     If the hand is right hand, then the z
     """
     hand_center = (thumb_base + pinky_base) / 2
@@ -176,9 +176,9 @@ def normalize_points_to_hands_local(joint_pos):
 
 def get_unoccluded_hand_joint_idx(joint_pos):
     """
-    param: joint_pos, a numpy array of 3D joint positions (MANO format), not normalized
+    param: joint_pos, a numpy array of 3D joint positions (MANO format), not normalized. 
     Returns the joint that has the least z value and should be visible in the image (y value is in the direction of the camera).
-    We can then project this joint into 3D space, and then from there get the 3D position of the wrist (which may be occluded)
+    We can then project this joint into 3D space, and then from there get the 3D position of the wrist (which may be occluded).
     """
 
     # get the joint with the lowest z value (closest to camera)
