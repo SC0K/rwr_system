@@ -1,15 +1,13 @@
 import numpy as np
 import time
-from click import getchar
 import yaml
 import os
 import cvxopt
-import faive_system.src.hand_control.simplified_finger_kinematics as fk
+import finger_kinematics as fk
 import sympy as sym
 from threading import Thread, RLock, Event
-from .joint_ekf import EKF
-from faive_system.src.common.utils import get_datetime_str
-from .dynamixel_client import *
+from joint_ekf import EKF
+from dynamixel_client import *
 
 np.set_printoptions(precision=3, suppress=True)
 
@@ -21,9 +19,10 @@ class MuscleGroup:
 
     attributes = [
         "joint_ids",
+        "tendon_ids",
         "motor_ids",
+        "motor_map",
         "spool_rad",
-        "wind_direction",
         "joint_ranges",
         "motor_init_pos",
         "calibration_max",
@@ -51,8 +50,7 @@ class MuscleGroup:
             up_lim = mid_pos + full_range / 2
             joint_ranges[idx] = [low_lim, up_lim]
         print(
-            f"Created muscle group {name} with joint ids {self.joint_ids}, motor ids {self.motor_ids} and spool_rad {self.spool_rad}"
-        )
+            f"Created muscle group {name} with joint ids {self.joint_ids}, tendon ids {self.tendon_ids}, motor ids {self.motor_ids} and spool_rad {self.spool_rad}")
 
     def build_muscle_groups(config_yml: str):
         with open(config_yml, "r") as f:
@@ -104,21 +102,23 @@ class HandController:
         self.cal_motor_current = 1.0
 
         self._load_musclegroup_yaml(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), config_yml)
+            os.path.join(os.path.dirname(
+                os.path.abspath(__file__)), config_yml)
         )
 
-        if dummy_mode:
-            self._dxc = DummyDynamixelClient(
-                self.motor_ids, port, baudrate, lazy_connect=True
-            )
-        else:
-            self._dxc = DynamixelIndirectClient(
-                start_update_thread=True,
-                motor_ids=self.motor_ids,
-                port=port,
-                baudrate=baudrate,
-                lazy_connect=True,
-            )
+        # if dummy_mode:
+        #     self._dxc = DummyDynamixelClient(
+        #         self.motor_ids, port, baudrate, lazy_connect=True
+        #     )
+        # else:
+        #     self._dxc = DynamixelIndirectClient(
+        #         start_update_thread=True,
+        #         motor_ids=self.motor_ids,
+        #         port=port,
+        #         baudrate=baudrate,
+        #         lazy_connect=True,
+        #     )
+        self._dxc = DynamixelClient(self.motor_ids, port, baudrate)
 
         print(f"GC Motor IDs: {self.motor_ids}")
         print(f"DxC Motor IDs: {self._dxc.motor_ids}")
@@ -138,14 +138,18 @@ class HandController:
         for muscle_group in self.muscle_groups:
             self.ekfs.append(EKF(muscle_group, self))
 
-        self.last_motor_pos_cmd = np.zeros(len(self.motor_ids), dtype=np.float32)
-        self.last_joint_angle_cmd = np.zeros(self.num_of_joints, dtype=np.float32)
+        self.last_motor_pos_cmd = np.zeros(
+            len(self.motor_ids), dtype=np.float32)
+        self.last_joint_angle_cmd = np.zeros(
+            self.num_of_joints, dtype=np.float32)
 
         self.directions = np.zeros(len(self.motor_ids), dtype=np.int8)
         directions_idx = 0
         for mg in self.muscle_groups:
-            for motor_idx in range(len(mg.motor_ids)):
-                self.directions[directions_idx] = np.sign(mg.wind_direction[motor_idx])
+            for m_id in muscle_group.motor_ids:
+                idx = muscle_group.motor_map.index(m_id)
+                self.directions[directions_idx] = np.sign(
+                    muscle_group.spool_rad[idx])
                 directions_idx += 1
 
     def _load_musclegroup_yaml(self, filename):
@@ -167,9 +171,9 @@ class HandController:
         attrs_to_get = [
             "joint_ids",
             "motor_ids",
+            "tendon_ids",
             "spool_rad",
-            "wind_direction",
-            "motor_init_pos",
+            "motor_init_pos"
         ]
         for attr in attrs_to_get:
             setattr(self, attr, [])
@@ -183,6 +187,17 @@ class HandController:
             set(self.motor_ids)
         ), "duplicate motor ids should not exist"
 
+        # run some sanity checks
+        self.joint_nr = 0
+        for muscle_group in self.muscle_groups:
+            self.joint_nr += len(muscle_group.joint_ids)
+            assert len(muscle_group.tendon_ids) == len(
+                muscle_group.spool_rad), "spool_rad must be defined for all tendons"
+            assert len(muscle_group.motor_map) == len(
+                muscle_group.tendon_ids), "motor_map must be defined for all tendons"
+        assert len(self.motor_ids) == len(set(self.motor_ids)
+                                          ), "duplicate tendon ids should not exist"
+
     def tendon_pos2motor_pos_sym(self, tendon_lengths, muscle_group):
         """
         compute for a single muscle group
@@ -191,9 +206,8 @@ class HandController:
         """
         motor_pos = sym.matrices.zeros(1, len(muscle_group.motor_ids))
         for m_i, motor_id in enumerate(muscle_group.motor_ids):
-            motor_pos[m_i] = tendon_lengths[m_i] / (
-                np.abs(muscle_group.spool_rad[m_i]) * muscle_group.wind_direction[m_i]
-            )
+            t_i = muscle_group.motor_map.index(motor_id)
+            motor_pos[m_i] = tendon_lengths[t_i] / muscle_group.spool_rad[t_i]
         return motor_pos
 
     def write_desired_motor_pos(self, motor_positions_rad):
@@ -201,7 +215,8 @@ class HandController:
         send position command to the motors
         unit is rad, angle of the motor connected to tendon
         """
-        max_diff = np.max(np.abs(self.last_motor_pos_cmd - motor_positions_rad))
+        max_diff = np.max(
+            np.abs(self.last_motor_pos_cmd - motor_positions_rad))
         if max_diff > 0.001:  # approx 0.0572 deg
             self._dxc.gpos = motor_positions_rad
             self.last_motor_pos_cmd = motor_positions_rad.copy()
@@ -283,15 +298,21 @@ class HandController:
             joint_pos_begin_idx = joint_pos_end_idx
         return motor_positions
 
-    def pose2motors_sym(self, joint1, joint2, joint3, joint4=None, muscle_group=None):
+    def pose2motors_sym(self, joint1, joint2=None, joint3=None, joint4=None, muscle_group=None):
         """
         return symbolic function for joint position -> motor position, for a single muscle group (i.e. single finger)
         Input: joint angles
         Output: motor positions
         """
-        tendon_lengths = fk.get_tendon_lengths_lambda(
-            joint1, joint2, joint3, muscle_group
-        )
+        if muscle_group.name == "wrist":
+            tendon_lengths = fk.pose2tendon_wrist(joint1)
+        elif muscle_group.name == "thumb":
+            tendon_lengths = fk.pose2tendon_thumb(
+                joint1, joint2, joint3, joint4)
+        else:
+            tendon_lengths = fk.pose2tendon_finger(
+                joint1, joint2, joint3)
+
         motor_pos = self.tendon_pos2motor_pos_sym(
             tendon_lengths, muscle_group=muscle_group
         )
@@ -307,9 +328,7 @@ class HandController:
 
         # get current motor positions
         self.motor_init_pos = self.get_motor_pos()
-        print(
-            f"Setting current motor position as motor_init_pos: {self.motor_init_pos}"
-        )
+        print(f"Setting current motor position as motor_init_pos:{self.motor_init_pos}")
 
         # Save the offsets to a YAML file
         cal_data = {}
@@ -359,7 +378,8 @@ class HandController:
         self.motor_pos_norm = self.pose2motors(np.deg2rad(self.calib_pose))
         if self.init_motor_pos_update_thread:
             # start a thread to update the motor positions
-            self.motor_pos_update_thread = Thread(target=self._update_motor_status_loop)
+            self.motor_pos_update_thread = Thread(
+                target=self._update_motor_status_loop)
             self.motor_pos_update_thread.start()
 
         if self.compliant_test_mode:
@@ -455,7 +475,8 @@ class HandController:
         - achieve generalized force
         Output: motor_torques"""
         num_motors = 3
-        min_torque = 20  # mA. Minimum torque of motors. Use this to avoid slack wires.
+        # mA. Minimum torque of motors. Use this to avoid slack wires.
+        min_torque = 20
         max_torque = 60
         # define matrices that are constant in the QP formulation
         P = cvxopt.matrix(np.identity(num_motors)) * 1.0
