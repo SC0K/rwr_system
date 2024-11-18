@@ -14,12 +14,10 @@
                     <body name="f_medial_thumb">
                         <joint name="revolute_medial_thumb" axis="0 1 0" pos="-0.00682572 0.06231091 0.10204161" limited="true" range="0 1.5707"/>
                         <geom mesh="f_medial_thumb" name="f_medial_geom_thumb" />
-                        <body name="f_distal_thumb_virtual">
                             <body name="f_distal_thumb">
                                 <joint name="revolute_distal_thumb" axis="0 1 0" pos="-0.00444824 0.06230108 0.13012679" limited="true" range="0 1.5707"/>
                                 <geom mesh="f_distal_thumb" name="f_distal_geom_thumb" />
                             </body>
-                        </body>
                     </body>
                 </body>
             </body>
