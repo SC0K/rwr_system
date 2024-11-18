@@ -16,7 +16,7 @@
       <visual name="connector">
          <origin xyz="-4.8799707564326224e-09 0.005582185568398456 0.010226744006253653" rpy="1.5349507138249 0.0 0.0"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_connector.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_connector.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -47,7 +47,7 @@
       <visual name="palm">
          <origin xyz="0.000562061327561651 0.00577931980475707 0.0636736226729795" rpy="2.019846101849213 0.0028366571213855885 -0.0012574293312483942"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_palm.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_palm.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -80,7 +80,7 @@
       <visual name="thumbHinge">
          <origin xyz="-0.0024321580902199147 0.04547055201202439 0.06594428052585251" rpy="-1.818372072007933 -1.3851142024770866 -2.4322516935149068"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_thumbHinge.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_thumbHinge.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -113,7 +113,7 @@
       <visual name="f_proximal_thumb">
          <origin xyz="-0.004297951798048206 0.05580866566310336 0.0843086892036457" rpy="-0.0011210076065933552 -0.060494911119013395 0.0003006908955145107"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_proximal_thumb.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_proximal_thumb.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -146,7 +146,7 @@
       <visual name="f_medial_thumb">
          <origin xyz="-0.004174282327362963 0.05580154098117887 0.12063842172314324" rpy="0.00349794092532671 0.05280161793271221 0.0015134589420470353"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_medial_thumb.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_medial_thumb.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -203,7 +203,7 @@
       <visual name="f_distal_thumb">
          <origin xyz="-0.002743183463667816 0.05578990650003305 0.1426735470904285" rpy="-0.0005608075343264459 0.010813348257990407 -0.00457552909443207"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_distal_thumb.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_distal_thumb.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -236,7 +236,7 @@
       <visual name="f_base_1">
          <origin xyz="0.0029687680810755604 0.03410714525654222 0.11178942929059522" rpy="0.00170760427217985 -0.270159979472987 -0.007818085328238942"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_base_1.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_base_1.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -267,7 +267,7 @@
       <visual name="f_joint_1">
          <origin xyz="0.00208586770390702 0.034102497590881665 0.12737633203207016" rpy="3.1337612662740977 -1.1666236191142398 0.007404724188730283"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_joint_1.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_joint_1.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -300,7 +300,7 @@
       <visual name="f_proximal_1">
          <origin xyz="0.0031190579550748757 0.03408189919150284 0.15230004011161824" rpy="0.0020249258799340322 0.0320982378591812 -0.012550217898010786"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_proximal_1.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_proximal_1.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -333,7 +333,7 @@
       <visual name="f_medial_1">
          <origin xyz="0.005387258235178706 0.03409935854176851 0.18615389567478657" rpy="-0.0006624714835370719 0.061877435271356473 0.003047882621000806"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_medial_1.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_medial_1.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -366,7 +366,7 @@
       <visual name="f_distal_1">
          <origin xyz="0.0070655200574758405 0.034104964607814627 0.20811444458329728" rpy="-0.0004941105941255492 0.021028496265301344 0.0003120875215016335"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_distal_1.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_distal_1.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -399,7 +399,7 @@
       <visual name="f_base_2">
          <origin xyz="0.0029447268671506668 0.01429271298222884 0.110055817015949" rpy="0.18256705438298965 -0.2643925590830212 -0.058132657398470775"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_base_2.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_base_2.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -430,7 +430,7 @@
       <visual name="f_joint_2">
          <origin xyz="0.002058534532073282 0.01158388538188816 0.1254053440175476" rpy="-2.7270098695477527 -1.1334647521541488 -0.38159593283953774"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_joint_2.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_joint_2.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -463,7 +463,7 @@
       <visual name="f_proximal_2">
          <origin xyz="0.003060846205633814 0.00723352366783981 0.1499473097214772" rpy="0.1766356972798253 0.032634425458659244 -0.00943316614877833"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_proximal_2.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_proximal_2.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -496,7 +496,7 @@
       <visual name="f_medial_2">
          <origin xyz="0.005275023429847027 0.0013667341685768403 0.18329257485070996" rpy="0.17415907615769513 0.059252471848857624 0.011108839104358448"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_medial_2.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_medial_2.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -529,7 +529,7 @@
       <visual name="f_distal_2">
          <origin xyz="0.006918227841553544 -0.002445157463405754 0.20492245535229708" rpy="0.17406280323115986 0.019500450031886274 0.00131035796319863"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_distal_2.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_distal_2.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -562,7 +562,7 @@
       <visual name="f_base_3">
          <origin xyz="0.00287334073885369 -0.004919625746767773 0.1049081327711756" rpy="0.36242286733050033 -0.25001376322336943 -0.1064275412221466"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_base_3.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_base_3.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -593,7 +593,7 @@
       <visual name="f_joint_3">
          <origin xyz="0.0019773956754786126 -0.010250327929200114 0.11955435893351203" rpy="-2.4005744947693994 -1.0444675057140078 -0.6740736106319707"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_joint_3.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_joint_3.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -626,7 +626,7 @@
       <visual name="f_proximal_3">
          <origin xyz="0.0029445036928082485 -0.018798332956460488 0.1429684252315403" rpy="0.35124481570966115 0.03299132257671933 -0.006391947358808853"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_proximal_3.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_proximal_3.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -659,7 +659,7 @@
       <visual name="f_medial_3">
          <origin xyz="0.0051016406505764895 -0.03037173991175558 0.17479029691562517" rpy="0.3489260314491369 0.05563788761241506 0.01846671615159437"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_medial_3.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_medial_3.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -692,7 +692,7 @@
       <visual name="f_distal_3">
          <origin xyz="0.006707827846415839 -0.037885786117765476 0.19543107070677315" rpy="0.34861175654735765 0.018191521844554526 0.0019064361888620207"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_distal_3.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_distal_3.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -725,7 +725,7 @@
       <visual name="f_base_4">
          <origin xyz="0.0027695714124540086 -0.02298619285180325 0.09742530459746236" rpy="0.4517417282716341 -0.2397463601142107 -0.12930722719572946"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_base_4.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_base_4.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -756,7 +756,7 @@
       <visual name="f_joint_4">
          <origin xyz="0.0018664118301764693 -0.02957190751533808 0.11155130030407574" rpy="-2.2767849208009316 -0.9863551477875403 -0.7804404493784081"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_joint_4.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_joint_4.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -789,7 +789,7 @@
       <visual name="f_proximal_4">
          <origin xyz="0.002748420788454541 -0.04012924460752692 0.1341327832134435" rpy="0.43854644558191824 0.029864073010889225 -0.00638368261173719"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_proximal_4.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_proximal_4.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -822,7 +822,7 @@
       <visual name="f_medial_4">
          <origin xyz="0.004754949148978116 -0.05443718706149976 0.1648327051989323" rpy="0.436197238730755 0.050259792773723166 0.020351141945295442"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_medial_4.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_medial_4.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
@@ -855,7 +855,7 @@
       <visual name="f_distal_4">
          <origin xyz="0.0062634247188262755 -0.0637255184023173 0.18474585899549972" rpy="0.43585440777130924 0.014397741628137117 0.0005918102479726406"/>
          <geometry>
-            <mesh filename="package://viz/model/converted_f_distal_4.stl"/>
+            <mesh filename="package://viz/models/titans_hand/converted_f_distal_4.stl"/>
          </geometry>
          <material name="white"/>
       </visual>
