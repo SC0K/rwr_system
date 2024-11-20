@@ -2,6 +2,6 @@
     <compiler angle="radian"/>
     <include file="meta_titans.xml"/>
     <worldbody>
-        <include file="structure_titans.xml"/>
+    <include file="structure_titans.xml"/>
     </worldbody>
 </mujoco>
