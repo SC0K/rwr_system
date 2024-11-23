@@ -1,0 +1,570 @@
+<robot name="titans_hand">
+    <link name="connector_base">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/handWrist_v6_connector_base.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="wrist">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/handWrist_v6_wrist.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="palm">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/handWrist_v6_palm.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="thumb_hinge">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/handWrist_v6_thumb_hinge.stl"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <link name="thumb_pp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/handWrist_v6_proximal_thumb.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="thumb_mp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/handWrist_v6_medial_thumb.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="thumb_dp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/handWrist_v6_distal_thumb.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="index_base">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_base.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="index_um">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_joint.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="index_pp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_proximal.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="index_mp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_medial.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="index_dp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_distal.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="middle_base">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_base.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="middle_um">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_joint.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="middle_pp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_proximal.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="middle_mp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_medial.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="middle_dp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_distal.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="ring_base">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_base.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="ring_um">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_joint.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="ring_pp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_proximal.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="ring_mp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_medial.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="ring_dp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_distal.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="pinky_base">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_base.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="pinky_um">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_joint.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="pinky_pp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_proximal.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="pinky_mp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_medial.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="pinky_dp">
+        <visual>
+            <geometry>
+                <mesh filename="package://viz/models/titans_hand/urdf/converted_mesh/finger_distal.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+        <!-- Joints Definitions -->
+
+    <joint name="connector_to_wrist" type="revolute">
+        <parent link="connector_base"/>
+        <child link="wrist"/>
+        <origin xyz="0 -0.03880 0.03000" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.5707" upper="1.5707" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="wrist_to_palm" type="fixed">
+        <parent link="wrist"/>
+        <child link="palm"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="palm_to_thumb_hinge" type="revolute">
+        <parent link="palm"/>
+        <child link="thumb_hinge"/>
+        <origin xyz="0 0.03930 0.06872" rpy="0 0 0"/>
+        <axis xyz="0 0.3420201433 0.9396926208"/>
+        <limit lower="-1.75" upper="0.786" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="thumb_hinge_to_thumb_pp" type="revolute">
+        <parent link="thumb_hinge"/>
+        <child link="thumb_pp"/>
+        <origin xyz="0 0.06283 0.07774" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-3.141592" upper="0" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="thumb_pp_to_thumb_mp" type="revolute">
+        <parent link="thumb_pp"/>
+        <child link="thumb_mp"/>
+        <origin xyz="-0.00696 0.06533 0.12360" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="thumb_mp_to_thumb_dp" type="revolute">
+        <parent link="thumb_mp"/>
+        <child link="thumb_dp"/>
+        <origin xyz="-0.00464 0.0664 0.14872" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="palm_to_index_base" type="fixed">
+        <parent link="palm"/>
+        <child link="index_base"/>
+        <origin xyz="0.002 0.04096 0.118" rpy="0 0 1.57"/>
+    </joint>
+
+    <joint name="index_base_to_index_um" type="revolute">
+        <parent link="index_base"/>
+        <child link="index_um"/>
+        <origin xyz="0 0 0.02317496" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.264" upper="0.264" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="index_um_to_index_pp" type="revolute">
+        <parent link="index_um"/>
+        <child link="index_pp"/>
+        <origin xyz="0 0.00314317 0.03414407" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.157" upper="0.829" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="index_pp_to_index_mp" type="revolute">
+        <parent link="index_pp"/>
+        <child link="index_mp"/>
+        <origin xyz="0 0.0029099 0.07130514" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="index_mp_to_index_dp" type="revolute">
+        <parent link="index_mp"/>
+        <child link="index_dp"/>
+        <origin xyz="0 0.0017961 0.09655649" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="palm_to_middle_base" type="fixed">
+        <parent link="palm"/>
+        <child link="middle_base"/>
+        <origin xyz="0.002 0.02163081458 0.115168462" rpy="0.174533 0 1.57"/>
+    </joint>
+
+    <joint name="middle_base_to_middle_um" type="revolute">
+        <parent link="middle_base"/>
+        <child link="middle_um"/>
+        <origin xyz="0 0 0.02317496" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.264" upper="0.264" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="middle_um_to_middle_pp" type="revolute">
+        <parent link="middle_um"/>
+        <child link="middle_pp"/>
+        <origin xyz="0 0.00314317 0.03414407" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.157" upper="0.829" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="middle_pp_to_middle_mp" type="revolute">
+        <parent link="middle_pp"/>
+        <child link="middle_mp"/>
+        <origin xyz="0 0.0029099 0.07130514" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="middle_mp_to_middle_dp" type="revolute">
+        <parent link="middle_mp"/>
+        <child link="middle_dp"/>
+        <origin xyz="0 0.0017961 0.09655649" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="palm_to_ring_base" type="fixed">
+        <parent link="palm"/>
+        <child link="ring_base"/>
+        <origin xyz="0.002 0.002691840889 0.1112506719" rpy="0.3490658504 0 1.57"/>
+    </joint>
+
+    <joint name="ring_base_to_ring_um" type="revolute">
+        <parent link="ring_base"/>
+        <child link="ring_um"/>
+        <origin xyz="0 0 0.02317496" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.264" upper="0.264" effort="0" velocity="0"/>
+    </joint>
+
+    <!-- Joints Definitions -->
+
+    <joint name="ring_um_to_ring_pp" type="revolute">
+        <parent link="ring_um"/>
+        <child link="ring_pp"/>
+        <origin xyz="0 0.00314317 0.03414407" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.157" upper="0.829" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="ring_pp_to_ring_mp" type="revolute">
+        <parent link="ring_pp"/>
+        <child link="ring_mp"/>
+        <origin xyz="0 0.0029099 0.07130514" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="ring_mp_to_ring_dp" type="revolute">
+        <parent link="ring_mp"/>
+        <child link="ring_dp"/>
+        <origin xyz="0 0.0017961 0.09655649" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="palm_to_pinky_base" type="fixed">
+        <parent link="palm"/>
+        <child link="pinky_base"/>
+        <origin xyz="0.002 -0.01537994548 0.103767481" rpy="0.436332313 0 1.57"/>
+    </joint>
+
+    <joint name="pinky_base_to_pinky_um" type="revolute">
+        <parent link="pinky_base"/>
+        <child link="pinky_um"/>
+        <origin xyz="0 0 0.02317496" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.264" upper="0.264" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="pinky_um_to_pinky_pp" type="revolute">
+        <parent link="pinky_um"/>
+        <child link="pinky_pp"/>
+        <origin xyz="0 0.00314317 0.03414407" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.157" upper="0.829" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="pinky_pp_to_pinky_mp" type="revolute">
+        <parent link="pinky_pp"/>
+        <child link="pinky_mp"/>
+        <origin xyz="0 0.0029099 0.07130514" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="pinky_mp_to_pinky_dp" type="revolute">
+        <parent link="pinky_mp"/>
+        <child link="pinky_dp"/>
+        <origin xyz="0 0.0017961 0.09655649" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <robot name="titans_hand">
+    <!-- Virtual Joints Definitions for Rolling Contact Simulation -->
+
+    <joint name="thumb_pp2mp_virt" type="revolute">
+        <parent link="thumb_pp"/>
+        <child link="thumb_mp"/>
+        <origin xyz="-0.00790 0.06483 0.11245" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="thumb_mp2dp_virt" type="revolute">
+        <parent link="thumb_mp"/>
+        <child link="thumb_dp"/>
+        <origin xyz="-0.00586 0.06578 0.14053" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="index_abd_virt" type="revolute">
+        <parent link="index_base"/>
+        <child link="index_um"/>
+        <origin xyz="0 0 0.00527505" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.264" upper="0.264" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="root2index_pp_virt" type="revolute">
+        <parent link="index_um"/>
+        <child link="index_pp"/>
+        <origin xyz="0 0.0033 0.01691888" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.157" upper="0.829" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="index_pp2mp_virt" type="revolute">
+        <parent link="index_pp"/>
+        <child link="index_mp"/>
+        <origin xyz="0 0.00371958 0.06026209" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="index_mp2dp_virt" type="revolute">
+        <parent link="index_mp"/>
+        <child link="index_dp"/>
+        <origin xyz="0 0.00263391 0.0882811" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="middle_abd_virt" type="revolute">
+        <parent link="middle_base"/>
+        <child link="middle_um"/>
+        <origin xyz="0 0 0.00527505" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.264" upper="0.264" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="root2middle_pp_virt" type="revolute">
+        <parent link="middle_um"/>
+        <child link="middle_pp"/>
+        <origin xyz="0 0.0033 0.01691888" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.157" upper="0.829" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="middle_pp2mp_virt" type="revolute">
+        <parent link="middle_pp"/>
+        <child link="middle_mp"/>
+        <origin xyz="0 0.00371958 0.06026209" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="middle_mp2dp_virt" type="revolute">
+        <parent link="middle_mp"/>
+        <child link="middle_dp"/>
+        <origin xyz="0 0.00263391 0.0882811" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="ring_abd_virt" type="revolute">
+        <parent link="ring_base"/>
+        <child link="ring_um"/>
+        <origin xyz="0 0 0.00527505" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.264" upper="0.264" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="root2ring_pp_virt" type="revolute">
+        <parent link="ring_um"/>
+        <child link="ring_pp"/>
+        <origin xyz="0 0.0033 0.01691888" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.157" upper="0.829" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="ring_pp2mp_virt" type="revolute">
+        <parent link="ring_pp"/>
+        <child link="ring_mp"/>
+        <origin xyz="0 0.00371958 0.06026209" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="ring_mp2dp_virt" type="revolute">
+        <parent link="ring_mp"/>
+        <child link="ring_dp"/>
+        <origin xyz="0 0.00263391 0.0882811" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+    <robot name="titans_hand">
+    <!-- Virtual Joints Definitions for Rolling Contact Simulation -->
+
+    <joint name="pinky_abd_virt" type="revolute">
+        <parent link="pinky_base"/>
+        <child link="pinky_um"/>
+        <origin xyz="0 0 0.00527505" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.264" upper="0.264" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="root2pinky_pp_virt" type="revolute">
+        <parent link="pinky_um"/>
+        <child link="pinky_pp"/>
+        <origin xyz="0 0.0033 0.01691888" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.157" upper="0.829" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="pinky_pp2mp_virt" type="revolute">
+        <parent link="pinky_pp"/>
+        <child link="pinky_mp"/>
+        <origin xyz="0 0.00371958 0.06026209" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.131" upper="0.960" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="pinky_mp2dp_virt" type="revolute">
+        <parent link="pinky_mp"/>
+        <child link="pinky_dp"/>
+        <origin xyz="0 0.00263391 0.0882811" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.093" upper="0.682" effort="0" velocity="0"/>
+    </joint>
+
+</robot>
