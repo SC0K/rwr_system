@@ -3,29 +3,29 @@
         <geom mesh="connector_base" name="connector_base_geom" />
 
         <body name = "wrist">
-            <joint type = "hinge" name="revolute_base_hand" pos="0 -0.03880 0.03000" axis="0 1 0" limited="true" range="-1.5707 1.5707"/>
+            <joint name="revolute_base_hand" pos="0 -0.03880 0.03000" axis="0 1 0" limited="true" range="-1.5707 1.5707"/>
             <geom mesh="wrist" name="connector_geom" />
             <body name="palm">
                 <geom mesh="palm" name="palm_geom" />
 
 
                 <body name="thumb_base">
-                    <joint type = "hinge" name="thumb_hinge" pos="0 0.03930 0.06872" axis="0 0.3420201433 0.9396926208" limited="true" range="-1.75 0.786"/>
+                    <joint name="thumb_hinge" pos="0 0.03930 0.06872" axis="0 0.3420201433 0.9396926208" limited="true" range="-1.75 0.786"/>
                     <geom mesh="thumb_hinge"/>
                     <body name="thumb_pp">
-                        <joint type = "hinge" name="thumb_base2pp" pos="0 0.06283 0.07774" axis="1 0 0" limited="true" range="-3.141592 0"/>
+                        <joint name="thumb_base2pp" pos="0 0.06283 0.07774" axis="1 0 0" limited="true" range="-3.141592 0"/>
                         <geom mesh="thumb_pp"/>
                         <body name="thumb_mp_virt">
-                            <joint type = "hinge" name="thumb_pp2mp_virt" axis="0 1 0" range="-0.131 0.960" pos="-0.00790 0.06483 0.11245"/>
+                            <joint name="thumb_pp2mp_virt" axis="0 1 0" range="-0.131 0.960" pos="-0.00790 0.06483 0.11245"/>
                             <inertial pos="0.009525 -0.041187 0.083647" mass="0.001" diaginertia="4E-10 4E-10 3E-10"/>
                             <body name="thumb_mp">
-                                <joint type = "hinge" name="thumb_pp2mp" axis="0 1 0" range="-0.131 0.960" pos="-0.00696 0.06533 0.12360"/>
+                                <joint name="thumb_pp2mp" axis="0 1 0" range="-0.131 0.960" pos="-0.00696 0.06533 0.12360"/>
                                 <geom mesh="thumb_mp"/>
                                 <body name="thumb_dp_virt">
-                                    <joint type = "hinge" name="thumb_mp2dp_virt" axis="0 1 0" range="-0.093 0.682" pos="-0.00586 0.06578 0.14053" />
+                                    <joint name="thumb_mp2dp_virt" axis="0 1 0" range="-0.093 0.682" pos="-0.00586 0.06578 0.14053" />
                                     <inertial pos="0.009525 -0.041187 0.083647" mass="0.001" diaginertia="4E-10 4E-10 3E-10"/>
                                         <body name="thumb_dp">
-                                        <joint type = "hinge" name="thumb_mp2dp" axis="0 1 0" range="-0.093 0.682" pos="-0.00464 0.0664 0.14872"/>
+                                        <joint name="thumb_mp2dp" axis="0 1 0" range="-0.093 0.682" pos="-0.00464 0.0664 0.14872"/>
                                         <geom mesh="thumb_dp"/>
                                         <body name="thumb_fingertip">
                                         </body>
@@ -38,8 +38,8 @@
                 
                 <body name="index_base" pos="0.002 0.04096 0.118" euler="0.0 0.0 1.57">
                     <geom mesh="index_base"/>
-                    <body name="index_um_virt">
-                        <joint name="index_abd_virt" axis="0 1 0" range="-0.264 0.264" pos="0 0 0.00527505"/>
+                    <body name="index_um_virt" pos="0 0 0.00527505">
+                        <joint name="index_abd_virt" axis="0 1 0" range="-0.264 0.264" pos="0 0 0"/>
                         <inertial pos="0 0 0.02317496" mass="0.001" diaginertia="4E-10 4E-10 3E-10"/>
                         <body name="index_um">
                             <joint name="index_abd" axis="0 1 0" range="-0.264 0.264" pos="0 0 0.02317496"/>
