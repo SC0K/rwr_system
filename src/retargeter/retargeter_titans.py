@@ -20,7 +20,7 @@ class Retargeter:
         urdf_filepath: str = None,
         mjcf_filepath: str = None,
         sdf_filepath: str = None,
-        hand_scheme: str = "p4",
+        hand_scheme: str = "titans",
         device: str = "cuda",
         lr: float = 2.5,
         use_scalar_distance_palm: bool = False,
@@ -90,7 +90,7 @@ class Retargeter:
         os.chdir(prev_cwd)
 
         joint_parameter_names = self.chain.get_joint_parameter_names()
-        self.chain.print_tree()
+        print(f"Joint parameter names: {joint_parameter_names}")
         gc_tendons = GC_TENDONS
         self.n_joints = self.chain.n_joints
         self.n_tendons = len(
@@ -102,7 +102,6 @@ class Retargeter:
         joint_names_check = []
         for i, (name, tendons) in enumerate(gc_tendons.items()):
             virtual_joint_weight = 0.5 if "virt" in name else 1.0
-            print(f"Joint: {name} Weight: {virtual_joint_weight}")
             self.joint_map[joint_parameter_names.index(name), i] = virtual_joint_weight
             self.tendon_names.append(name)
             joint_names_check.append(name)
@@ -111,12 +110,6 @@ class Retargeter:
                     weight * virtual_joint_weight
                 )
                 joint_names_check.append(tendon)
-        print("Joint parameter names:")
-        for name in joint_parameter_names:
-            print(name)
-        print("Joint names check:")
-        for name in joint_names_check:
-            print(name)
         assert set(joint_names_check) == set(
             joint_parameter_names
         ), "Joint names mismatch, please double check hand_scheme"
@@ -287,8 +280,8 @@ class Retargeter:
             ) / 2
 
             keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm)
-            # norms_faive = {k: torch.norm(v) for k, v in keyvectors_faive.items()}
-            # print(f"keyvectors_faive: {norms_faive}")
+            norms_faive = {k: torch.norm(v) for k, v in keyvectors_faive.items()}
+            print(f"keyvectors_faive: {norms_faive}")
 
             loss = 0
 
@@ -321,7 +314,7 @@ class Retargeter:
 
         finger_joint_angles = self.gc_joints.detach().cpu().numpy()
 
-        print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
+        # print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
 
         return finger_joint_angles
 
