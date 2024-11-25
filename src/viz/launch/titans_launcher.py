@@ -9,7 +9,8 @@ def generate_launch_description():
         get_package_share_directory('viz'),
         "models",
         "titans_hand",
-        "model.urdf"
+        "urdf",
+        "titans_hand.urdf"
     )
 
     # Load the URDF content

@@ -1,3 +1,12 @@
 {
-    "cmake.sourceDirectory": "C:/Users/pcwag/OneDrive - ETH Zurich/Uni/1_Semester/RealWorldRobotics/Software/Sitonggit/rwr_system/ESPCode/.pio/libdeps/az-delivery-devkit-v4/Adafruit BusIO"
+    "cmake.sourceDirectory": "C:/Users/pcwag/OneDrive - ETH Zurich/Uni/1_Semester/RealWorldRobotics/Software/Sitonggit/rwr_system/ESPCode/.pio/libdeps/az-delivery-devkit-v4/Adafruit BusIO",
+    "ros.distro": "humble",
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
 }
