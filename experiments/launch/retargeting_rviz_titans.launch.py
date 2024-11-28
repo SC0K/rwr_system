@@ -29,8 +29,8 @@ def generate_launch_description():
             # RETARGET NODE
             Node(
                 package="retargeter",
-                executable="retargeter_node_titans.py",
-                name="retargeter_node_titans",
+                executable="retargeter_node.py",
+                name="retargeter_node",
                 output="screen",
                 # COMMENT OR UNCOMMENT THE FOLLOWING LINES TO SWITCH BETWEEN MJCF AND URDF, JUST ONE OF THEM SHOULD BE ACTIVE TODO: Make this a parameter
                 parameters=[
