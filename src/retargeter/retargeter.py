@@ -128,16 +128,15 @@ class Retargeter:
         # self.opt = torch.optim.Adam([self.gc_joints], lr=self.lr)
         self.opt = torch.optim.RMSprop([self.gc_joints], lr=self.lr)
 
-        self.root = torch.zeros(1, 3).to(self.device)
-        # self.root = torch.tensor([[0.0, 0.0, 0.055]]).to(self.device)  ############ NOTE Adujust this so that the root matches the palm coordinate ##############
+        self.root = torch.zeros(1, 3).to(self.device)   ## NOTE: This is the poistion of the palm in the world frame, It is preferable to set it to the origin.
 
 
-        self.loss_coeffs = torch.tensor([5.0, 5.0, 5.0, 5.0, 5.0]).to(self.device)
+        self.loss_coeffs = torch.tensor([5.0, 5.0, 5.0, 5.0, 5.0, 15.0]).to(self.device)
 
         if use_scalar_distance_palm:
-            self.use_scalar_distance = [False, True, True, True, True]
+            self.use_scalar_distance = [False, True, True, True, True, False]
         else:
-            self.use_scalar_distance = [False, False, False, False, False]
+            self.use_scalar_distance = [False, False, False, False, False, False]
 
         self.sanity_check()
         _chain_transforms = self.chain.forward_kinematics(
@@ -191,30 +190,22 @@ class Retargeter:
             assert (
                 base in self.chain.get_link_names()
             ), f"Base frame {base} not found in the chain"
-        palm_origin = torch.tensor([[0.0, 0.0, 0.0]]).to(self.device)
-        ## Check the base frame is fixed to the palm
         chain_transform1 = self.chain.forward_kinematics(
             torch.randn(self.chain.n_joints, device=self.chain.device)
         )
-        palm_transform = chain_transform1["palm"]
-        actual_palm_position1 = palm_transform.transform_points(palm_origin)
-        print(f"Actual Palm Position: {actual_palm_position1}")
 
         chain_transform2 = self.chain.forward_kinematics(
             torch.randn(self.chain.n_joints, device=self.chain.device)
         )
-        palm_transform = chain_transform2["palm"]
-        actual_palm_position2 = palm_transform.transform_points(palm_origin)
-        print(f"Actual Palm Position: {actual_palm_position2}")
 
         chain_transform3 = self.chain.forward_kinematics(
             torch.randn(self.chain.n_joints, device=self.chain.device)
         )
         for finger, base in self.finger_to_base.items():
-            print( "Palm transform to finger base",
-                chain_transform1[base].transform_points(self.root),
-                chain_transform2[base].transform_points(self.root),
-            )
+            # print( "Palm transform to finger base",
+            #     chain_transform1[base].transform_points(self.root),
+            #     chain_transform2[base].transform_points(self.root),
+            # )
             assert torch.allclose(
                 chain_transform1[base].transform_points(self.root),
                 chain_transform2[base].transform_points(self.root),
@@ -268,7 +259,9 @@ class Retargeter:
             keepdim=True,
         )
 
-        keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm)
+        mano_thumbpp = mano_joints_dict["thumb"][[2],:]
+
+        keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm, mano_thumbpp)
         # norms_mano = {k: torch.norm(v) for k, v in keyvectors_mano.items()}
         # print(f"keyvectors_mano: {norms_mano}")
 
@@ -276,9 +269,7 @@ class Retargeter:
             chain_transforms = self.chain.forward_kinematics(
                 self.joint_map @ (self.gc_joints / (180 / np.pi))
             )
-            palm_origin = torch.tensor([[0.0, 0.0, 0.0]]).to(self.device)
-            palm_transform = chain_transforms["palm"]
-            actual_palm_position = palm_transform.transform_points(palm_origin)
+
             fingertips = {}
             for finger, finger_tip in self.finger_to_tip.items():
                 fingertips[finger] = chain_transforms[finger_tip].transform_points(
@@ -294,7 +285,9 @@ class Retargeter:
                 )
             ) / 2
 
-            keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm)
+            thumb_pp = chain_transforms["thumb_pp"].transform_points(self.root)         ## new keyvector to track thumb movement
+                                                                                            ## NOTE: Remember to update self.loss_coeffs and self.use_scalar_distance if you add more keyvectors and self.use_scalar_distance_palm if you want to use scalar distance for palm
+            keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm, thumb_pp)
             # norms_faive = {k: torch.norm(v) for k, v in keyvectors_faive.items()}
             # print(f"keyvectors_faive: {norms_faive}")
 

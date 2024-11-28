@@ -78,7 +78,7 @@
         <exclude body1="connector_base" body2="palm"/>
         <exclude body1="connector_base" body2="wrist"/>
         <exclude body1="connector_base" body2="thumb_base"/>
-        <exclude body1="palm" body2="thumb_pp"/>
+        <!-- <exclude body1="palm" body2="thumb_pp"/> -->
 
     </contact>
 
