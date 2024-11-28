@@ -68,7 +68,7 @@ def get_mano_pps_batch(mano_joints_dict):
     }
 
 
-def get_keyvectors(fingertips: Dict[str, torch.Tensor], palm: torch.Tensor,thumb_pp: torch.Tensor):
+def get_keyvectors(fingertips: Dict[str, torch.Tensor], palm: torch.Tensor,thumb_pp: torch.Tensor, wrist: torch.Tensor):
     return {
         "palm2thumb": fingertips["thumb"] - palm,
         "palm2index": fingertips["index"] - palm,
@@ -76,6 +76,7 @@ def get_keyvectors(fingertips: Dict[str, torch.Tensor], palm: torch.Tensor,thumb
         "palm2ring": fingertips["ring"] - palm,
         "palm2pinky": fingertips["pinky"] - palm,
         "palm2thumbpp": thumb_pp - palm,
+        "palm2wrist": wrist - palm,
         # 'thumb2index': fingertips['index'] - fingertips['thumb'],
         # 'thumb2middle': fingertips['middle'] - fingertips['thumb'],
         # 'thumb2ring': fingertips['ring'] - fingertips['thumb'],
