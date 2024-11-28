@@ -3,8 +3,8 @@
     <option timestep="0.001" />
 
     <default>
-        <joint type="hinge" limited="true" damping="0.01" armature="0.001" margin="0.01" frictionloss="0.001"/>
-        <geom rgba="1 1 1 1" type="mesh" friction="1 0.005 0.001" condim="3" margin="0.0005" contype="1" conaffinity="1"/>
+        <joint type="hinge" limited="true" damping="0.01" armature="0.001" margin="0.001" frictionloss="0.001"/>
+        <geom rgba="1 1 1 1" type="mesh" friction="1 0.005 0.001" condim="3" margin="0.00001" contype="1" conaffinity="1"/>
         <position ctrllimited="true" forcelimited="true" forcerange="-1 1" kp="0.2"/>
     </default>
 
@@ -48,6 +48,7 @@
         <exclude body1="thumb_base" body2="thumb_pp"/>
         <exclude body1="thumb_pp" body2="thumb_mp"/>
         <exclude body1="thumb_mp" body2="thumb_dp"/>
+        <exclude body1="thumb_base" body2="palm"/>
 
         <exclude body1="palm" body2="index_base"/>
         <exclude body1="index_base" body2="index_um"/>
@@ -115,8 +116,8 @@
         <!-- Actuatprs for the palm -->
         <position ctrlrange="-1 1" joint="revolute_base_hand" name="actuator_base_hand" kp="0.5"/>
         
-        <position name="thumb_hinge" joint="thumb_hinge" ctrlrange="-1.75 1"/>
-        <position name="thumb_base2pp" joint="thumb_base2pp" ctrlrange="-0.1 3"/> <!-- REMEMBER INVERT IN RETARGETER DESCRIPTION! -->
+        <position name="thumb_hinge" joint="thumb_hinge" ctrlrange="-0.1 1.75" gear = "-1"/>
+        <position name="thumb_base2pp" joint="thumb_base2pp" ctrlrange="-1.35 0.2" gear = "-1"/> <!-- REMEMBER INVERT IN RETARGETER DESCRIPTION! -->
         <position name="thumb_pp2mp" joint="thumb_pp2mp" ctrlrange="-0.157 0.829"/>
         <position name="thumb_mp2dp" joint="thumb_mp2dp" ctrlrange="-0.131 0.960"/>
 

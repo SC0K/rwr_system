@@ -194,14 +194,14 @@ class Retargeter:
         palm_origin = torch.tensor([[0.0, 0.0, 0.0]]).to(self.device)
         ## Check the base frame is fixed to the palm
         chain_transform1 = self.chain.forward_kinematics(
-            torch.zeros(self.chain.n_joints, device=self.chain.device)
+            torch.randn(self.chain.n_joints, device=self.chain.device)
         )
         palm_transform = chain_transform1["palm"]
         actual_palm_position1 = palm_transform.transform_points(palm_origin)
         print(f"Actual Palm Position: {actual_palm_position1}")
 
         chain_transform2 = self.chain.forward_kinematics(
-            torch.zeros(self.chain.n_joints, device=self.chain.device)
+            torch.randn(self.chain.n_joints, device=self.chain.device)
         )
         palm_transform = chain_transform2["palm"]
         actual_palm_position2 = palm_transform.transform_points(palm_origin)
@@ -212,12 +212,12 @@ class Retargeter:
         )
         for finger, base in self.finger_to_base.items():
             print( "Palm transform to finger base",
-                chain_transform1[base].transform_points(actual_palm_position1),
-                chain_transform2[base].transform_points(actual_palm_position2),
+                chain_transform1[base].transform_points(self.root),
+                chain_transform2[base].transform_points(self.root),
             )
             assert torch.allclose(
-                chain_transform1[base].transform_points(actual_palm_position1),
-                chain_transform2[base].transform_points(actual_palm_position2),
+                chain_transform1[base].transform_points(self.root),
+                chain_transform2[base].transform_points(self.root),
             ), f"Base frame {base} not fixed to the palm"
 
     def retarget_finger_mano_joints(

@@ -1,19 +1,20 @@
 <mujoco model="titans_hand_structure">
-    <body name="root">
-        <body name="connector_base" pos="0 0 0">
-            <geom mesh="connector_base" name="connector_base_geom"/>
+        <body name="wrist" pos="0 0 0.03">
+            <geom mesh="wrist" name="wrist_geom" pos ="0 0 -0.03"/>
 
-            <body name = "wrist" pos="0 0 0.03000"> 
-                <joint name="revolute_base_hand" axis="1 0 0" limited="true" range="-1.5707 1.5707"/>
-                <geom mesh="wrist" name="connector_geom" pos ="0 0 -0.03"/>
+
+            <body name = "connector_base" pos="0 0 -0.03000"> 
+                <joint name="revolute_base_hand" axis="1 0 0" limited="true" range="-1.5707 1.5707" pos="0 0 0.03"/>
+                <geom mesh="connector_base" name="connector_geom"/>
+            </body>
                 <body name="palm" pos = "0 0 0.025">
                     <geom mesh="palm" name="palm_geom" pos = "0 0 -0.055"/>
 
                     <body name="thumb_base" pos="0.03930 0 0.023115" euler = "0 0.34906585 0">
-                    <joint name="thumb_hinge" axis="0 0 1" limited="true" range="-1.75 0.786"/>
+                    <joint name="thumb_hinge" axis="0 0 1" limited="true" range="-1.75 0.1"/>
                     <geom mesh="thumb_hinge" pos = "-0.0120 0 -0.088115" quat="0.9848 0 -0.1736 0"/>
                     <body name="thumb_pp" pos="0.02053 0.0 0.007747733972">
-                        <joint name="thumb_base2pp" axis="0 1 0" limited="true" range="0 3.141592"/>
+                        <joint name="thumb_base2pp" axis="0 1 0" limited="true" range="-0.2 1.35"/>
                         <geom mesh="thumb_pp" pos="-0.06283 0 -0.07849" euler = "0 0 -1.5707"/>
                         <body name="thumb_mp_virt" pos="0 0.00790 0.03471">
                             <joint name="thumb_pp2mp_virt" axis="1 0 0" range="-0.131 0.960"/>
@@ -196,8 +197,6 @@
                         </body>
                     </body>
                     
-                </body>
             </body>
         </body>
-    </body>
 </mujoco>
