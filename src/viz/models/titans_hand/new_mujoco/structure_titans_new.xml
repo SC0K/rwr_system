@@ -2,16 +2,16 @@
     <body name="connector_base" pos="0 0 0">
         <geom mesh="connector_base" name="connector_base_geom" />
 
-        <body name = "wrist">
-            <joint name="revolute_base_hand" pos="0 -0.03880 0.03000" axis="0 1 0" limited="true" range="-1.5707 1.5707"/>
-            <geom mesh="wrist" name="connector_geom" />
+        <body name = "wrist" pos="0 -0.03880 0.03000" >
+            <joint name="revolute_base_hand" pos="0 0 0" axis="0 1 0" limited="true" range="-1.5707 1.5707"/>
+            <geom mesh="wrist" name="connector_geom" pos="0 0.03880 -0.03000"/>
             <body name="palm">
                 <geom mesh="palm" name="palm_geom" />
 
 
-                <body name="thumb_base">
-                    <joint name="thumb_hinge" pos="0 0.03930 0.06872" axis="0 0.3420201433 0.9396926208" limited="true" range="-1.75 0.786"/>
-                    <geom mesh="thumb_hinge"/>
+                <body name="thumb_base" euler = "-0.34906585 0 0" pos="0 0.03930 0.06872">
+                    <joint name="thumb_hinge" pos="0 0 0" axis="0 0 0.000001" limited="true" range="-1.75 0.786"/>
+                    <geom mesh="thumb_hinge" pos="0 -0.03930 -0.06872" euler = "0.34906585 0 0"/>
                     <body name="thumb_pp">
                         <joint name="thumb_base2pp" pos="0 0.06283 0.07774" axis="1 0 0" limited="true" range="-3.141592 0"/>
                         <geom mesh="thumb_pp"/>
