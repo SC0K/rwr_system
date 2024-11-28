@@ -1,5 +1,5 @@
 <mujoco model="titans_hand_structure">
-    <body pos = "0 0 0">
+    <body name="root">
         <body name="connector_base" pos="0 0 0">
             <geom mesh="connector_base" name="connector_base_geom"/>
 
