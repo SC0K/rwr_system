@@ -6,7 +6,7 @@ import rosbag2_py
 import yaml
 from pathlib import Path
 from datetime import datetime
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Float32MultiArray, Float32
 from geometry_msgs.msg import PoseStamped
 from sensor_msgs.msg import Image
 from bag2h5_converter import convert_to_h5
@@ -19,6 +19,7 @@ topics_types = {
     "/oakd_front_view/color": Image,
     "/oakd_side_view/color": Image,
     "/oakd_wrist_view/color": Image,
+    "/sensor/bmp1/pressure": Float32,  # New pressure sensor topic
 }
 
 class DemoLogger(Node):
@@ -145,7 +146,7 @@ def main(args=None):
     base_path = "recordings"  # Modify this path as needed
 
     # Load topics to record (for demonstration, using hardcoded list)
-    topics_to_record = ['/oakd_front_view/color', '/hand/policy_output']
+    topics_to_record = ['/oakd_front_view/color', "/oakd_side_view/color", "/franka/end_effector_pose", '/hand/policy_output', "/sensor/bmp1/pressure"]
 
     # Initialize ROS and create DemoLogger instance
     rclpy.init(args=args)
