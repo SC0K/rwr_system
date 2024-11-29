@@ -12,7 +12,7 @@ BMPSensor bmp1(27, 14, 0);
 // ROS variables
 rcl_node_t node;
 rcl_publisher_t publisher_bmp1;
-std_msgs__msg__Float32 msg;
+std_msgs__msg__Float32 msg; # float32 multiarray
 
 void setup() {
     Serial.begin(115200);
@@ -36,7 +36,7 @@ void loop() {
     // Publish pressure data for each sensor with serial debug
     if (bmp1.isInitialized()) {
         msg.data = bmp1.readPressure();
-        rcl_publish(&publisher_bmp1, &msg, NULL);
+        rcl_publish(&publisher_bmp1, &msg, NULL); # Publish all pressure readings here
         Serial.print(">pressure1:");
         Serial.println(msg.data);
     }
