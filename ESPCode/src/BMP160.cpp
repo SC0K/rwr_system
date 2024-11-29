@@ -1,20 +1,21 @@
 #include "BMP160.h"
+#include <TCA9548.h>
+#include <Wire.h>
 
 // Constructor
-BMPSensor::BMPSensor(uint8_t bus_num, uint8_t address): bus_num(bus_num), i2c_address(address), initialized(false) {
-    i2c = new TwoWire(bus_num); // Create a new TwoWire instance
+BMPSensor::BMPSensor(uint8_t bus_num, TCA9548 *mp, uint8_t address): bus_num(bus_num), mp(mp), i2c_address(address), initialized(false) {
+
 }
 
 // Destructor
 BMPSensor::~BMPSensor() {
-    delete i2c;
+    delete mp;
 }
 
 // Initialize the sensor
 bool BMPSensor::begin() {
-    i2c->begin(sda_pin, scl_pin);
-    delay(10); // Allow time for the sensor to stabilize
-    initialized = bmp.begin(i2c_address, i2c);
+    mp->selectChannel(bus_num);
+    initialized = bmp.begin(i2c_address, &Wire);
     return initialized;
 }
 
@@ -29,6 +30,7 @@ float BMPSensor::readPressure() {
         Serial.println("Error: Sensor not initialized!");
         return -1;
     }
+    mp->selectChannel(bus_num);
     return bmp.readPressure();
 }
 
@@ -38,5 +40,6 @@ float BMPSensor::readTemperature() {
         Serial.println("Error: Sensor not initialized!");
         return -1;
     }
+    mp->selectChannel(bus_num);
     return bmp.readTemperature();
 }
