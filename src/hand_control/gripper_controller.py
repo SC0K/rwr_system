@@ -33,7 +33,7 @@ class GripperController:
     The direction of each tendon is set by the sign of the `spool_rad` variable in each muscle group
     """
 
-    def __init__(self, port: str = '/dev/tty.usbserial-FT94EKD8', config_yml: str = "gripper_defs.yaml", calibration: bool = False, maxCurrent: int = 150):
+    def __init__(self, port: str = '/dev/ttyUSB0', config_yml: str = "gripper_defs.yaml", calibration: bool = False, maxCurrent: int = 150):
         """
         config_yml: path to the config file, relative to this source file
         """
@@ -298,7 +298,7 @@ class GripperController:
 
 
 if __name__ == "__main__":
-    gc = GripperController("/dev/tty.usbserial-FT94EKD8")
+    gc = GripperController("/dev/ttyUSB0")
     # gc.connect_to_dynamixels()
 
     gc.init_joints(calibrate=True)

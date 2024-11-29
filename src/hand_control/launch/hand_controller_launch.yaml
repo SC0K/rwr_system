@@ -1,7 +1,7 @@
 launch:
   - node:
       pkg: "hand_controller_ros"
-      exec: "hand_controller_node.py"
+      exec: "hand_control_node.py"
       name: "hand_controller_node"
       output: "log" # change to "screen" for debugging
       param:
