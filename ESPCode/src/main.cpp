@@ -6,9 +6,10 @@
 #include <std_msgs/msg/float32_multi_array.h>
 #include <TCA9548.h>
 
-// #define SERIAL 0 // debug enables Serial debugging
+// #define SERIAL // debug disables Serial debugging
+bool serial = false;
 
-int publishing_period_ms = 0;
+int publishing_period_ms = 1000;
 
 TCA9548 mp(0x70);
 
@@ -30,27 +31,26 @@ std_msgs__msg__Float32MultiArray msg;
 
 void setup()
 {
-
-#ifdef SERIAL
-    Serial.begin(115200);
-#endif
+    if (serial) {
+        Serial.begin(115200);
+    }
     Wire.begin();
 
-#ifndef SERIAL
-    set_microros_transports();
+    if (!serial) {
+        set_microros_transports();
 
-    rcl_allocator_t allocator = rcl_get_default_allocator();
-    rclc_support_t support;
-    rclc_support_init(&support, 0, NULL, &allocator);
+        rcl_allocator_t allocator = rcl_get_default_allocator();
+        rclc_support_t support;
+        rclc_support_init(&support, 0, NULL, &allocator);
 
-    rclc_node_init_default(&node, "bmp_sensor_node", "", &support);
+        rclc_node_init_default(&node, "bmp_sensor_node", "", &support);
 
-    rclc_publisher_init_default(
-        &publisher,
-        &node,
-        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
-        "sensor/pressures");
-#endif
+        rclc_publisher_init_default(
+            &publisher,
+            &node,
+            ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
+            "sensor/pressures");
+    }
 
     // Initialize sensors
     if (!bmp1.begin())
@@ -98,22 +98,21 @@ void loop()
     msg.data.data[3] = press4;
     msg.data.data[4] = press5;
 
-#ifndef SERIAL
-    rcl_publish(&publisher, &msg, NULL);
-#endif
-
-#ifdef SERIAL
-    Serial.print(">pressure1:");
-    Serial.println(press1);
-    Serial.print(">pressure2:");
-    Serial.println(press2);
-    Serial.print(">pressure3:");
-    Serial.println(press3);
-    Serial.print(">pressure4:");
-    Serial.println(press4);
-    Serial.print(">pressure5:");
-    Serial.println(press5);
-#endif
+    if (serial) {
+        Serial.print(">pressure1:");
+        Serial.println(press1);
+        Serial.print(">pressure2:");
+        Serial.println(press2);
+        Serial.print(">pressure3:");
+        Serial.println(press3);
+        Serial.print(">pressure4:");
+        Serial.println(press4);
+        Serial.print(">pressure5:");
+        Serial.println(press5);
+    }
+    else {
+        rcl_publish(&publisher, &msg, NULL);
+    }
 
     delay(publishing_period_ms);
 }
