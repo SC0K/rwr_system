@@ -13,7 +13,7 @@ from faive_system.src.viz.visualize_mano import ManoHandVisualizer
 
 class RetargeterNode(Node):
     def __init__(self, debug=False):
-        super().__init__("rokoko_node")
+        super().__init__("retargeter_node")
 
         # start retargeter
         self.declare_parameter("retarget/mjcf_filepath", rclpy.Parameter.Type.STRING)

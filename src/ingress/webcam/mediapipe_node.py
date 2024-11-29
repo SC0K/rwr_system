@@ -21,6 +21,7 @@ class MediapipeNode(Node):
         self.ingress_mano_pub = self.create_publisher(
             Float32MultiArray, "/ingress/mano", 10
         )
+        print("MediaPipe Node publisher set to /ingress/mano")
 
     def timer_publish_cb(self):
 
