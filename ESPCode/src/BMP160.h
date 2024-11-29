@@ -30,4 +30,4 @@ public:
     float readTemperature();
 };
 
-#endif // BMPSENSOR_H
+// #endif // BMPSENSOR_H

@@ -6,9 +6,9 @@
 #include <std_msgs/msg/float32_multi_array.h>
 #include <TCA9548.h>
 
-//#define DEBUG // debug enables Serial debugging and disables ROS2
+// #define SERIAL 0 // debug enables Serial debugging
 
-int publishing_period_ms = 1000;
+int publishing_period_ms = 0;
 
 TCA9548 mp(0x70);
 
@@ -28,11 +28,17 @@ rcl_node_t node;
 rcl_publisher_t publisher;
 std_msgs__msg__Float32MultiArray msg;
 
-void setup() {
+void setup()
+{
+
+#ifdef SERIAL
     Serial.begin(115200);
+#endif
     Wire.begin();
 
-    set_microros_serial_transports(Serial);
+#ifndef SERIAL
+    set_microros_transports();
+
     rcl_allocator_t allocator = rcl_get_default_allocator();
     rclc_support_t support;
     rclc_support_init(&support, 0, NULL, &allocator);
@@ -44,33 +50,45 @@ void setup() {
         &node,
         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
         "sensor/pressures");
+#endif
 
     // Initialize sensors
-    if (!bmp1.begin()) Serial.println("Failed to initialize BMP1!");
-    if (!bmp2.begin()) Serial.println("Failed to initialize BMP2!");
-    if (!bmp3.begin()) Serial.println("Failed to initialize BMP3!");
-    if (!bmp4.begin()) Serial.println("Failed to initialize BMP4!");
-    if (!bmp5.begin()) Serial.println("Failed to initialize BMP5!");
+    if (!bmp1.begin())
+        Serial.println("Failed to initialize BMP1!");
+    if (!bmp2.begin())
+        Serial.println("Failed to initialize BMP2!");
+    if (!bmp3.begin())
+        Serial.println("Failed to initialize BMP3!");
+    if (!bmp4.begin())
+        Serial.println("Failed to initialize BMP4!");
+    if (!bmp5.begin())
+        Serial.println("Failed to initialize BMP5!");
 
     msg.data.capacity = 5;
     msg.data.size = 5;
     msg.data.data = (float *)malloc(5 * sizeof(float));
 }
 
-void loop() {
-    if (bmp1.isInitialized()) {
+void loop()
+{
+    if (bmp1.isInitialized())
+    {
         press1 = bmp1.readPressure();
     }
-    if (bmp2.isInitialized()) {
+    if (bmp2.isInitialized())
+    {
         press2 = bmp2.readPressure();
     }
-    if (bmp3.isInitialized()) {
+    if (bmp3.isInitialized())
+    {
         press3 = bmp3.readPressure();
     }
-    if (bmp4.isInitialized()) {
+    if (bmp4.isInitialized())
+    {
         press4 = bmp4.readPressure();
     }
-    if (bmp5.isInitialized()) {
+    if (bmp5.isInitialized())
+    {
         press5 = bmp5.readPressure();
     }
 
@@ -79,10 +97,12 @@ void loop() {
     msg.data.data[2] = press3;
     msg.data.data[3] = press4;
     msg.data.data[4] = press5;
-    
-    rcl_publish(&publisher, &msg, NULL);
 
-    #ifdef DEBUG
+#ifndef SERIAL
+    rcl_publish(&publisher, &msg, NULL);
+#endif
+
+#ifdef SERIAL
     Serial.print(">pressure1:");
     Serial.println(press1);
     Serial.print(">pressure2:");
@@ -93,7 +113,7 @@ void loop() {
     Serial.println(press4);
     Serial.print(">pressure5:");
     Serial.println(press5);
-    #endif
+#endif
 
-    delay(publishing_period_ms);	
+    delay(publishing_period_ms);
 }
