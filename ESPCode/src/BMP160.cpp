@@ -1,7 +1,7 @@
 #include "BMP160.h"
 
 // Constructor
-BMPSensor::BMPSensor(uint8_t sda, uint8_t scl, uint8_t bus_num, uint8_t address): sda_pin(sda), scl_pin(scl), bus_num(bus_num), i2c_address(address), initialized(false) {
+BMPSensor::BMPSensor(uint8_t bus_num, uint8_t address): bus_num(bus_num), i2c_address(address), initialized(false) {
     i2c = new TwoWire(bus_num); // Create a new TwoWire instance
 }
 
