@@ -46,6 +46,10 @@ class RetargeterNode(Node):
         self.joints_pub = self.create_publisher(
             Float32MultiArray, "/hand/policy_output", 10
         )
+        self.joints_pub_sim = self.create_publisher(
+            Float32MultiArray, "/hand/policy_output_sim", 10
+        )
+
         self.debug = debug
         if self.debug:
             self.rviz_pub = self.create_publisher(MarkerArray, 'retarget/normalized_mano_points', 10)
@@ -64,7 +68,7 @@ class RetargeterNode(Node):
                 self.mano_hand_visualizer.reset_markers()
 
             debug_dict = {}
-            joint_angles, debug_dict = self.retargeter.retarget(self.keypoint_positions, debug_dict)
+            sim_joint_angles,real_joint_angles, debug_dict = self.retargeter.retarget(self.keypoint_positions, debug_dict)
 
             if self.debug:
                 self.mano_hand_visualizer.generate_hand_markers(
@@ -73,9 +77,9 @@ class RetargeterNode(Node):
                 )
 
             self.joints_pub.publish(
-                numpy_to_float32_multiarray(np.deg2rad(joint_angles))
+                numpy_to_float32_multiarray(np.deg2rad(real_joint_angles))
             )
-
+            self
             if self.debug:
                 self.mano_hand_visualizer.publish_markers()
         except Exception as e:

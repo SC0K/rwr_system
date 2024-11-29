@@ -50,10 +50,10 @@ class PolicyPlayerAgent(Node):
         self.lock = Lock()
 
         self.hand_pub = self.create_publisher(
-            Float32MultiArray, "/hand/policy_output", 10
+            Float32MultiArray, "/hand/policy_output_sim", 10
         )
         self.hand_sub = self.create_subscription(
-            Float32MultiArray, "/hand/policy_output", self.hand_callback, 10
+            Float32MultiArray, "/hand/policy_output_sim", self.hand_callback, 10
         )
         
         self.arm_publisher = self.create_publisher(

@@ -325,10 +325,6 @@ class Retargeter:
 
         # print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
 
-        wrist_angle = np.zeros(1)
-        rest_angles = finger_joint_angles[1:]
-        rest_angles[0] = rest_angles[0] * -1
-        finger_joint_angles = np.concatenate([rest_angles, wrist_angle])
 
         return finger_joint_angles
 
@@ -345,4 +341,8 @@ class Retargeter:
         if debug_dict is not None:
             debug_dict["normalized_joint_pos"] = normalized_joint_pos
         self.target_angles = self.retarget_finger_mano_joints(normalized_joint_pos)
+        wrist_angle = np.zeros(1)
+        rest_angles = finger_joint_angles[1:]
+        rest_angles[0] = rest_angles[0] * -1
+        finger_joint_angles = np.concatenate([rest_angles, wrist_angle])
         return self.target_angles, debug_dict

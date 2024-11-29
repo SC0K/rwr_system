@@ -19,6 +19,7 @@ TOPICS_TYPES = {
     
     # HAND POLICY OUTPUT
     "/hand/policy_output": Float32MultiArray,
+    "/hand/policy_output_sim": Float32MultiArray,
     
     # CAMERA IMAGES
     "/oakd_front_view/color": Image,
@@ -198,6 +199,7 @@ def main(args=None):
                         '/oakd_wrist_view/extrinsics',
                         '/oakd_wrist_view/projection',
                         '/hand/policy_output', 
+                        '/hand/policy_output_sim', 
                         '/franka/end_effector_pose', 
                         '/franka/end_effector_pose_cmd',
                         '/task_description', 
