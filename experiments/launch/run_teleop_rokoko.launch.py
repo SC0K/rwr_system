@@ -5,25 +5,42 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
+    urdf = os.path.join(
+    get_package_share_directory('viz'),
+    "models",
+    "titans_hand",
+    "urdf",
+    "titans_hand.urdf"
+    )
+
+    with open(urdf, 'r') as infp:
+        robot_desc = infp.read()
     return LaunchDescription(
         [
             
+            # Node(
+            #     package="ingress",
+            #     executable="rokoko_node.py",
+            #     name="rokoko_node",
+            #     output="log",
+            #     parameters=[
+            #         {"rokoko_tracker/ip": "0.0.0.0"},
+            #         {"rokoko_tracker/port": 14043},
+            #         {"rokoko_tracker/use_coil": True}
+            #     ],
+            # ),
+
             Node(
                 package="ingress",
-                executable="rokoko_node.py",
-                name="rokoko_node",
+                executable="mediapipe_node.py",
+                name="mediapipe_node",
                 output="log",
-                parameters=[
-                    {"rokoko_tracker/ip": "0.0.0.0"},
-                    {"rokoko_tracker/port": 14043},
-                    {"rokoko_tracker/use_coil": True}
-                ],
             ),
 
             # HAND CONTROLLER NODE
             Node(
                 package="hand_control",
-                executable="hand_controller_node.py",
+                executable="hand_control_node.py",
                 name="hand_controller_node",
             ),
             
@@ -32,17 +49,29 @@ def generate_launch_description():
                 package="retargeter",
                 executable="retargeter_node.py",
                 name="retargeter_node",
-                output="log",
+                output="screen",
+                # COMMENT OR UNCOMMENT THE FOLLOWING LINES TO SWITCH BETWEEN MJCF AND URDF, JUST ONE OF THEM SHOULD BE ACTIVE TODO: Make this a parameter
                 parameters=[
                     {
                         "retarget/mjcf_filepath": os.path.join(
                             get_package_share_directory("viz"),
                             "models",
-                            "faive_hand_p4",
-                            "hand_p4.xml",
+                            "titans_hand",
+                            "new_mujoco",
+                            "hand_titans_new.xml"
                         )
                     },
-                    {"retarget/hand_scheme": "p4"},
+                    # {
+                    #     "retarget/urdf_filepath": os.path.join(
+                    #         get_package_share_directory("viz"),
+                    #         "models",
+                    #         "titans_hand",
+                    #         "urdf",
+                    #         "titans_hand.urdf"
+                    #     )
+                    # },
+                    {"retarget/hand_scheme": "titans"},
+                    {"debug": True},
                 ],
             ),
             
@@ -56,11 +85,31 @@ def generate_launch_description():
                         "scheme_path": os.path.join(
                             get_package_share_directory("viz"),
                             "models",
-                            "faive_hand_p4",
-                            "scheme_p4.yaml",
+                            "titans_hand",
+                            "new_mujoco",
+                            "scheme_titans.yaml",
                         )
                     }
                 ],
+                output="screen",
             ),
+            
+                        
+            Node(
+                package='robot_state_publisher',
+                executable='robot_state_publisher',
+                name='robot_state_publisher',
+                output='screen',
+                parameters=[{'robot_description': robot_desc,}],
+                arguments=[urdf]),
+            
+            Node(
+                package='rviz2',
+                executable='rviz2',
+                name='rviz2',
+                output='screen', 
+                arguments=['-d', os.path.join(get_package_share_directory('viz'), 'rviz', 'retarget_config.rviz')],
+                ),
+
         ]
     )

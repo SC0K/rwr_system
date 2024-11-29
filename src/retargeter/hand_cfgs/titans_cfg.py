@@ -8,9 +8,9 @@ GC_TENDONS = {
     "thumb_base2pp": {},
     "thumb_pp2mp_virt": {
         "thumb_pp2mp": 1,
-        "thumb_mp2dp_virt": 0.71,
-        "thumb_mp2dp": 0.71,
     },
+    
+    "thumb_mp2dp": {"thumb_mp2dp_virt": 0.71,},
     "index_abd_virt": {"index_abd": 1},
     "root2index_pp_virt": {"root2index_pp": 1},
     "index_pp2mp_virt": {
@@ -60,7 +60,7 @@ FINGER_TO_BASE = {
 GC_LIMITS_LOWER = np.array(
     [   
         -90.0,  # revolute_base_hand
-        -90,  # root2thumb_base
+        -100,  # root2thumb_base
         -95.0,  # thumb_base2pp
         0.0,  # thumb_pp2mp_virt
         -30.0,  # index_abd_virt
