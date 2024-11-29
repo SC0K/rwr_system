@@ -137,4 +137,5 @@
  C:/Users/pcwag/.platformio/packages/framework-arduinoespressif32/cores/esp32/io_pin_remap.h \
  C:/Users/pcwag/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
  C:/Users/pcwag/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src/Wire.h \
- C:/Users/pcwag/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h
+ C:/Users/pcwag/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
+ .pio/libdeps/az-delivery-devkit-v4/TCA9548/TCA9548.h
