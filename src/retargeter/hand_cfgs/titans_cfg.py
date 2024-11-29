@@ -7,10 +7,10 @@ GC_TENDONS = {
     "thumb_hinge": {},
     "thumb_base2pp": {},
     "thumb_pp2mp_virt": {
-        "thumb_pp2mp": 1,
+        "thumb_pp2mp": 1
     },
-    
-    "thumb_mp2dp": {"thumb_mp2dp_virt": 0.71,},
+    "thumb_mp2dp": {"thumb_mp2dp_virt": 1},
+
     "index_abd_virt": {"index_abd": 1},
     "root2index_pp_virt": {"root2index_pp": 1},
     "index_pp2mp_virt": {
@@ -63,6 +63,7 @@ GC_LIMITS_LOWER = np.array(
         -100,  # root2thumb_base
         -95.0,  # thumb_base2pp
         0.0,  # thumb_pp2mp_virt
+        0.0,  # thumb_mp2dp
         -30.0,  # index_abd_virt
         0.0,  # root2index_pp_virt
         0.0,  # index_pp2mp_virt
@@ -82,6 +83,7 @@ GC_LIMITS_UPPER = np.array(
         0,  # root2thumb_base
         60.0,  # thumb_base2pp
         110.0,  # thumb_pp2mp_virt
+        90.0,  # thumb_mp2dp
         30.0,  # index_abd_virt
         95.0,  # root2index_pp_virt
         110.0,  # index_pp2mp_virt
