@@ -163,9 +163,9 @@ class Retargeter:
         self.root = torch.zeros(1, 3).to(self.device)
 
         if self.use_scalar_distance_palm:
-            self.use_scalar_distance = [False, True, True, True, True, True]
+            self.use_scalar_distance = [False, True, True, True, True, True,True, True, True, True]
         else:
-            self.use_scalar_distance = [False, False, False, False, False, False]
+            self.use_scalar_distance = [False, False, False, False, False, False,False, False, False, False]
 
 
         self.sanity_check()
@@ -294,7 +294,13 @@ class Retargeter:
         )
 
         mano_thumbpp = mano_joints_dict["thumb"][[2],:]
-        keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm, mano_thumbpp)
+        mano_pp_transforms = {  # Assuming the 3rd joint is the pp for thumb
+        "index": mano_joints_dict["index"][[-2], :],  # Assuming the 2nd joint is the pp for index
+        "middle": mano_joints_dict["middle"][[-2], :],  # Assuming the 2nd joint is the pp for middle
+        "ring": mano_joints_dict["ring"][[-2], :],  # Assuming the 2nd joint is the pp for ring
+        "pinky": mano_joints_dict["pinky"][[-2], :],  # Assuming the 2nd joint is the pp for pinky
+        }
+        keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm, mano_thumbpp, mano_pp_transforms)
         # norms_mano = {k: torch.norm(v) for k, v in keyvectors_mano.items()}
         # print(f"keyvectors_mano: {keyvectors_mano}")
 
@@ -316,10 +322,14 @@ class Retargeter:
                     self.root
                 )
             ) / 2
-            thumb_pp = chain_transforms["thumb_mp_virt"].transform_points(self.root)        ## new keyvector to track thumb movement
-            
+            thumb_pp = chain_transforms["thumb_mp"].transform_points(self.root)        ## new keyvector to track thumb movement
+            finger_pp_transforms = {
+            "index": chain_transforms["index_mp"].transform_points(self.root),
+            "middle": chain_transforms["middle_mp"].transform_points(self.root),
+            "ring": chain_transforms["ring_mp"].transform_points(self.root),
+            "pinky": chain_transforms["pinky_mp"].transform_points(self.root),}
                                                                                             ## NOTE: Remember to update self.loss_coeffs and self.use_scalar_distance if you add more keyvectors and self.use_scalar_distance_palm if you want to use scalar distance for palm
-            keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm, thumb_pp)
+            keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm, thumb_pp, finger_pp_transforms)
             # norms_faive = {k: torch.norm(v) for k, v in keyvectors_faive.items()}
             # print(f"keyvectors_faive: {keyvectors_faive}")
 

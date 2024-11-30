@@ -5,16 +5,16 @@ thumb:
 index: 
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]
-  scale : [1.0, 1.0, 1.0]
+  scale : [1.02, 1.02, 1.02]
 middle: 
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]
-  scale : [1.05, 1.05, 1.05]
+  scale : [1.02, 1.02, 1.02]
 ring: 
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]
-  scale : [1.0, 1.0, 1.0]
+  scale : [1.02, 1.02, 1.02]
 pinky: 
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]
-  scale : [0.9, 0.9, 0.9]
+  scale : [1.1, 1.1, 1.1]
