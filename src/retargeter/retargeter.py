@@ -36,7 +36,7 @@ class Retargeter:
         hand_scheme:  Union[str, dict] = None,
         mano_adjustments: Union[str, dict] = None,
         retargeter_cfg: Union[str, dict] = None,
-        device: str = "cuda",
+        device: str = "cpu",
     ) -> None:
         assert (
             int(urdf_filepath is not None)

@@ -19,8 +19,6 @@ import logging
 import time
 from typing import Optional, Sequence, Union, Tuple
 
-from typing import Optional, Sequence, Union, Tuple
-
 import numpy as np
 
 PROTOCOL_VERSION = 2.0
@@ -63,7 +61,6 @@ def dynamixel_cleanup_handler():
     for open_client in open_clients:
         if open_client.port_handler.is_using:
             logging.warning('Forcing client to close.')
-            logging.warning('Forcing client to close.')
         open_client.port_handler.is_using = False
         open_client.disconnect()
 
@@ -88,7 +85,6 @@ def unsigned_to_signed(value: int, size: int) -> int:
 class DynamixelClient:
     """Client for communicating with Dynamixel motors.
 
-
     NOTE: This only supports Protocol 2.
     """
 
@@ -105,13 +101,8 @@ class DynamixelClient:
                  cur_scale: Optional[float] = None):
         """Initializes a new client.
 
-
         Args:
             motor_ids: All motor IDs being used by the client.
-            port: The Dynamixel device to talk to. e.g.
-                - Linux: /dev/ttyUSB0
-                - Mac: /dev/tty.usbserial-*
-                - Windows: COM1
             port: The Dynamixel device to talk to. e.g.
                 - Linux: /dev/ttyUSB0
                 - Mac: /dev/tty.usbserial-*
@@ -129,7 +120,6 @@ class DynamixelClient:
         import dynamixel_sdk
         self.dxl = dynamixel_sdk
 
-        self.motor_ids = list(motor_ids)
         self.motor_ids = list(motor_ids)
         self.port_name = port
         self.baudrate = baudrate
@@ -154,11 +144,9 @@ class DynamixelClient:
     @property
     def is_connected(self) -> bool:
         return self.port_handler.is_open
-        return self.port_handler.is_open
 
     def connect(self):
         """Connects to the Dynamixel motors.
-
 
         NOTE: This should be called after all DynamixelClients on the same
             process are created.
@@ -171,24 +159,7 @@ class DynamixelClient:
             raise OSError(
                 ('Failed to open port at {} (Check that the device is powered '
                  'on and connected to your computer).').format(self.port_name))
-        assert not self.is_connected, 'Client is already connected.'
 
-        if self.port_handler.openPort():
-            logging.info('Succeeded to open port: %s', self.port_name)
-        else:
-            raise OSError(
-                ('Failed to open port at {} (Check that the device is powered '
-                 'on and connected to your computer).').format(self.port_name))
-
-        if self.port_handler.setBaudRate(self.baudrate):
-            logging.info('Succeeded to set baudrate to %d', self.baudrate)
-        else:
-            raise OSError(
-                ('Failed to set the baudrate to {} (Ensure that the device was '
-                 'configured for this baudrate).').format(self.baudrate))
-
-        # Start with all motors enabled.
-        self.set_torque_enabled(self.motor_ids, True)
         if self.port_handler.setBaudRate(self.baudrate):
             logging.info('Succeeded to set baudrate to %d', self.baudrate)
         else:
@@ -206,12 +177,8 @@ class DynamixelClient:
         if self.port_handler.is_using:
             logging.error('Port handler in use; cannot disconnect.')
             return
-        if self.port_handler.is_using:
-            logging.error('Port handler in use; cannot disconnect.')
-            return
         # Ensure motors are disabled at the end.
         self.set_torque_enabled(self.motor_ids, False, retries=0)
-        self.port_handler.closePort()
         self.port_handler.closePort()
         if self in self.OPEN_CLIENTS:
             self.OPEN_CLIENTS.remove(self)
@@ -221,13 +188,7 @@ class DynamixelClient:
                            enabled: bool,
                            retries: int = -1,
                            retry_interval: float = 0.25):
-    def set_torque_enabled(self,
-                           motor_ids: Sequence[int],
-                           enabled: bool,
-                           retries: int = -1,
-                           retry_interval: float = 0.25):
         """Sets whether torque is enabled for the motors.
-
 
         Args:
             motor_ids: The motor IDs to configure.
@@ -243,15 +204,7 @@ class DynamixelClient:
                 int(enabled),
                 ADDR_TORQUE_ENABLE,
             )
-            remaining_ids = self.write_byte(
-                remaining_ids,
-                int(enabled),
-                ADDR_TORQUE_ENABLE,
-            )
             if remaining_ids:
-                logging.error('Could not set torque %s for IDs: %s',
-                              'enabled' if enabled else 'disabled',
-                              str(remaining_ids))
                 logging.error('Could not set torque %s for IDs: %s',
                               'enabled' if enabled else 'disabled',
                               str(remaining_ids))
@@ -260,14 +213,6 @@ class DynamixelClient:
             time.sleep(retry_interval)
             retries -= 1
 
-    def set_operating_mode(self, motor_ids: Sequence[int], mode_value: int):
-        """
-        see https://emanual.robotis.com/docs/en/dxl/x/xc330-t288/#operating-mode11
-        0: current control mode
-        1: velocity control mode
-        3: position control mode
-        4: multi-turn position control mode
-        5: current-based position control mode
     def set_operating_mode(self, motor_ids: Sequence[int], mode_value: int):
         """
         see https://emanual.robotis.com/docs/en/dxl/x/xc330-t288/#operating-mode11
@@ -291,14 +236,10 @@ class DynamixelClient:
         """Returns the last bit of moving status"""
         moving_status = self._moving_status_reader.read().astype(np.int8)
         return np.bitwise_and(moving_status, np.array([0x01] * len(moving_status)).astype(np.int8))
-        return np.bitwise_and(moving_status, np.array([0x01] * len(moving_status)).astype(np.int8))
 
-    def write_desired_pos(self, motor_ids: Sequence[int],
-                          positions: np.ndarray):
     def write_desired_pos(self, motor_ids: Sequence[int],
                           positions: np.ndarray):
         """Writes the given desired positions.
-
 
         Args:
             motor_ids: The motor IDs to write to.
@@ -307,7 +248,6 @@ class DynamixelClient:
         print(motor_ids)
         print(f"positions: {positions}")
         assert len(motor_ids) == len(positions)
-
 
         # Convert to Dynamixel position space.
         positions = positions / self._pos_vel_cur_reader.pos_scale
@@ -331,19 +271,13 @@ class DynamixelClient:
             motor_ids: Sequence[int],
             value: int,
             address: int,
-            self,
-            motor_ids: Sequence[int],
-            value: int,
-            address: int,
     ) -> Sequence[int]:
         """Writes a value to the motors.
-
 
         Args:
             motor_ids: The motor IDs to write to.
             value: The value to write to the control table.
             address: The control table address to write to.
-
 
         Returns:
             A list of IDs that were unsuccessful.
@@ -355,10 +289,6 @@ class DynamixelClient:
                 self.port_handler, motor_id, address, value)
             success = self.handle_packet_result(
                 comm_result, dxl_error, motor_id, context='write_byte')
-            comm_result, dxl_error = self.packet_handler.write1ByteTxRx(
-                self.port_handler, motor_id, address, value)
-            success = self.handle_packet_result(
-                comm_result, dxl_error, motor_id, context='write_byte')
             if not success:
                 errored_ids.append(motor_id)
         return errored_ids
@@ -366,11 +296,7 @@ class DynamixelClient:
     def sync_write(self, motor_ids: Sequence[int],
                    values: Sequence[Union[int, float]], address: int,
                    size: int):
-    def sync_write(self, motor_ids: Sequence[int],
-                   values: Sequence[Union[int, float]], address: int,
-                   size: int):
         """Writes values to a group of motors.
-
 
         Args:
             motor_ids: The motor IDs to write to.
@@ -379,20 +305,14 @@ class DynamixelClient:
             size: The size of the control table value being written to.
         """
         times = [time.monotonic()]
-        times = [time.monotonic()]
         self.check_connected()
         key = (address, size)
         if key not in self._sync_writers:
             self._sync_writers[key] = self.dxl.GroupSyncWrite(
                 self.port_handler, self.packet_handler, address, size)
-                self.port_handler, self.packet_handler, address, size)
         sync_writer = self._sync_writers[key]
         times.append(time.monotonic())
-        times.append(time.monotonic())
         errored_ids = []
-        for motor_id, desired_pos in zip(motor_ids, values):
-            value = signed_to_unsigned(int(desired_pos), size=size)
-            value = value.to_bytes(size, byteorder='little')
         for motor_id, desired_pos in zip(motor_ids, values):
             value = signed_to_unsigned(int(desired_pos), size=size)
             value = value.to_bytes(size, byteorder='little')
@@ -403,19 +323,12 @@ class DynamixelClient:
         if errored_ids:
             logging.error('Sync write failed for: %s', str(errored_ids))
         times.append(time.monotonic())
-            logging.error('Sync write failed for: %s', str(errored_ids))
-        times.append(time.monotonic())
 
-        comm_result = sync_writer.txPacket()
-        self.handle_packet_result(comm_result, context='sync_write')
-        times.append(time.monotonic())
         comm_result = sync_writer.txPacket()
         self.handle_packet_result(comm_result, context='sync_write')
         times.append(time.monotonic())
 
         sync_writer.clearParam()
-        times.append(time.monotonic())
-        return times
         times.append(time.monotonic())
         return times
 
@@ -425,16 +338,7 @@ class DynamixelClient:
             self.connect()
         if not self.is_connected:
             raise OSError('Must call connect() first.')
-        if self.lazy_connect and not self.is_connected:
-            self.connect()
-        if not self.is_connected:
-            raise OSError('Must call connect() first.')
 
-    def handle_packet_result(self,
-                             comm_result: int,
-                             dxl_error: Optional[int] = None,
-                             dxl_id: Optional[int] = None,
-                             context: Optional[str] = None):
     def handle_packet_result(self,
                              comm_result: int,
                              dxl_error: Optional[int] = None,
@@ -450,10 +354,7 @@ class DynamixelClient:
             if dxl_id is not None:
                 error_message = '[Motor ID: {}] {}'.format(
                     dxl_id, error_message)
-                error_message = '[Motor ID: {}] {}'.format(
-                    dxl_id, error_message)
             if context is not None:
-                error_message = '> {}: {}'.format(context, error_message)
                 error_message = '> {}: {}'.format(context, error_message)
             logging.error(error_message)
             return False
@@ -484,12 +385,9 @@ class DynamixelClient:
 class DynamixelReader:
     """Reads data from Dynamixel motors.
 
-
     This wraps a GroupBulkRead from the DynamixelSDK.
     """
 
-    def __init__(self, client: DynamixelClient, motor_ids: Sequence[int],
-                 address: int, size: int):
     def __init__(self, client: DynamixelClient, motor_ids: Sequence[int],
                  address: int, size: int):
         """Initializes a new reader."""
@@ -501,15 +399,11 @@ class DynamixelReader:
 
         self.operation = self.client.dxl.GroupBulkRead(client.port_handler,
                                                        client.packet_handler)
-        self.operation = self.client.dxl.GroupBulkRead(client.port_handler,
-                                                       client.packet_handler)
 
         for motor_id in motor_ids:
             success = self.operation.addParam(motor_id, address, size)
             if not success:
                 raise OSError(
-                    '[Motor ID: {}] Could not add parameter to bulk read.'
-                    .format(motor_id))
                     '[Motor ID: {}] Could not add parameter to bulk read.'
                     .format(motor_id))
 
@@ -518,9 +412,6 @@ class DynamixelReader:
         self.client.check_connected()
         success = False
         while not success and retries >= 0:
-            comm_result = self.operation.txRxPacket()
-            success = self.client.handle_packet_result(
-                comm_result, context='read')
             comm_result = self.operation.txRxPacket()
             success = self.client.handle_packet_result(
                 comm_result, context='read')
@@ -535,8 +426,6 @@ class DynamixelReader:
             # Check if the data is available.
             available = self.operation.isAvailable(motor_id, self.address,
                                                    self.size)
-            available = self.operation.isAvailable(motor_id, self.address,
-                                                   self.size)
             if not available:
                 errored_ids.append(motor_id)
                 continue
@@ -544,8 +433,6 @@ class DynamixelReader:
             self._update_data(i, motor_id)
 
         if errored_ids:
-            logging.error('Bulk read data is unavailable for: %s',
-                          str(errored_ids))
             logging.error('Bulk read data is unavailable for: %s',
                           str(errored_ids))
 
@@ -559,8 +446,6 @@ class DynamixelReader:
         """Updates the data index for the given motor ID."""
         self._data[index] = self.operation.getData(motor_id, self.address,
                                                    self.size)
-        self._data[index] = self.operation.getData(motor_id, self.address,
-                                                   self.size)
 
     def _get_data(self):
         """Returns a copy of the data."""
@@ -570,12 +455,6 @@ class DynamixelReader:
 class DynamixelPosVelCurReader(DynamixelReader):
     """Reads positions and velocities."""
 
-    def __init__(self,
-                 client: DynamixelClient,
-                 motor_ids: Sequence[int],
-                 pos_scale: float = 1.0,
-                 vel_scale: float = 1.0,
-                 cur_scale: float = 1.0):
     def __init__(self,
                  client: DynamixelClient,
                  motor_ids: Sequence[int],
@@ -606,12 +485,6 @@ class DynamixelPosVelCurReader(DynamixelReader):
                                      LEN_PRESENT_VELOCITY)
         pos = self.operation.getData(motor_id, ADDR_PRESENT_POSITION,
                                      LEN_PRESENT_POSITION)
-        cur = self.operation.getData(motor_id, ADDR_PRESENT_CURRENT,
-                                     LEN_PRESENT_CURRENT)
-        vel = self.operation.getData(motor_id, ADDR_PRESENT_VELOCITY,
-                                     LEN_PRESENT_VELOCITY)
-        pos = self.operation.getData(motor_id, ADDR_PRESENT_POSITION,
-                                     LEN_PRESENT_POSITION)
         cur = unsigned_to_signed(cur, size=2)
         vel = unsigned_to_signed(vel, size=4)
         pos = unsigned_to_signed(pos, size=4)
@@ -623,14 +496,11 @@ class DynamixelPosVelCurReader(DynamixelReader):
         """Returns a copy of the data."""
         return (self._pos_data.copy(), self._vel_data.copy(),
                 self._cur_data.copy())
-        return (self._pos_data.copy(), self._vel_data.copy(),
-                self._cur_data.copy())
 
 
 # Register global cleanup function.
 atexit.register(dynamixel_cleanup_handler)
 
-if __name__ == '__main__':
 if __name__ == '__main__':
     import argparse
     import itertools
@@ -641,21 +511,12 @@ if __name__ == '__main__':
         '--motors',
         required=True,
         help='Comma-separated list of motor IDs.')
-        '-m',
-        '--motors',
-        required=True,
-        help='Comma-separated list of motor IDs.')
     parser.add_argument(
         '-d',
         '--device',
         default='/dev/cu.usbserial-FT62AFSR',
         help='The Dynamixel device to connect to.')
-        '-d',
-        '--device',
-        default='/dev/cu.usbserial-FT62AFSR',
-        help='The Dynamixel device to connect to.')
     parser.add_argument(
-        '-b', '--baud', default=1000000, help='The baudrate to connect with.')
         '-b', '--baud', default=1000000, help='The baudrate to connect with.')
     parsed_args = parser.parse_args()
     motors = [int(motor) for motor in parsed_args.motors.split(',')]

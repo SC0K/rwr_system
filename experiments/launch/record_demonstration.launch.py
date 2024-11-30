@@ -39,7 +39,7 @@ def generate_launch_description():
             # HAND CONTROLLER NODE
             Node(
                 package="hand_control",
-                executable="hand_control_node.py",
+                executable="hand_controller_node.py",
                 name="hand_control_node",
                 output="screen"
             ),
