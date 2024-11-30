@@ -1,11 +1,11 @@
 thumb: 
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]
-  scale : [1.2, 1.2, 1.2]   # Increase the scale of the thumb
+  scale : [1.25, 1.25, 1.25]   # Increase the scale of the thumb
 index: 
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]
-  scale : [1.02, 1.02, 1.02]
+  scale : [1.04, 1.04, 1.04]
 middle: 
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]
