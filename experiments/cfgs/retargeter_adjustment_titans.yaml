@@ -2,9 +2,18 @@ thumb:
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]
   scale : [1.2, 1.2, 1.2]   # Increase the scale of the thumb
-index: null
-middle: null
-ring: null
+index: 
+  translation : [0.0, 0.0, 0.0]
+  rotation : [0.0, 0.0, 0.0]
+  scale : [1.0, 1.0, 1.0]
+middle: 
+  translation : [0.0, 0.0, 0.0]
+  rotation : [0.0, 0.0, 0.0]
+  scale : [1.05, 1.05, 1.05]
+ring: 
+  translation : [0.0, 0.0, 0.0]
+  rotation : [0.0, 0.0, 0.0]
+  scale : [1.0, 1.0, 1.0]
 pinky: 
   translation : [0.0, 0.0, 0.0]
   rotation : [0.0, 0.0, 0.0]

@@ -73,7 +73,7 @@ class Retargeter:
             self.retargeter_cfg = {
                 "lr": 2.5,
                 "use_scalar_distance_palm": False,
-                "loss_coeffs": [5.0, 5.0, 5.0, 5.0, 5.0],
+                "loss_coeffs": [5.0, 5.0, 5.0, 5.0, 5.0, 5.0],
                 "joint_regularizers": [],
             }
         elif isinstance(retargeter_cfg, dict):
@@ -163,9 +163,9 @@ class Retargeter:
         self.root = torch.zeros(1, 3).to(self.device)
 
         if self.use_scalar_distance_palm:
-            self.use_scalar_distance = [False, True, True, True, True]
+            self.use_scalar_distance = [False, True, True, True, True, True]
         else:
-            self.use_scalar_distance = [False, False, False, False, False]
+            self.use_scalar_distance = [False, False, False, False, False, False]
 
 
         self.sanity_check()
@@ -293,7 +293,8 @@ class Retargeter:
             keepdim=True,
         )
 
-        keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm)
+        mano_thumbpp = mano_joints_dict["thumb"][[2],:]
+        keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm, mano_thumbpp)
         # norms_mano = {k: torch.norm(v) for k, v in keyvectors_mano.items()}
         # print(f"keyvectors_mano: {keyvectors_mano}")
 
@@ -315,8 +316,10 @@ class Retargeter:
                     self.root
                 )
             ) / 2
-
-            keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm)
+            thumb_pp = chain_transforms["thumb_mp_virt"].transform_points(self.root)        ## new keyvector to track thumb movement
+            
+                                                                                            ## NOTE: Remember to update self.loss_coeffs and self.use_scalar_distance if you add more keyvectors and self.use_scalar_distance_palm if you want to use scalar distance for palm
+            keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm, thumb_pp)
             # norms_faive = {k: torch.norm(v) for k, v in keyvectors_faive.items()}
             # print(f"keyvectors_faive: {keyvectors_faive}")
 
