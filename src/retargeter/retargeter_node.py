@@ -30,7 +30,7 @@ class RetargeterNode(Node):
             mjcf_filepath = None
         
         try:
-            urdf_filepath = self.get_parameter("retarget/urdf_filepath").value      # file path given in the launch file
+            urdf_filepath = self.get_parameter("retarget/urdf_filepath").value
         except:
             urdf_filepath = None
         hand_scheme = self.get_parameter("retarget/hand_scheme").value
