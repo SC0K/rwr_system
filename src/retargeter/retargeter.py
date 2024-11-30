@@ -124,6 +124,7 @@ class Retargeter:
         ## The virtual joints are identified by the suffix "_virt"
         ## So, the output of the virtual joint will be the sum of the joint and its virtual counterpart, i.e. twice 
         joint_parameter_names = self.chain.get_joint_parameter_names()
+        # self.chain.print_tree()
         gc_tendons = GC_TENDONS
         self.n_joints = self.chain.n_joints
         self.n_tendons = len(
@@ -165,6 +166,7 @@ class Retargeter:
             self.use_scalar_distance = [False, True, True, True, True]
         else:
             self.use_scalar_distance = [False, False, False, False, False]
+
 
         self.sanity_check()
         _chain_transforms = self.chain.forward_kinematics(
@@ -230,11 +232,11 @@ class Retargeter:
             torch.randn(self.chain.n_joints, device=self.chain.device)
         )
         for finger, base in self.finger_to_base.items():
-            print(
-                chain_transform1[base].transform_points(self.root),
-                chain_transform1[base].transform_points(self.root),
-                chain_transform1[base].transform_points(self.root),
-            )
+            # print(
+            #     chain_transform1[base].transform_points(self.root),
+            #     chain_transform1[base].transform_points(self.root),
+            #     chain_transform1[base].transform_points(self.root),
+            # )
             assert torch.allclose(
                 chain_transform1[base].transform_points(self.root),
                 chain_transform2[base].transform_points(self.root),
@@ -273,7 +275,6 @@ class Retargeter:
             21,
             3,
         ), "The shape of the mano joints array should be (21, 3)"
-
         joints = torch.from_numpy(joints).to(self.device)
 
         mano_joints_dict = retarget_utils.get_mano_joints_dict(joints)
@@ -294,7 +295,7 @@ class Retargeter:
 
         keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm)
         # norms_mano = {k: torch.norm(v) for k, v in keyvectors_mano.items()}
-        # print(f"keyvectors_mano: {norms_mano}")
+        # print(f"keyvectors_mano: {keyvectors_mano}")
 
         for step in range(opt_steps):
             chain_transforms = self.chain.forward_kinematics(
@@ -317,7 +318,7 @@ class Retargeter:
 
             keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm)
             # norms_faive = {k: torch.norm(v) for k, v in keyvectors_faive.items()}
-            # print(f"keyvectors_faive: {norms_faive}")
+            # print(f"keyvectors_faive: {keyvectors_faive}")
 
             loss = 0
 
@@ -340,7 +341,6 @@ class Retargeter:
             loss += torch.sum(
                 self.regularizer_weights * (self.gc_joints - self.regularizer_zeros) ** 2
             )
-
             # print(f"step: {step} Loss: {loss}")
             self.scaling_factors_set = True
             self.opt.zero_grad()
@@ -355,7 +355,8 @@ class Retargeter:
 
         finger_joint_angles = self.gc_joints.detach().cpu().numpy()
 
-        print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
+
+        # print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
 
         return finger_joint_angles
 
