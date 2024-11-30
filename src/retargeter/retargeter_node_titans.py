@@ -40,7 +40,7 @@ class RetargeterNode(Node):
         )
         
         self.retargeter = Retargeter(
-            device="cuda",  mjcf_filepath= mjcf_filepath, urdf_filepath=urdf_filepath, hand_scheme=hand_scheme
+            device="cpu",  mjcf_filepath= mjcf_filepath, urdf_filepath=urdf_filepath, hand_scheme=hand_scheme
         )
         
         self.joints_pub = self.create_publisher(

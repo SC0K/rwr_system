@@ -21,7 +21,7 @@ class Retargeter:
         mjcf_filepath: str = None,
         sdf_filepath: str = None,
         hand_scheme: str = "p4",
-        device: str = "cuda",
+        device: str = "cpu",
         lr: float = 2.5,
         use_scalar_distance_palm: bool = False,
     ) -> None:
@@ -325,10 +325,10 @@ class Retargeter:
 
         # print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
 
-        wrist_angle = np.zeros(1)
-        rest_angles = finger_joint_angles[1:]
-        rest_angles[0] = rest_angles[0] * -1
-        finger_joint_angles = np.concatenate([rest_angles, wrist_angle])
+        # wrist_angle = np.zeros(1)
+        # rest_angles = finger_joint_angles[1:]
+        # rest_angles[0] = rest_angles[0] * -1
+        # finger_joint_angles = np.concatenate([rest_angles, wrist_angle])
 
         return finger_joint_angles
 

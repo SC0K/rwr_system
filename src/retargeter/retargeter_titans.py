@@ -21,7 +21,7 @@ class Retargeter:
         mjcf_filepath: str = None,
         sdf_filepath: str = None,
         hand_scheme: str = "titans",
-        device: str = "cuda",
+        device: str = "cpu",
         lr: float = 2.5,
         use_scalar_distance_palm: bool = False,
     ) -> None:
