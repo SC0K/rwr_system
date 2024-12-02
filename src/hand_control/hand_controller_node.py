@@ -20,7 +20,7 @@ class HandControllerNode(Node):
 
         self._hc = GripperController(port=port)
 
-        self._hc.init_joints(calibrate=False)
+        # self._hc.init_joints(calibrate=False)
         self.joint_angle_sub = self.create_subscription(
             Float32MultiArray, "/hand/policy_output", self.joint_angle_cb, 10
         )
