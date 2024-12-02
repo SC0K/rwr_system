@@ -8,6 +8,7 @@ from scipy.spatial.transform import Rotation
 
 
 MANO_KEYPOINTS_LIST = [
+    "rightLowerArm",
     "rightHand",
     "rightThumbProximal",
     "rightThumbMedial",
@@ -118,15 +119,16 @@ class RokokoTracker:
                 # flip wrt chest position
                 local_position = np.array(chest_position) - np.array(local_position)
                 keypoint_positions.append(np.array(local_position))
+            # print("keypoint_positions.shape", np.array(keypoint_positions).shape)
             timestamp = data_dict["scene"]["timestamp"]
             self.set_keypoint_positions(np.array(keypoint_positions), timestamp)
 
             if self.use_coil:
                 wrist_position = np.array(
                     [
-                        body_data["rightHand"]["position"]["x"],
-                        body_data["rightHand"]["position"]["y"],
-                        body_data["rightHand"]["position"]["z"],
+                        body_data["rightLowerArm"]["position"]["x"],
+                        body_data["rightLowerArm"]["position"]["y"],
+                        body_data["rightLowerArm"]["position"]["z"],
                     ]
                 )
                 # invert z axis since rokoko uses left handed coordinate system
@@ -136,10 +138,10 @@ class RokokoTracker:
                 wrist_rot = Rotation.from_quat(
                     np.array(
                         [
-                            body_data["rightHand"]["rotation"]["x"],
-                            body_data["rightHand"]["rotation"]["y"],
-                            body_data["rightHand"]["rotation"]["z"],
-                            body_data["rightHand"]["rotation"]["w"],
+                            body_data["rightLowerArm"]["rotation"]["x"],
+                            body_data["rightLowerArm"]["rotation"]["y"],
+                            body_data["rightLowerArm"]["rotation"]["z"],
+                            body_data["rightLowerArm"]["rotation"]["w"],
                         ]
                     )
                 )

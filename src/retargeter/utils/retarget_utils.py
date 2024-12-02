@@ -13,29 +13,31 @@ def get_mano_joints_dict(
     if not batch_processing:
         if not include_wrist:
             return {
-                "thumb": joints[1:5, :],
-                "index": joints[5:9, :],
-                "middle": joints[9:13, :],
-                "ring": joints[13:17, :],
-                "pinky": joints[17:21, :],
+                "LowerArm": joints[0, :],
+                "thumb": joints[2:6, :],
+                "index": joints[6:10, :],
+                "middle": joints[10:14, :],
+                "ring": joints[14:18, :],
+                "pinky": joints[18:22, :],
             }
         else:
             return {
-                "wrist": joints[0, :],
-                "thumb": joints[1:5, :],
-                "index": joints[5:9, :],
-                "middle": joints[9:13, :],
-                "ring": joints[13:17, :],
-                "pinky": joints[17:21, :],
+                "LowerArm": joints[0, :],
+                "wrist": joints[1, :],
+                "thumb": joints[2:6, :],
+                "index": joints[6:10, :],
+                "middle": joints[10:14, :],
+                "ring": joints[14:18, :],
+                "pinky": joints[18:22, :],
             }
     else:
         if not include_wrist:
             return {
-                "thumb": joints[:, 1:5, :],
-                "index": joints[:, 5:9, :],
-                "middle": joints[:, 9:13, :],
-                "ring": joints[:, 13:17, :],
-                "pinky": joints[:, 17:21, :],
+                "thumb": joints[2:6, :],
+                "index": joints[6:10, :],
+                "middle": joints[10:14, :],
+                "ring": joints[14:18, :],
+                "pinky": joints[18:22, :],
             }
         else:
             return {

@@ -69,7 +69,6 @@ class RetargeterNode(Node):
     
     def ingress_mano_cb(self, msg):
         self.keypoint_positions = np.array(msg.data).reshape(-1, 3)
-    
         
     def timer_publish_cb(self):
         if self.keypoint_positions is None:

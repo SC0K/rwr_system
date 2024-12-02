@@ -255,13 +255,14 @@ class Retargeter:
     ):
         """
         Process the MANO joints and update the finger joint angles
-        joints: (21, 3)
-        Over the 21 dims:
-        0-4: thumb (from hand base)
-        5-8: index
-        9-12: middle
-        13-16: ring
-        17-20: pinky
+        joints: (22, 3)
+        Over the 22 dims:
+        0: wrist
+        1-5 thumb (from hand base)
+        6-9: index
+        10-13: middle
+        14-17: ring
+        18-21: pinky
         """
 
         # print(f"Retargeting: Warm: {warm} Opt steps: {opt_steps}")
@@ -272,7 +273,7 @@ class Retargeter:
             self.gc_joints.requires_grad_()
 
         assert joints.shape == (
-            21,
+            22,
             3,
         ), "The shape of the mano joints array should be (21, 3)"
         joints = torch.from_numpy(joints).to(self.device)
@@ -281,11 +282,13 @@ class Retargeter:
 
         mano_fingertips = {}
         for finger, finger_joints in mano_joints_dict.items():
-            mano_fingertips[finger] = finger_joints[[-1], :]
+            if finger != "LowerArm":
+                mano_fingertips[finger] = finger_joints[[-1], :]
 
         mano_pps = {}
         for finger, finger_joints in mano_joints_dict.items():
-            mano_pps[finger] = finger_joints[[0], :]
+            if finger != "LowerArm":
+                mano_pps[finger] = finger_joints[[0], :]
 
         mano_palm = torch.mean(
             torch.cat([mano_pps["thumb"], mano_pps["pinky"]], dim=0).to(self.device),
@@ -300,6 +303,38 @@ class Retargeter:
         "ring": mano_joints_dict["ring"][[-2], :],  # Assuming the 2nd joint is the pp for ring
         "pinky": mano_joints_dict["pinky"][[-2], :],  # Assuming the 2nd joint is the pp for pinky
         }
+        
+        
+        # Assuming mano_joints_dict contains the coordinates of the joints as tensors
+        lower_arm = mano_joints_dict["LowerArm"].squeeze()
+        vector_palm_to_lower_arm = lower_arm - mano_palm.squeeze()
+        y_axis = torch.tensor([0.0, 0.0, 1.0], dtype=lower_arm.dtype)
+        vector_palm_to_lower_arm = vector_palm_to_lower_arm.squeeze()
+        
+        # Calculate the dot product of the vectors
+        dot_product = torch.dot(vector_palm_to_lower_arm, y_axis)
+        
+        # Calculate the magnitudes of the vectors
+        magnitude_palm_to_lower_arm = torch.norm(vector_palm_to_lower_arm)
+        magnitude_y_axis = torch.norm(y_axis)
+        
+        # Calculate the angle in radians
+        wrist_angle_radians = torch.acos(dot_product / (magnitude_palm_to_lower_arm * magnitude_y_axis))
+        
+        # Rotate the angle by subtracting π/2
+        wrist_angle_radians_rotated = wrist_angle_radians - np.pi / 2
+        
+        # Clamp the rotated angle between -π/2 and π/2 (-90 and 90 degrees)
+        wrist_angle_radians_clamped = torch.clamp(wrist_angle_radians_rotated, min=-np.pi / 2, max=np.pi / 2)
+        
+        # Convert wrist_angle_radians_clamped to a NumPy array with the same dtype as finger_joint_angles
+        wrist_angle_radians_np = wrist_angle_radians_clamped.detach().cpu().numpy()
+        
+        print(f"Wrist angle (clamped): {wrist_angle_radians_np}")
+        
+        # Continue with the rest of your code
+
+
         keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm, mano_thumbpp, mano_pp_transforms)
         # norms_mano = {k: torch.norm(v) for k, v in keyvectors_mano.items()}
         # print(f"keyvectors_mano: {keyvectors_mano}")
@@ -370,6 +405,8 @@ class Retargeter:
 
 
         # print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
+        finger_joint_angles[0] = wrist_angle_radians_np*10
+
 
         return finger_joint_angles
 
@@ -421,10 +458,11 @@ class Retargeter:
 
         # Keep the wrist as is
         adjusted_joints_dict["wrist"] = joints_dict["wrist"]
+        adjusted_joints_dict["LowerArm"] = joints_dict["LowerArm"]
 
         # Concatenate adjusted joints
         joints = np.concatenate(
-            [
+            [   adjusted_joints_dict["LowerArm"].reshape(1, -1),
                 adjusted_joints_dict["wrist"].reshape(1, -1),
                 adjusted_joints_dict["thumb"],
                 adjusted_joints_dict["index"],

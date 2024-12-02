@@ -31,8 +31,8 @@ def generate_launch_description():
                 output="screen",
                 parameters=[
                     {"rokoko_tracker/ip": "0.0.0.0"},
-                    {"rokoko_tracker/port": 14044},
-                    {"rokoko_tracker/use_coil": False}
+                    {"rokoko_tracker/port": 14044   },
+                    {"rokoko_tracker/use_coil": True}
                 ],
             ),
 
