@@ -13,29 +13,31 @@ def get_mano_joints_dict(
     if not batch_processing:
         if not include_wrist:
             return {
-                "thumb": joints[1:5, :],
-                "index": joints[5:9, :],
-                "middle": joints[9:13, :],
-                "ring": joints[13:17, :],
-                "pinky": joints[17:21, :],
+                "LowerArm": joints[0, :],
+                "thumb": joints[2:6, :],
+                "index": joints[6:10, :],
+                "middle": joints[10:14, :],
+                "ring": joints[14:18, :],
+                "pinky": joints[18:22, :],
             }
         else:
             return {
-                "wrist": joints[0, :],
-                "thumb": joints[1:5, :],
-                "index": joints[5:9, :],
-                "middle": joints[9:13, :],
-                "ring": joints[13:17, :],
-                "pinky": joints[17:21, :],
+                "LowerArm": joints[0, :],
+                "wrist": joints[1, :],
+                "thumb": joints[2:6, :],
+                "index": joints[6:10, :],
+                "middle": joints[10:14, :],
+                "ring": joints[14:18, :],
+                "pinky": joints[18:22, :],
             }
     else:
         if not include_wrist:
             return {
-                "thumb": joints[:, 1:5, :],
-                "index": joints[:, 5:9, :],
-                "middle": joints[:, 9:13, :],
-                "ring": joints[:, 13:17, :],
-                "pinky": joints[:, 17:21, :],
+                "thumb": joints[2:6, :],
+                "index": joints[6:10, :],
+                "middle": joints[10:14, :],
+                "ring": joints[14:18, :],
+                "pinky": joints[18:22, :],
             }
         else:
             return {
@@ -68,7 +70,7 @@ def get_mano_pps_batch(mano_joints_dict):
     }
 
 
-def get_keyvectors(fingertips: Dict[str, torch.Tensor], palm: torch.Tensor,thumb_pp: torch.Tensor):
+def get_keyvectors(fingertips: Dict[str, torch.Tensor], palm: torch.Tensor, thumb_pp: torch.Tensor, finger_pps: Dict[str, torch.Tensor]):
     return {
         "palm2thumb": fingertips["thumb"] - palm,
         "palm2index": fingertips["index"] - palm,
@@ -76,6 +78,10 @@ def get_keyvectors(fingertips: Dict[str, torch.Tensor], palm: torch.Tensor,thumb
         "palm2ring": fingertips["ring"] - palm,
         "palm2pinky": fingertips["pinky"] - palm,
         "palm2thumbpp": thumb_pp - palm,
+        "palm2indexpp": finger_pps["index"] - palm,
+        "palm2middlepp": finger_pps["middle"] - palm,
+        "palm2ringpp": finger_pps["ring"] - palm,
+        "palm2pinkypp": finger_pps["pinky"] - palm,
         # 'thumb2index': fingertips['index'] - fingertips['thumb'],
         # 'thumb2middle': fingertips['middle'] - fingertips['thumb'],
         # 'thumb2ring': fingertips['ring'] - fingertips['thumb'],
@@ -129,10 +135,10 @@ def get_hand_center_and_rotation(
     thumb_base, index_base, middle_base, ring_base, pinky_base, wrist=None
 ):
     """
-    Get the center of the hand and the rotation matrix of the hand,
-    x axis is the direction from ring to index finger base,
-    y axis is the direction from wrist to middle finger base,
-    z axis goes from the palm if the hand is right hand, otherwise it goes to the palm,
+    Get the center of the hand and the rotation matrix of the hand
+    x axis is the direction from ring to index finger base
+    y axis is the direction from wrist to middle finger base
+    z axis goes from the palm if the hand is right hand, otherwise it goes to the palm
     If the hand is right hand, then the z
     """
     hand_center = (thumb_base + pinky_base) / 2
@@ -177,9 +183,9 @@ def normalize_points_to_hands_local(joint_pos):
 
 def get_unoccluded_hand_joint_idx(joint_pos):
     """
-    param: joint_pos, a numpy array of 3D joint positions (MANO format), not normalized. 
+    param: joint_pos, a numpy array of 3D joint positions (MANO format), not normalized
     Returns the joint that has the least z value and should be visible in the image (y value is in the direction of the camera).
-    We can then project this joint into 3D space, and then from there get the 3D position of the wrist (which may be occluded).
+    We can then project this joint into 3D space, and then from there get the 3D position of the wrist (which may be occluded)
     """
 
     # get the joint with the lowest z value (closest to camera)

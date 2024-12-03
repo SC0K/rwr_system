@@ -14,7 +14,7 @@ import time
 
 class RetargeterNode(Node):
     def __init__(self, debug=False):
-        super().__init__("rokoko_node")
+        super().__init__("retargeter_node")
 
         # start retargeter
         self.declare_parameter("retarget/mjcf_filepath", rclpy.Parameter.Type.STRING)
@@ -30,7 +30,7 @@ class RetargeterNode(Node):
             mjcf_filepath = None
         
         try:
-            urdf_filepath = self.get_parameter("retarget/urdf_filepath").value      # file path given in the launch file
+            urdf_filepath = self.get_parameter("retarget/urdf_filepath").value
         except:
             urdf_filepath = None
         hand_scheme = self.get_parameter("retarget/hand_scheme").value
@@ -51,7 +51,7 @@ class RetargeterNode(Node):
         )
         
         self.retargeter = Retargeter(
-            device="cuda",  mjcf_filepath= mjcf_filepath, urdf_filepath=urdf_filepath, 
+            device="cpu",  mjcf_filepath= mjcf_filepath, urdf_filepath=urdf_filepath, 
             hand_scheme=hand_scheme, mano_adjustments=mano_adjustments, retargeter_cfg=retargeter_cfg
         )
         
@@ -69,7 +69,6 @@ class RetargeterNode(Node):
     
     def ingress_mano_cb(self, msg):
         self.keypoint_positions = np.array(msg.data).reshape(-1, 3)
-    
         
     def timer_publish_cb(self):
         if self.keypoint_positions is None:

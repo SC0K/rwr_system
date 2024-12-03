@@ -25,7 +25,7 @@ find_package(sensor_msgs REQUIRED)
 #############
 
 install(PROGRAMS
-    hand_control_node.py
+    hand_controller_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

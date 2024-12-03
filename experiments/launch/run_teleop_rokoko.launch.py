@@ -10,11 +10,11 @@ def generate_launch_description():
     "models",
     "titans_hand",
     "urdf",
-    "titans_hand.urdf"
-    )
+    "titans_hand.urdf")
 
     with open(urdf, 'r') as infp:
         robot_desc = infp.read()
+
     return LaunchDescription(
         [
             
@@ -40,14 +40,14 @@ def generate_launch_description():
             # HAND CONTROLLER NODE
             Node(
                 package="hand_control",
-                executable="hand_control_node.py",
+                executable="hand_controller_node.py",
                 name="hand_controller_node",
             ),
             
             # RETARGET NODE
             Node(
                 package="retargeter",
-                executable="retargeter_node.py",
+                executable="retargeter_node_titans.py",
                 name="retargeter_node",
                 output="screen",
                 # COMMENT OR UNCOMMENT THE FOLLOWING LINES TO SWITCH BETWEEN MJCF AND URDF, JUST ONE OF THEM SHOULD BE ACTIVE TODO: Make this a parameter
@@ -59,18 +59,25 @@ def generate_launch_description():
                             "titans_hand",
                             "new_mujoco",
                             "hand_titans_new.xml"
-                        )
+                        ),
+                        "retarget/hand_scheme": os.path.join(
+                            get_package_share_directory("viz"),
+                            "models",
+                            "titans_hand",
+                            "new_mujoco",
+                            "scheme_titans.yaml",
+                        ),
+                        "retarget/mano_adjustments": os.path.join(
+                            get_package_share_directory("experiments"),
+                            "cfgs",
+                            "retargeter_adjustment_titans.yaml"
+                        ),
+                        "retarget/retargeter_cfg": os.path.join(
+                            get_package_share_directory("experiments"),
+                            "cfgs",
+                            "retargeter_cfgs_titans.yaml"
+                        ),
                     },
-                    # {
-                    #     "retarget/urdf_filepath": os.path.join(
-                    #         get_package_share_directory("viz"),
-                    #         "models",
-                    #         "titans_hand",
-                    #         "urdf",
-                    #         "titans_hand.urdf"
-                    #     )
-                    # },
-                    {"retarget/hand_scheme": "titans"},
                     {"debug": True},
                 ],
             ),
@@ -110,6 +117,5 @@ def generate_launch_description():
                 output='screen', 
                 arguments=['-d', os.path.join(get_package_share_directory('viz'), 'rviz', 'retarget_config.rviz')],
                 ),
-
         ]
     )

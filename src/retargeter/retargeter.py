@@ -36,7 +36,7 @@ class Retargeter:
         hand_scheme:  Union[str, dict] = None,
         mano_adjustments: Union[str, dict] = None,
         retargeter_cfg: Union[str, dict] = None,
-        device: str = "cuda",
+        device: str = "cpu",
     ) -> None:
         assert (
             int(urdf_filepath is not None)
@@ -44,30 +44,14 @@ class Retargeter:
             + int(sdf_filepath is not None)
         ) == 1, "Exactly one of urdf_filepath, mjcf_filepath, or sdf_filepath should be provided"
 
-        if hand_scheme == "p1":
-            from .hand_cfgs.p1_cfg import (
-                GC_TENDONS,
-                FINGER_TO_TIP,
-                FINGER_TO_BASE,
-                GC_LIMITS_LOWER,
-                GC_LIMITS_UPPER,
-            )
-        elif hand_scheme == "p4":
-            from .hand_cfgs.p4_cfg import (
-                GC_TENDONS,
-                FINGER_TO_TIP,
-                FINGER_TO_BASE,
-                GC_LIMITS_LOWER,
-                GC_LIMITS_UPPER,
-            )
-        elif hand_scheme == "titans":
-            from .hand_cfgs.titans_cfg import (
-                GC_TENDONS,
-                FINGER_TO_TIP,
-                FINGER_TO_BASE,
-                GC_LIMITS_LOWER,
-                GC_LIMITS_UPPER,
-            )
+
+        if hand_scheme is None:
+            raise ValueError("hand_scheme is required")
+        if isinstance(hand_scheme, dict):
+            pass
+        elif isinstance(hand_scheme, str):
+            with open(hand_scheme, "r") as f:
+                hand_scheme = yaml.safe_load(f)
         else:
             raise ValueError("hand_scheme should be a string or dictionary")
         GC_TENDONS = hand_scheme["gc_tendons"]
@@ -89,7 +73,7 @@ class Retargeter:
             self.retargeter_cfg = {
                 "lr": 2.5,
                 "use_scalar_distance_palm": False,
-                "loss_coeffs": [5.0, 5.0, 5.0, 5.0, 5.0],
+                "loss_coeffs": [5.0, 5.0, 5.0, 5.0, 5.0, 5.0],
                 "joint_regularizers": [],
             }
         elif isinstance(retargeter_cfg, dict):
@@ -140,7 +124,7 @@ class Retargeter:
         ## The virtual joints are identified by the suffix "_virt"
         ## So, the output of the virtual joint will be the sum of the joint and its virtual counterpart, i.e. twice 
         joint_parameter_names = self.chain.get_joint_parameter_names()
-        self.chain.print_tree()
+        # self.chain.print_tree()
         gc_tendons = GC_TENDONS
         self.n_joints = self.chain.n_joints
         self.n_tendons = len(
@@ -151,8 +135,7 @@ class Retargeter:
         self.tendon_names = []
         joint_names_check = []
         for i, (name, tendons) in enumerate(gc_tendons.items()):
-            virtual_joint_weight = 0.5 if "virt" in name else 1.0
-            print(f"Joint: {name} Weight: {virtual_joint_weight}")
+            virtual_joint_weight = 0.5 if name.endswith("_virt") else 1.0
             self.joint_map[joint_parameter_names.index(name), i] = virtual_joint_weight
             self.tendon_names.append(name)
             joint_names_check.append(name)
@@ -161,12 +144,6 @@ class Retargeter:
                     weight * virtual_joint_weight
                 )
                 joint_names_check.append(tendon)
-        print("Joint parameter names:")
-        for name in joint_parameter_names:
-            print(name)
-        print("Joint names check:")
-        for name in joint_names_check:
-            print(name)
         assert set(joint_names_check) == set(
             joint_parameter_names
         ), "Joint names mismatch, please double check hand_scheme"
@@ -183,15 +160,13 @@ class Retargeter:
         # self.opt = torch.optim.Adam([self.gc_joints], lr=self.lr)
         self.opt = torch.optim.RMSprop([self.gc_joints], lr=self.lr)
 
-        self.root = torch.zeros(1, 3).to(self.device)   ## NOTE: This is the poistion of the palm in the world frame, It is preferable to set it to the origin.
+        self.root = torch.zeros(1, 3).to(self.device)
 
-
-        self.loss_coeffs = torch.tensor([5.0, 5.0, 5.0, 5.0, 5.0, 15.0]).to(self.device)
-
-        if use_scalar_distance_palm:
-            self.use_scalar_distance = [False, True, True, True, True, False]
+        if self.use_scalar_distance_palm:
+            self.use_scalar_distance = [False, True, True, True, True, True,True, True, True, True]
         else:
-            self.use_scalar_distance = [False, False, False, False, False, False]
+            self.use_scalar_distance = [False, False, False, False, False, False,False, False, False, False]
+
 
         self.sanity_check()
         _chain_transforms = self.chain.forward_kinematics(
@@ -245,22 +220,27 @@ class Retargeter:
             assert (
                 base in self.chain.get_link_names()
             ), f"Base frame {base} not found in the chain"
+
+        ## Check the base frame is fixed to the palm
         chain_transform1 = self.chain.forward_kinematics(
             torch.randn(self.chain.n_joints, device=self.chain.device)
         )
-
         chain_transform2 = self.chain.forward_kinematics(
             torch.randn(self.chain.n_joints, device=self.chain.device)
         )
-
         chain_transform3 = self.chain.forward_kinematics(
             torch.randn(self.chain.n_joints, device=self.chain.device)
         )
         for finger, base in self.finger_to_base.items():
-            # print( "Palm transform to finger base",
+            # print(
             #     chain_transform1[base].transform_points(self.root),
-            #     chain_transform2[base].transform_points(self.root),
+            #     chain_transform1[base].transform_points(self.root),
+            #     chain_transform1[base].transform_points(self.root),
             # )
+            assert torch.allclose(
+                chain_transform1[base].transform_points(self.root),
+                chain_transform2[base].transform_points(self.root),
+            ), f"Base frame {base} not fixed to the palm"
             assert torch.allclose(
                 chain_transform1[base].transform_points(self.root),
                 chain_transform2[base].transform_points(self.root),
@@ -275,13 +255,14 @@ class Retargeter:
     ):
         """
         Process the MANO joints and update the finger joint angles
-        joints: (21, 3)
-        Over the 21 dims:
-        0-4: thumb (from hand base)
-        5-8: index
-        9-12: middle
-        13-16: ring
-        17-20: pinky
+        joints: (22, 3)
+        Over the 22 dims:
+        0: wrist
+        1-5 thumb (from hand base)
+        6-9: index
+        10-13: middle
+        14-17: ring
+        18-21: pinky
         """
 
         # print(f"Retargeting: Warm: {warm} Opt steps: {opt_steps}")
@@ -292,21 +273,22 @@ class Retargeter:
             self.gc_joints.requires_grad_()
 
         assert joints.shape == (
-            21,
+            22,
             3,
         ), "The shape of the mano joints array should be (21, 3)"
-
         joints = torch.from_numpy(joints).to(self.device)
 
-        mano_joints_dict = retarget_utils.get_mano_joints_dict(joints,include_wrist=False)
+        mano_joints_dict = retarget_utils.get_mano_joints_dict(joints)
 
         mano_fingertips = {}
         for finger, finger_joints in mano_joints_dict.items():
-            mano_fingertips[finger] = finger_joints[[-1], :]
+            if finger != "LowerArm":
+                mano_fingertips[finger] = finger_joints[[-1], :]
 
         mano_pps = {}
         for finger, finger_joints in mano_joints_dict.items():
-            mano_pps[finger] = finger_joints[[0], :]
+            if finger != "LowerArm":
+                mano_pps[finger] = finger_joints[[0], :]
 
         mano_palm = torch.mean(
             torch.cat([mano_pps["thumb"], mano_pps["pinky"]], dim=0).to(self.device),
@@ -315,17 +297,52 @@ class Retargeter:
         )
 
         mano_thumbpp = mano_joints_dict["thumb"][[2],:]
-        # mann_wrist = mano_joints_dict["wrist"]
+        mano_pp_transforms = {  # Assuming the 3rd joint is the pp for thumb
+        "index": mano_joints_dict["index"][[-2], :],  # Assuming the 2nd joint is the pp for index
+        "middle": mano_joints_dict["middle"][[-2], :],  # Assuming the 2nd joint is the pp for middle
+        "ring": mano_joints_dict["ring"][[-2], :],  # Assuming the 2nd joint is the pp for ring
+        "pinky": mano_joints_dict["pinky"][[-2], :],  # Assuming the 2nd joint is the pp for pinky
+        }
+        
+        
+        # Assuming mano_joints_dict contains the coordinates of the joints as tensors
+        lower_arm = mano_joints_dict["LowerArm"].squeeze()
+        vector_palm_to_lower_arm = lower_arm - mano_palm.squeeze()
+        y_axis = torch.tensor([0.0, 0.0, 1.0], dtype=lower_arm.dtype)
+        vector_palm_to_lower_arm = vector_palm_to_lower_arm.squeeze()
+        
+        # Calculate the dot product of the vectors
+        dot_product = torch.dot(vector_palm_to_lower_arm, y_axis)
+        
+        # Calculate the magnitudes of the vectors
+        magnitude_palm_to_lower_arm = torch.norm(vector_palm_to_lower_arm)
+        magnitude_y_axis = torch.norm(y_axis)
+        
+        # Calculate the angle in radians
+        wrist_angle_radians = torch.acos(dot_product / (magnitude_palm_to_lower_arm * magnitude_y_axis))
+        
+        # Rotate the angle by subtracting π/2
+        wrist_angle_radians_rotated = wrist_angle_radians - np.pi / 2
+        
+        # Clamp the rotated angle between -π/2 and π/2 (-90 and 90 degrees)
+        wrist_angle_radians_clamped = torch.clamp(wrist_angle_radians_rotated, min=-np.pi / 2, max=np.pi / 2)
+        
+        # Convert wrist_angle_radians_clamped to a NumPy array with the same dtype as finger_joint_angles
+        wrist_angle_radians_np = wrist_angle_radians_clamped.detach().cpu().numpy()
+        
+        print(f"Wrist angle (clamped): {wrist_angle_radians_np}")
+        
+        # Continue with the rest of your code
 
-        keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm, mano_thumbpp)
+
+        keyvectors_mano = retarget_utils.get_keyvectors(mano_fingertips, mano_palm, mano_thumbpp, mano_pp_transforms)
         # norms_mano = {k: torch.norm(v) for k, v in keyvectors_mano.items()}
-        # print(f"keyvectors_mano: {norms_mano}")
+        # print(f"keyvectors_mano: {keyvectors_mano}")
 
         for step in range(opt_steps):
             chain_transforms = self.chain.forward_kinematics(
                 self.joint_map @ (self.gc_joints / (180 / np.pi))
             )
-
             fingertips = {}
             for finger, finger_tip in self.finger_to_tip.items():
                 fingertips[finger] = chain_transforms[finger_tip].transform_points(
@@ -340,12 +357,16 @@ class Retargeter:
                     self.root
                 )
             ) / 2
-
-            thumb_pp = chain_transforms["thumb_mp_virt"].transform_points(self.root)         ## new keyvector to track thumb movement
+            thumb_pp = chain_transforms["thumb_mp"].transform_points(self.root)        ## new keyvector to track thumb movement
+            finger_pp_transforms = {
+            "index": chain_transforms["index_mp"].transform_points(self.root),
+            "middle": chain_transforms["middle_mp"].transform_points(self.root),
+            "ring": chain_transforms["ring_mp"].transform_points(self.root),
+            "pinky": chain_transforms["pinky_mp"].transform_points(self.root),}
                                                                                             ## NOTE: Remember to update self.loss_coeffs and self.use_scalar_distance if you add more keyvectors and self.use_scalar_distance_palm if you want to use scalar distance for palm
-            keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm, thumb_pp)
+            keyvectors_faive = retarget_utils.get_keyvectors(fingertips, palm, thumb_pp, finger_pp_transforms)
             # norms_faive = {k: torch.norm(v) for k, v in keyvectors_faive.items()}
-            # print(f"keyvectors_faive: {norms_faive}")
+            # print(f"keyvectors_faive: {keyvectors_faive}")
 
             loss = 0
 
@@ -368,7 +389,6 @@ class Retargeter:
             loss += torch.sum(
                 self.regularizer_weights * (self.gc_joints - self.regularizer_zeros) ** 2
             )
-
             # print(f"step: {step} Loss: {loss}")
             self.scaling_factors_set = True
             self.opt.zero_grad()
@@ -383,7 +403,10 @@ class Retargeter:
 
         finger_joint_angles = self.gc_joints.detach().cpu().numpy()
 
-        print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
+
+        # print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
+        finger_joint_angles[0] = wrist_angle_radians_np*10
+
 
         return finger_joint_angles
 
@@ -435,10 +458,11 @@ class Retargeter:
 
         # Keep the wrist as is
         adjusted_joints_dict["wrist"] = joints_dict["wrist"]
+        adjusted_joints_dict["LowerArm"] = joints_dict["LowerArm"]
 
         # Concatenate adjusted joints
         joints = np.concatenate(
-            [
+            [   adjusted_joints_dict["LowerArm"].reshape(1, -1),
                 adjusted_joints_dict["wrist"].reshape(1, -1),
                 adjusted_joints_dict["thumb"],
                 adjusted_joints_dict["index"],
