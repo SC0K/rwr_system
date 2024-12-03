@@ -308,7 +308,7 @@ class Retargeter:
         # Assuming mano_joints_dict contains the coordinates of the joints as tensors
         lower_arm = mano_joints_dict["LowerArm"].squeeze()
         vector_palm_to_lower_arm = lower_arm - mano_palm.squeeze()
-        y_axis = torch.tensor([0.0, 0.0, 1.0], dtype=lower_arm.dtype)
+        y_axis = torch.tensor([0.0, 1.0, 0.0], dtype=lower_arm.dtype)
         vector_palm_to_lower_arm = vector_palm_to_lower_arm.squeeze()
         
         # Calculate the dot product of the vectors
