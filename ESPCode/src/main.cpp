@@ -9,7 +9,7 @@
 // #define SERIAL // debug disables Serial debugging
 bool serial = false;
 
-int publishing_period_ms = 1000;
+int publishing_period_ms = 50;
 
 TCA9548 mp(0x70);
 

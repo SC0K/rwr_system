@@ -236,6 +236,8 @@ class GripperController:
         TODO: Think of a clever way to perform the calibration. How can you make sure that all the motor are in the corect position?
         """
 
+        self.motor_pos_norm = self.pose2motors(np.zeros(len(self.joint_ids)))
+
         cal_yaml_fname = os.path.join(os.path.dirname(
             os.path.abspath(__file__)), "cal.yaml")
         cal_exists = os.path.isfile(cal_yaml_fname)
@@ -253,26 +255,44 @@ class GripperController:
                 maxCurrent * np.ones(len(self.motor_ids)))
             # print(self.motor_id2init_pos)
             self.write_desired_motor_pos(self.motor_id2init_pos)
-            time.sleep(0.01)
+            time.sleep(0.1)
             # self.wait_for_motion()
 
         else:  # This will overwrite the current config file with the new offsets and we will lose all comments in the file
 
             # Disable torque to allow the motors to move freely
             self.disable_torque()
-            input("Move fingers to init posiiton and press Enter to continue...")
+            input("Place hand into calibration glove and press Enter to continue...")
 
-            # TODO: Add your own calibration procedure here, that move the motors to a defined initial position:
-
-            self.motor_id2init_pos = self.get_motor_pos()
-
-            print(
-                f"Motor positions after calibration (0-10): {self.motor_id2init_pos}")
             # Set to current based position control mode
             self.set_operating_mode(5)
             self.write_desired_motor_current(
                 maxCurrent * np.ones(len(self.motor_ids)))
             time.sleep(0.2)
+
+            # TODO: Add your own calibration procedure here, that move the motors to a defined initial position:
+            self.motor_id2init_pos = self.get_motor_pos()
+            prev_pos = np.zeros(len(self.motor_ids))
+
+            theta = 10
+            cal_joints = np.zeros(len(self.joint_ids))
+            indices_to_increase = [1]
+            cal_joints[indices_to_increase] = theta
+            indices_to_decrease = [2, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16]
+            cal_joints[indices_to_decrease] = -theta
+
+            while not np.all(np.abs(prev_pos - self.get_motor_pos()) < 0.1):
+                prev_pos = self.get_motor_pos()
+                self.motor_id2init_pos = self.get_motor_pos()
+                self.write_desired_joint_angles(cal_joints)
+                time.sleep(0.1)
+
+            self.motor_id2init_pos = self.get_motor_pos()
+            self.write_desired_motor_pos(self.motor_id2init_pos)
+            time.sleep(0.1)
+
+            print(
+                f"Motor positions after calibration (0-16): {self.motor_id2init_pos}")
 
             # Save the offsets to a YAML file
             with open(cal_yaml_fname, 'r') as cal_file:
@@ -282,8 +302,6 @@ class GripperController:
 
             with open(cal_yaml_fname, 'w') as cal_file:
                 yaml.dump(cal_orig, cal_file, default_flow_style=False)
-
-        self.motor_pos_norm = self.pose2motors(np.zeros(len(self.joint_ids)))
 
     def write_desired_joint_angles(self, joint_angles: np.array):
         """
