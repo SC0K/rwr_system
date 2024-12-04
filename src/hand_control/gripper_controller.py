@@ -264,10 +264,10 @@ class GripperController:
             self.disable_torque()
             input("Place hand into calibration glove and press Enter to continue...")
 
-            # Set to current based position control mode
+            # Set to current based position control mode with low current for calibration
             self.set_operating_mode(5)
             self.write_desired_motor_current(
-                maxCurrent * np.ones(len(self.motor_ids)))
+                20 * np.ones(len(self.motor_ids)))
             time.sleep(0.2)
 
             # TODO: Add your own calibration procedure here, that move the motors to a defined initial position:
@@ -275,19 +275,30 @@ class GripperController:
             prev_pos = np.zeros(len(self.motor_ids))
 
             theta = 10
+            pos_threshold = 0.1
             cal_joints = np.zeros(len(self.joint_ids))
             indices_to_increase = [1]
-            cal_joints[indices_to_increase] = theta
             indices_to_decrease = [2, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16]
+            cal_joints[indices_to_increase] = theta
             cal_joints[indices_to_decrease] = -theta
 
-            while not np.all(np.abs(prev_pos - self.get_motor_pos()) < 0.1):
+            while not np.all(np.abs(prev_pos - self.get_motor_pos()) < pos_threshold):
+                pos_diff = np.abs(prev_pos - self.get_motor_pos())
+
                 prev_pos = self.get_motor_pos()
                 self.motor_id2init_pos = self.get_motor_pos()
+
+                cal_joints[pos_diff < pos_threshold] = 0
                 self.write_desired_joint_angles(cal_joints)
                 time.sleep(0.1)
 
             self.motor_id2init_pos = self.get_motor_pos()
+
+            # Set to current based position control mode with full current
+            self.write_desired_motor_current(
+                maxCurrent * np.ones(len(self.motor_ids)))
+            time.sleep(0.2)
+
             self.write_desired_motor_pos(self.motor_id2init_pos)
             time.sleep(0.1)
 
