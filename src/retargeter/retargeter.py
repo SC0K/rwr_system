@@ -307,30 +307,37 @@ class Retargeter:
         
         # Assuming mano_joints_dict contains the coordinates of the joints as tensors
         lower_arm = mano_joints_dict["LowerArm"].squeeze()
-        vector_palm_to_lower_arm = lower_arm - mano_palm.squeeze()
-        y_axis = torch.tensor([0.0, 1.0, 0.0], dtype=lower_arm.dtype)
-        vector_palm_to_lower_arm = vector_palm_to_lower_arm.squeeze()
+        lower_arm_yz = lower_arm[[1, 2]]
+        # print(f"Lower arm: {lower_arm}")
+        mano_palm_yz = mano_palm.squeeze()[[1, 2]]
+        vector_palm_to_lower_arm_yz = lower_arm_yz - mano_palm_yz
+        z_axis = torch.tensor([0.0, -1.0], dtype=lower_arm.dtype)
         
         # Calculate the dot product of the vectors
-        dot_product = torch.dot(vector_palm_to_lower_arm, y_axis)
+        dot_product = torch.dot(vector_palm_to_lower_arm_yz, z_axis)
         
         # Calculate the magnitudes of the vectors
-        magnitude_palm_to_lower_arm = torch.norm(vector_palm_to_lower_arm)
-        magnitude_y_axis = torch.norm(y_axis)
+        magnitude_palm_to_lower_arm = torch.norm(vector_palm_to_lower_arm_yz)
+        magnitude_z_axis = torch.norm(z_axis)
         
         # Calculate the angle in radians
-        wrist_angle_radians = torch.acos(dot_product / (magnitude_palm_to_lower_arm * magnitude_y_axis))
+        wrist_angle_radians = torch.acos(dot_product / (magnitude_palm_to_lower_arm * magnitude_z_axis))
         
         # Rotate the angle by subtracting π/2
-        wrist_angle_radians_rotated = wrist_angle_radians - np.pi / 2
+        if lower_arm[1] < mano_palm[0][1]:
+            wrist_angle_radians_rotated = -wrist_angle_radians
+        else:
+            wrist_angle_radians_rotated = wrist_angle_radians
         
         # Clamp the rotated angle between -π/2 and π/2 (-90 and 90 degrees)
         wrist_angle_radians_clamped = torch.clamp(wrist_angle_radians_rotated, min=-np.pi / 2, max=np.pi / 2)
         
         # Convert wrist_angle_radians_clamped to a NumPy array with the same dtype as finger_joint_angles
         wrist_angle_radians_np = wrist_angle_radians_clamped.detach().cpu().numpy()
+
+        wrist_angle_degrees = np.degrees(wrist_angle_radians_np)
         
-        print(f"Wrist angle (clamped): {wrist_angle_radians_np}")
+        print(f"Wrist angle (clamped): {wrist_angle_degrees}")
         
         # Continue with the rest of your code
 
@@ -402,10 +409,11 @@ class Retargeter:
                 )
 
         finger_joint_angles = self.gc_joints.detach().cpu().numpy()
+        # print(f"Finger joint angles: {finger_joint_angles}")
 
 
         # print(f"Retarget time: {(time.time() - start_time) * 1000} ms")
-        finger_joint_angles[0] = wrist_angle_radians_np*10
+        finger_joint_angles[0] = wrist_angle_degrees
 
 
         return finger_joint_angles
