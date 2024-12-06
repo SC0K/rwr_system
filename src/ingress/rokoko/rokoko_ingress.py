@@ -157,6 +157,8 @@ class RokokoTracker:
                 wrist_quat = wrist_rot.as_quat()
                 self.set_wrist_pose(wrist_position, wrist_quat)
 
+                ## TODO: Add wrist rotation
+
 
 if __name__ == "__main__":
 
