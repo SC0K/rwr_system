@@ -48,7 +48,7 @@ class LivePlot(Node):
 
             ax.set_title(f'Live Data from {self.topic_name}')
             ax.set_xlabel('Time Step')
-            ax.set_ylabel('Value')
+            ax.set_ylabel('Pressure')
             ax.set_xlim(0, 100)
             ax.legend()
             plt.pause(0.1)
