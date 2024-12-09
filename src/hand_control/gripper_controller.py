@@ -254,7 +254,7 @@ class GripperController:
             # print(self.motor_id2init_pos)
             self.write_desired_motor_pos(self.motor_id2init_pos)
             time.sleep(0.01)
-            self.wait_for_motion()
+            # self.wait_for_motion()
 
         else:  # This will overwrite the current config file with the new offsets and we will lose all comments in the file
 
