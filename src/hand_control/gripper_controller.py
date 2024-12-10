@@ -304,8 +304,8 @@ class GripperController:
             self.write_desired_motor_pos(self.motor_id2init_pos)
             time.sleep(0.1)
 
-            print(
-                f"Motor positions after calibration (0-16): {self.motor_id2init_pos}")
+            # print(
+                # f"Motor positions after calibration (0-16): {self.motor_id2init_pos}")
 
             # Save the offsets to a YAML file
             with open(cal_yaml_fname, 'r') as cal_file:

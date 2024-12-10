@@ -21,9 +21,9 @@ class OakDPublisher(Node):
     def __init__(self, camera_dict=None):
         super().__init__("oakd_publisher")
         self.declare_parameter("visualize", False)
-        self.declare_parameter("enable_front_camera", False)
+        self.declare_parameter("enable_front_camera", True)
         self.declare_parameter("enable_side_camera", True)
-        self.declare_parameter("enable_wrist_camera", False)
+        self.declare_parameter("enable_wrist_camera", True)
 
         enable_front_camera = self.get_parameter("enable_front_camera").value
         enable_side_camera = self.get_parameter("enable_side_camera").value
@@ -88,7 +88,7 @@ class OakDPublisher(Node):
             with self.camera_dict[camera_name]["lock"]:
                 if (
                     self.camera_dict[camera_name]["color"] is None
-                    or self.camera_dict[camera_name]["depth"] is None
+                    or (self.camera_dict[camera_name]["depth"] is None and camera_name != "wrist_view")
                 ):
                     continue
 
@@ -111,52 +111,55 @@ class OakDPublisher(Node):
                 except CvBridgeError as e:
                     self.get_logger().error(f"Error publishing color image: {e}")
 
-                try:
-                    header = Header()
-                    header.stamp = self.get_clock().now().to_msg()
-                    header.frame_id = "world"
-                    output_img_depth = self.bridge.cv2_to_imgmsg(
-                        depth, "mono16", header=header
-                    )
-                    self.camera_dict[camera_name]["depth_output_pub"].publish(
-                        output_img_depth
-                    )
-                except CvBridgeError as e:
-                    self.get_logger().error(f"Error publishing depth image: {e}")
 
-                if self.camera_dict[camera_name]["calibrated"]:
-                    continue
-                # publish camera info
-                try:
-                    projection_matrix = np.array(self.camera_dict[camera_name]["driver"].projection_matrix)
-                    print(f"Projection matrix for {camera_name}: {projection_matrix}")
-                    # flatten the matrix
-                    projection_matrix_msg = Float32MultiArray()
-                    projection_matrix_msg.data = projection_matrix.flatten().tolist()
-                    self.camera_dict[camera_name]["projection_pub"].publish(
-                        projection_matrix_msg
-                    )
+                if depth is not None:
+                    # print(f"{camera_name=}")
+                    try:
+                        header = Header()
+                        header.stamp = self.get_clock().now().to_msg()
+                        header.frame_id = "world"
+                        output_img_depth = self.bridge.cv2_to_imgmsg(
+                            depth, "mono16", header=header
+                        )
+                        self.camera_dict[camera_name]["depth_output_pub"].publish(
+                            output_img_depth
+                        )
+                    except CvBridgeError as e:
+                        self.get_logger().error(f"Error publishing depth image: {e}")
 
-                    intrinsic_matrix = np.array(self.camera_dict[camera_name]["driver"].intrinsics)
-                    print(f"intrinsic_matrix for {camera_name}: {intrinsic_matrix}")
-                    intrinsic_matrix_msg = Float32MultiArray()
-                    intrinsic_matrix_msg.data = intrinsic_matrix.flatten().tolist()
-                    self.camera_dict[camera_name]["intrinsics_pub"].publish(
-                        intrinsic_matrix_msg
-                    )
-                    
-                    extrinsic_matrix = np.array(self.camera_dict[camera_name]["driver"].extrinsics)
-                    print(f"Extrinsic matrix for {camera_name}: {extrinsic_matrix}")
-                    extrinsic_matrix_msg = Float32MultiArray()
-                    extrinsic_matrix_msg.data = extrinsic_matrix.flatten().tolist() 
-                    self.camera_dict[camera_name]["extrinsics_pub"].publish(
-                        extrinsic_matrix_msg
-                    )
-                    
-                    self.camera_dict[camera_name]["calibrated"] = True
-                    
-                except Exception as e:
-                    self.get_logger().error(f"Error publishing camera infos: {e}")
+                    if self.camera_dict[camera_name]["calibrated"]:
+                        continue
+                    # publish camera info
+                    try:
+                        print(f"Projection matrix for {camera_name}")
+                        projection_matrix = np.array(self.camera_dict[camera_name]["driver"].projection_matrix)
+                        # flatten the matrix
+                        projection_matrix_msg = Float32MultiArray()
+                        projection_matrix_msg.data = projection_matrix.flatten().tolist()
+                        self.camera_dict[camera_name]["projection_pub"].publish(
+                            projection_matrix_msg
+                        )
+
+                        intrinsic_matrix = np.array(self.camera_dict[camera_name]["driver"].intrinsics)
+                        print(f"intrinsic_matrix for {camera_name}: {intrinsic_matrix}")
+                        intrinsic_matrix_msg = Float32MultiArray()
+                        intrinsic_matrix_msg.data = intrinsic_matrix.flatten().tolist()
+                        self.camera_dict[camera_name]["intrinsics_pub"].publish(
+                            intrinsic_matrix_msg
+                        )
+                        
+                        extrinsic_matrix = np.array(self.camera_dict[camera_name]["driver"].extrinsics)
+                        print(f"Extrinsic matrix for {camera_name}: {extrinsic_matrix}")
+                        extrinsic_matrix_msg = Float32MultiArray()
+                        extrinsic_matrix_msg.data = extrinsic_matrix.flatten().tolist() 
+                        self.camera_dict[camera_name]["extrinsics_pub"].publish(
+                            extrinsic_matrix_msg
+                        )
+                        
+                        self.camera_dict[camera_name]["calibrated"] = True
+                        
+                    except Exception as e:
+                        self.get_logger().error(f"Error publishing camera infos: {e}")
                     
 
 def main():

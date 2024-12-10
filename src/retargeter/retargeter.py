@@ -335,9 +335,9 @@ class Retargeter:
         # Convert wrist_angle_radians_clamped to a NumPy array with the same dtype as finger_joint_angles
         wrist_angle_radians_np = wrist_angle_radians_clamped.detach().cpu().numpy()
 
-        wrist_angle_degrees = np.degrees(wrist_angle_radians_np)
+        wrist_angle_degrees = -np.degrees(wrist_angle_radians_np)
         
-        print(f"Wrist angle (clamped): {wrist_angle_degrees}")
+        # print(f"Wrist angle (clamped): {wrist_angle_degrees}")
         
         # Continue with the rest of your code
 

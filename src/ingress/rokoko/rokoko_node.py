@@ -14,7 +14,7 @@ class RokokoNode(Node):
 
         # start tracker
         self.declare_parameter("rokoko_tracker/ip", "0.0.0.0")
-        self.declare_parameter("rokoko_tracker/port", 14044)
+        self.declare_parameter("rokoko_tracker/port", 14043)
         self.declare_parameter("rokoko_tracker/use_coil", True)
 
         ip = self.get_parameter("rokoko_tracker/ip").value

@@ -3,6 +3,7 @@ from launch_ros.actions import Node
 import os
 from ament_index_python.packages import get_package_share_directory
 
+cameras = {"front_view": True, "side_view": True, "wrist_view": True}
 
 def generate_launch_description():
     urdf = os.path.join(
@@ -17,15 +18,27 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
+            # CAMERA INGRESS NODE
+            Node(
+                package="ingress",
+                executable="oakd_node.py",
+                name="oakd_node",
+                output="log",
+                parameters=[
+                    {"enable_front_camera": cameras["front_view"]},
+                    {"enable_side_camera": cameras["side_view"]},
+                    {"enable_wrist_camera": cameras["wrist_view"]},
+                ],
+            ),
             
             Node(
                 package="ingress",
                 executable="rokoko_node.py",
                 name="rokoko_node",
-                output="log",
+                output="screen",
                 parameters=[
                     {"rokoko_tracker/ip": "0.0.0.0"},
-                    {"rokoko_tracker/port": 14044},
+                    {"rokoko_tracker/port": 14043},
                     {"rokoko_tracker/use_coil": True}
                 ],
             ),

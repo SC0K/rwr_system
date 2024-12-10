@@ -30,13 +30,16 @@ TOPICS_TYPES = {
     # CAMERA PARAMETERS
     "/oakd_front_view/intrinsics": Float32MultiArray,
     "/oakd_side_view/intrinsics": Float32MultiArray,
-    "/oakd_wrist_view/intrinsics": Float32MultiArray,
+    # "/oakd_wrist_view/intrinsics": Float32MultiArray,
     "/oakd_front_view/extrinsics": Float32MultiArray,
     "/oakd_side_view/extrinsics": Float32MultiArray,
-    "/oakd_wrist_view/extrinsics": Float32MultiArray,
+    # "/oakd_wrist_view/extrinsics": Float32MultiArray,
     "/oakd_front_view/projection": Float32MultiArray,
     "/oakd_side_view/projection": Float32MultiArray,
-    "/oakd_wrist_view/projection": Float32MultiArray,
+    # "/oakd_wrist_view/projection": Float32MultiArray,
+
+    # PRESSURE SENSORS
+    "/sensor/pressures": Float32MultiArray,
 }
 
 class DemoLogger(Node):
@@ -182,7 +185,7 @@ class DemoLogger(Node):
 
 def main(args=None):
     # Define the base path for recordings
-    base_path = "recordings"  # Modify this path as needed
+    base_path = "/media/sitong/RWR_Team4"  # Modify this path as needed
 
     # Load topics to record (for demonstration, using hardcoded list)
     topics_to_record = ['/oakd_front_view/color', 
@@ -194,13 +197,14 @@ def main(args=None):
                         '/oakd_side_view/extrinsics',
                         '/oakd_side_view/projection',
                         '/oakd_wrist_view/color', 
-                        '/oakd_wrist_view/intrinsics',
-                        '/oakd_wrist_view/extrinsics',
-                        '/oakd_wrist_view/projection',
+                        # '/oakd_wrist_view/intrinsics',
+                        # '/oakd_wrist_view/extrinsics',
+                        # '/oakd_wrist_view/projection',
                         '/hand/policy_output', 
                         '/franka/end_effector_pose', 
                         '/franka/end_effector_pose_cmd',
                         '/task_description', 
+                        '/sensor/pressures'
                         ]
 
     # Initialize ROS and create DemoLogger instance

@@ -192,10 +192,14 @@ class OakDDriver:
             has_depth = False
             for _ in range(attempts):
                 print("Trying to get depth stream")
+                if self.device_mxid == "18443010212EE4F400":
+                    break
+
                 if device.getOutputQueue("depth", maxSize=1, blocking=False).tryGet() is not None:
                     has_depth = True
                     print("OAK-D detected")
                     break
+                    
                 time.sleep(0.1)
 
                 
@@ -284,6 +288,8 @@ class OakDDriver:
                                 pcl_converter.visualize_pcd()
 
                             if self.callback is not None:
+                                if self.device_mxid == "18443010212EE4F400":
+                                    depth = None
                                 if self.camera_name is not None:
                                     self.callback(color, depth, self.camera_name)
                                 else:
@@ -311,6 +317,6 @@ class OakDDriver:
 
 
 if __name__ == "__main__":
-    OakDDriver(None, visualize=True, device_mxid=None)
+    OakDDriver(None, visualize=True, device_mxid="18443010212EE4F400")
     while True:
         time.sleep(1)
