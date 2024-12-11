@@ -1,0 +1,324 @@
+[0.075s] colcon DEBUG Command line arguments: ['/home/ubuntu/miniforge3/envs/ros_env/bin/colcon', 'list', '-p', '--base-paths', '/home/ubuntu/ros2_ws/src/rwr_system']
+[0.075s] colcon DEBUG Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='list', build_base='build', ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['/home/ubuntu/ros2_ws/src/rwr_system'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, topological_order=False, names_only=False, paths_only=True, topological_graph=False, topological_graph_dot=False, topological_graph_density=False, topological_graph_legend=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff6706d850>, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0xffff6706a010>, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0xffff6706a010>>)
+[0.096s] colcon.colcon_core.package_discovery Level 1 discover_packages(colcon_meta) check parameters
+[0.096s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) check parameters
+[0.096s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) check parameters
+[0.096s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) check parameters
+[0.096s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) discover
+[0.096s] colcon.colcon_core.package_discovery INFO Crawling recursively for packages in '/home/ubuntu/ros2_ws/src/rwr_system'
+[0.096s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extensions ['ignore', 'ignore_ament_install']
+[0.096s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extension 'ignore'
+[0.096s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extension 'ignore_ament_install'
+[0.096s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extensions ['colcon_pkg']
+[0.096s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extension 'colcon_pkg'
+[0.097s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extensions ['colcon_meta']
+[0.097s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extension 'colcon_meta'
+[0.097s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extensions ['ros']
+[0.097s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extension 'ros'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extensions ['cmake', 'python']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extension 'cmake'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extension 'python'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extensions ['python_setup_py']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system) by extension 'python_setup_py'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extensions ['ignore', 'ignore_ament_install']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extension 'ignore'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extension 'ignore_ament_install'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extensions ['colcon_pkg']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extension 'colcon_pkg'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extensions ['colcon_meta']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extension 'colcon_meta'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extensions ['ros']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extension 'ros'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extensions ['cmake', 'python']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extension 'cmake'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extension 'python'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extensions ['python_setup_py']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode) by extension 'python_setup_py'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extensions ['ignore', 'ignore_ament_install']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extension 'ignore'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extension 'ignore_ament_install'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extensions ['colcon_pkg']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extension 'colcon_pkg'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extensions ['colcon_meta']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extension 'colcon_meta'
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extensions ['ros']
+[0.111s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extension 'ros'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extensions ['cmake', 'python']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extension 'cmake'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extension 'python'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extensions ['python_setup_py']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/include) by extension 'python_setup_py'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extensions ['ignore', 'ignore_ament_install']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extension 'ignore'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extension 'ignore_ament_install'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extensions ['colcon_pkg']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extension 'colcon_pkg'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extensions ['colcon_meta']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extension 'colcon_meta'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extensions ['ros']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extension 'ros'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extensions ['cmake', 'python']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extension 'cmake'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extension 'python'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extensions ['python_setup_py']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/lib) by extension 'python_setup_py'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extensions ['ignore', 'ignore_ament_install']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extension 'ignore'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extension 'ignore_ament_install'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extensions ['colcon_pkg']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extension 'colcon_pkg'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extensions ['colcon_meta']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extension 'colcon_meta'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extensions ['ros']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extension 'ros'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extensions ['cmake', 'python']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extension 'cmake'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extension 'python'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extensions ['python_setup_py']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/src) by extension 'python_setup_py'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extensions ['ignore', 'ignore_ament_install']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extension 'ignore'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extension 'ignore_ament_install'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extensions ['colcon_pkg']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extension 'colcon_pkg'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extensions ['colcon_meta']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extension 'colcon_meta'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extensions ['ros']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extension 'ros'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extensions ['cmake', 'python']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extension 'cmake'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extension 'python'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extensions ['python_setup_py']
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/ESPCode/test) by extension 'python_setup_py'
+[0.112s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extensions ['ignore', 'ignore_ament_install']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extension 'ignore'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extension 'ignore_ament_install'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extensions ['colcon_pkg']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extension 'colcon_pkg'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extensions ['colcon_meta']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extension 'colcon_meta'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extensions ['ros']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extension 'ros'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extensions ['cmake', 'python']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extension 'cmake'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extension 'python'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extensions ['python_setup_py']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP) by extension 'python_setup_py'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extensions ['ignore', 'ignore_ament_install']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extension 'ignore'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extension 'ignore_ament_install'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extensions ['colcon_pkg']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extension 'colcon_pkg'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extensions ['colcon_meta']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extension 'colcon_meta'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extensions ['ros']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extension 'ros'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extensions ['cmake', 'python']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extension 'cmake'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extension 'python'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extensions ['python_setup_py']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/include) by extension 'python_setup_py'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extensions ['ignore', 'ignore_ament_install']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extension 'ignore'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extension 'ignore_ament_install'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extensions ['colcon_pkg']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extension 'colcon_pkg'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extensions ['colcon_meta']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extension 'colcon_meta'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extensions ['ros']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extension 'ros'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extensions ['cmake', 'python']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extension 'cmake'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extension 'python'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extensions ['python_setup_py']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/lib) by extension 'python_setup_py'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extensions ['ignore', 'ignore_ament_install']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extension 'ignore'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extension 'ignore_ament_install'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extensions ['colcon_pkg']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extension 'colcon_pkg'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extensions ['colcon_meta']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extension 'colcon_meta'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extensions ['ros']
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extension 'ros'
+[0.113s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extensions ['cmake', 'python']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extension 'cmake'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extension 'python'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extensions ['python_setup_py']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/src) by extension 'python_setup_py'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extensions ['ignore', 'ignore_ament_install']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extension 'ignore'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extension 'ignore_ament_install'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extensions ['colcon_pkg']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extension 'colcon_pkg'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extensions ['colcon_meta']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extension 'colcon_meta'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extensions ['ros']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extension 'ros'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extensions ['cmake', 'python']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extension 'cmake'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extension 'python'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extensions ['python_setup_py']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/TaskXESP/test) by extension 'python_setup_py'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extensions ['ignore', 'ignore_ament_install']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extension 'ignore'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extension 'ignore_ament_install'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extensions ['colcon_pkg']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extension 'colcon_pkg'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extensions ['colcon_meta']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extension 'colcon_meta'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extensions ['ros']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extension 'ros'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extensions ['cmake', 'python']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extension 'cmake'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extension 'python'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extensions ['python_setup_py']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/__pycache__) by extension 'python_setup_py'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extensions ['ignore', 'ignore_ament_install']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extension 'ignore'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extension 'ignore_ament_install'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extensions ['colcon_pkg']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extension 'colcon_pkg'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extensions ['colcon_meta']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extension 'colcon_meta'
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extensions ['ros']
+[0.114s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/experiments) by extension 'ros'
+[0.116s] colcon.colcon_core.package_identification DEBUG Package '/home/ubuntu/ros2_ws/src/rwr_system/experiments' with type 'ros.ament_cmake' and name 'experiments'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extensions ['ignore', 'ignore_ament_install']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extension 'ignore'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extension 'ignore_ament_install'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extensions ['colcon_pkg']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extension 'colcon_pkg'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extensions ['colcon_meta']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extension 'colcon_meta'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extensions ['ros']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extension 'ros'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extensions ['cmake', 'python']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extension 'cmake'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extension 'python'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extensions ['python_setup_py']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/faive_system.egg-info) by extension 'python_setup_py'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/log) by extensions ['ignore', 'ignore_ament_install']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/log) by extension 'ignore'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/log) ignored
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extensions ['ignore', 'ignore_ament_install']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extension 'ignore'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extension 'ignore_ament_install'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extensions ['colcon_pkg']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extension 'colcon_pkg'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extensions ['colcon_meta']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extension 'colcon_meta'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extensions ['ros']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extension 'ros'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extensions ['cmake', 'python']
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extension 'cmake'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extension 'python'
+[0.116s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extensions ['python_setup_py']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src) by extension 'python_setup_py'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extensions ['ignore', 'ignore_ament_install']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extension 'ignore'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extension 'ignore_ament_install'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extensions ['colcon_pkg']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extension 'colcon_pkg'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extensions ['colcon_meta']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extension 'colcon_meta'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extensions ['ros']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extension 'ros'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extensions ['cmake', 'python']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extension 'cmake'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extension 'python'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extensions ['python_setup_py']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/__pycache__) by extension 'python_setup_py'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extensions ['ignore', 'ignore_ament_install']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extension 'ignore'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extension 'ignore_ament_install'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extensions ['colcon_pkg']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extension 'colcon_pkg'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extensions ['colcon_meta']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extension 'colcon_meta'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extensions ['ros']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extension 'ros'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extensions ['cmake', 'python']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extension 'cmake'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extension 'python'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extensions ['python_setup_py']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common) by extension 'python_setup_py'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extensions ['ignore', 'ignore_ament_install']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extension 'ignore'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extension 'ignore_ament_install'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extensions ['colcon_pkg']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extension 'colcon_pkg'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extensions ['colcon_meta']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extension 'colcon_meta'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extensions ['ros']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extension 'ros'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extensions ['cmake', 'python']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extension 'cmake'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extension 'python'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extensions ['python_setup_py']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/common/__pycache__) by extension 'python_setup_py'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extensions ['ignore', 'ignore_ament_install']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extension 'ignore'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extension 'ignore_ament_install'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extensions ['colcon_pkg']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extension 'colcon_pkg'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extensions ['colcon_meta']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extension 'colcon_meta'
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extensions ['ros']
+[0.117s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control) by extension 'ros'
+[0.118s] colcon.colcon_core.package_identification DEBUG Package '/home/ubuntu/ros2_ws/src/rwr_system/src/hand_control' with type 'ros.ament_cmake' and name 'hand_control'
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extensions ['ignore', 'ignore_ament_install']
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extension 'ignore'
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extension 'ignore_ament_install'
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extensions ['colcon_pkg']
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extension 'colcon_pkg'
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extensions ['colcon_meta']
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extension 'colcon_meta'
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extensions ['ros']
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/ingress) by extension 'ros'
+[0.118s] colcon.colcon_core.package_identification DEBUG Package '/home/ubuntu/ros2_ws/src/rwr_system/src/ingress' with type 'ros.ament_cmake' and name 'ingress'
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extensions ['ignore', 'ignore_ament_install']
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extension 'ignore'
+[0.118s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extension 'ignore_ament_install'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extensions ['colcon_pkg']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extension 'colcon_pkg'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extensions ['colcon_meta']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extension 'colcon_meta'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extensions ['ros']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/logger) by extension 'ros'
+[0.119s] colcon.colcon_core.package_identification DEBUG Package '/home/ubuntu/ros2_ws/src/rwr_system/src/logger' with type 'ros.ament_cmake' and name 'logger'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extensions ['ignore', 'ignore_ament_install']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extension 'ignore'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extension 'ignore_ament_install'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extensions ['colcon_pkg']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extension 'colcon_pkg'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extensions ['colcon_meta']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extension 'colcon_meta'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extensions ['ros']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extension 'ros'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extensions ['cmake', 'python']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extension 'cmake'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extension 'python'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extensions ['python_setup_py']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/pressure_emulator) by extension 'python_setup_py'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extensions ['ignore', 'ignore_ament_install']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extension 'ignore'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extension 'ignore_ament_install'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extensions ['colcon_pkg']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extension 'colcon_pkg'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extensions ['colcon_meta']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extension 'colcon_meta'
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extensions ['ros']
+[0.119s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter) by extension 'ros'
+[0.120s] colcon.colcon_core.package_identification DEBUG Package '/home/ubuntu/ros2_ws/src/rwr_system/src/retargeter' with type 'ros.ament_cmake' and name 'retargeter'
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extensions ['ignore', 'ignore_ament_install']
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extension 'ignore'
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extension 'ignore_ament_install'
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extensions ['colcon_pkg']
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extension 'colcon_pkg'
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extensions ['colcon_meta']
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extension 'colcon_meta'
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extensions ['ros']
+[0.120s] colcon.colcon_core.package_identification Level 1 _identify(/home/ubuntu/ros2_ws/src/rwr_system/src/viz) by extension 'ros'
+[0.120s] colcon.colcon_core.package_identification DEBUG Package '/home/ubuntu/ros2_ws/src/rwr_system/src/viz' with type 'ros.ament_cmake' and name 'viz'
+[0.120s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) using defaults
