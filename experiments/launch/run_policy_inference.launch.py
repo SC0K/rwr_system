@@ -5,6 +5,7 @@ from launch_ros.actions import Node
 import os
 from ament_index_python.packages import get_package_share_directory
 
+
 def generate_launch_description():
     # Declare launch arguments with default values
     policy_ckpt_arg = DeclareLaunchArgument(
@@ -24,17 +25,17 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'camera_topics': [
-                "/oakd_front_view/color", "/oakd_side_view/color"
+                "/oakd_front_view/color", "/oakd_side_view/color", "/oakd_wrist_view/color"
             ],
             'camera_names': [
-                "oakd_front_view_images", "oakd_side_view_images"
+                "oakd_front_view_images", "oakd_side_view_images", "oakd_wrist_view_images"
             ],
             "policy_ckpt_path": policy_ckpt_path
-         }]
+        }]
     )
 
     # Return the LaunchDescription with all the launch arguments and nodes
     return LaunchDescription([
         policy_ckpt_arg,
         policy_node
-])
+    ])

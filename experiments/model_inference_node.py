@@ -18,6 +18,7 @@ import yaml
 from faive_system.src.common.utils import numpy_to_float32_multiarray, float32_multiarray_to_numpy
 from srl_il.export.il_policy import get_policy_from_ckpt
 
+
 class CameraListener(Node):
     def __init__(self, camera_topic, name, node):
         self.camera_topic = camera_topic
@@ -36,17 +37,24 @@ class CameraListener(Node):
         with self.lock:
             return deepcopy(self.image)
 
+
 class PolicyPlayerAgent(Node):
     def __init__(self):
         super().__init__("policy_publisher")
-        
-        self.declare_parameter("camera_topics", rclpy.Parameter.Type.STRING_ARRAY)
-        self.declare_parameter("camera_names", rclpy.Parameter.Type.STRING_ARRAY)
-        self.declare_parameter("policy_ckpt_path", "")   # assume the policy ckpt is saved with its config
+
+        self.declare_parameter(
+            "camera_topics", rclpy.Parameter.Type.STRING_ARRAY)
+        self.declare_parameter(
+            "camera_names", rclpy.Parameter.Type.STRING_ARRAY)
+        # assume the policy ckpt is saved with its config
+        self.declare_parameter("policy_ckpt_path", "")
+        # The dimension of the hand_qpos, we need this because we need to broadcast an all zero command to the hand at the beginning
+        self.declare_parameter("hand_qpos_dim", 17)
         self.camera_topics = self.get_parameter("camera_topics").value
         self.camera_names = self.get_parameter("camera_names").value
         self.policy_ckpt_path = self.get_parameter("policy_ckpt_path").value
-        
+        self.hand_qpos_dim = self.get_parameter("hand_qpos_dim").value
+
         self.lock = Lock()
 
         self.hand_pub = self.create_publisher(
@@ -55,7 +63,7 @@ class PolicyPlayerAgent(Node):
         self.hand_sub = self.create_subscription(
             Float32MultiArray, "/hand/policy_output", self.hand_callback, 10
         )
-        
+
         self.arm_publisher = self.create_publisher(
             PoseStamped, "/franka/end_effector_pose_cmd", 10
         )
@@ -64,17 +72,25 @@ class PolicyPlayerAgent(Node):
         )
 
         self.camera_listeners = [
-            CameraListener(camera_topic, camera_name, self) 
+            CameraListener(camera_topic, camera_name, self)
             for camera_topic, camera_name in zip(self.camera_topics, self.camera_names)
         ]
-        
+
+        self.pressures_sub = self.create_subscription(
+            Float32MultiArray, "/sensor/pressures", self.pressures_callback, 10
+        )
+
         self.bridge = CvBridge()
         self.current_wrist_state = None
         self.current_hand_state = None
+        self.current_pressures_state = None
 
         self.policy = get_policy_from_ckpt(self.policy_ckpt_path)
         self.policy.reset_policy()
-        self.policy_run = self.create_timer(0.05, self.run_policy_cb) # 20hz
+        self.policy_run = self.create_timer(0.05, self.run_policy_cb)  # 20hz
+
+        hand_msg = numpy_to_float32_multiarray(np.zeros(self.hand_qpos_dim))
+        self.hand_pub.publish(hand_msg)
 
     def publish(self, wrist_policy: np.ndarray, hand_policy: np.ndarray):
         # publish hand policy
@@ -83,33 +99,41 @@ class PolicyPlayerAgent(Node):
 
         # publish wrist policy
         wrist_msg = PoseStamped()
-        wrist_msg.pose.position.x, wrist_msg.pose.position.y, wrist_msg.pose.position.z = wrist_policy[:3].astype(np.float64)
-        (   wrist_msg.pose.orientation.x,
+        wrist_msg.pose.position.x, wrist_msg.pose.position.y, wrist_msg.pose.position.z = wrist_policy[:3].astype(
+            np.float64)
+        (wrist_msg.pose.orientation.x,
             wrist_msg.pose.orientation.y,
             wrist_msg.pose.orientation.z,
             wrist_msg.pose.orientation.w,
-        ) = wrist_policy[3:].astype(np.float64)
-        wrist_msg.header.stamp = self.get_clock().now().to_msg()   
-        wrist_msg.header.frame_id = "panda_link0" 
+         ) = wrist_policy[3:].astype(np.float64)
+        wrist_msg.header.stamp = self.get_clock().now().to_msg()
+        wrist_msg.header.frame_id = "panda_link0"
         self.arm_publisher.publish(wrist_msg)
-    
+
     def arm_pose_callback(self, msg: PoseStamped):
         current_wrist_state_msg = msg.pose
-        position = [current_wrist_state_msg.position.x, current_wrist_state_msg.position.y, current_wrist_state_msg.position.z]
-        quaternion = [current_wrist_state_msg.orientation.x, current_wrist_state_msg.orientation.y, current_wrist_state_msg.orientation.z, current_wrist_state_msg.orientation.w]
+        position = [current_wrist_state_msg.position.x,
+                    current_wrist_state_msg.position.y, current_wrist_state_msg.position.z]
+        quaternion = [current_wrist_state_msg.orientation.x, current_wrist_state_msg.orientation.y,
+                      current_wrist_state_msg.orientation.z, current_wrist_state_msg.orientation.w]
         self.current_wrist_state = np.concatenate([position, quaternion])
-    
+
     def hand_callback(self, msg: Float32MultiArray):
         self.current_hand_state = float32_multiarray_to_numpy(msg)
+
+    def pressures_callback(self, msg: Float32MultiArray):
+        self.current_pressures_state = float32_multiarray_to_numpy(msg)
 
     def get_current_observations(self):
         obs_dict = {}
         get_data_success = True
-        
-        images = {camera.name: camera.get_im() for camera in self.camera_listeners}
+
+        images = {camera.name: camera.get_im()
+                  for camera in self.camera_listeners}
         if any([im is None for im in images.values()]):
             get_data_success = False
-            print("Missing camera images", [im is not None for im in images.values()])
+            print("Missing camera images", [
+                  im is not None for im in images.values()])
             return get_data_success, obs_dict
 
         images = {
@@ -120,17 +144,19 @@ class PolicyPlayerAgent(Node):
         with self.lock:
             qpos_franka = self.current_wrist_state
             qpos_hand = self.current_hand_state
-        if qpos_franka is None or qpos_hand is None:
+            pressures = self.current_pressures_state
+        if qpos_franka is None or qpos_hand is None or pressures is None:
             print("missing qpos_franka", qpos_franka is None)
             print("missing qpos_hand", qpos_hand is None)
+            print("missing pressures", pressures is None)
             return False, obs_dict
-        
-        
+
         obs_dict.update(images)
         obs_dict['qpos_franka'] = qpos_franka
         obs_dict['qpos_hand'] = qpos_hand
+        obs_dict['pressures'] = pressures
         return get_data_success, obs_dict
-    
+
     def run_policy_cb(self):
 
         get_data_success, obs_dict = self.get_current_observations()
@@ -139,17 +165,20 @@ class PolicyPlayerAgent(Node):
             sleep(1)
             return
         with torch.inference_mode():
-            obs_dict = {k: torch.tensor(v).float().unsqueeze(0) for k, v in obs_dict.items()} # add batch dimension
+            obs_dict = {k: torch.tensor(v).float().unsqueeze(
+                0) for k, v in obs_dict.items()}  # add batch dimension
             actions = self.policy.predict_action(obs_dict)
             wrist_action = actions["actions_franka"][0].cpu().numpy()
             hand_action = actions["actions_hand"][0].cpu().numpy()
         self.publish(wrist_action, hand_action)
+
 
 def main(args=None):
     rclpy.init(args=args)
     node = PolicyPlayerAgent()
     rclpy.spin(node)
     rclpy.shutdown()
-    
+
+
 if __name__ == "__main__":
     main()
