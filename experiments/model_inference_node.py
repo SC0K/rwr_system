@@ -122,7 +122,7 @@ class PolicyPlayerAgent(Node):
         self.current_hand_state = float32_multiarray_to_numpy(msg)
 
     def pressures_callback(self, msg: Float32MultiArray):
-        self.current_pressures_state = float32_multiarray_to_numpy(msg)
+        self.current_pressures_state = np.array(msg.data, dtype=np.float32).reshape(5)
 
     def get_current_observations(self):
         obs_dict = {}

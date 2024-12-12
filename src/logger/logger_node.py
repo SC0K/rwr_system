@@ -166,9 +166,9 @@ class DemoLogger(Node):
 
     def stop_recording(self):
         if self.writer:
-            self.writer = None
             for sub in self.subscribers:
                 self.destroy_subscription(sub)
+            self.writer = None
             self.get_logger().info("Stopped recording.")
         else:
             self.get_logger().warn("No active recording to stop.")
@@ -185,7 +185,7 @@ class DemoLogger(Node):
 
 def main(args=None):
     # Define the base path for recordings
-    base_path = "/media/sitong/RWR_Team4"  # Modify this path as needed
+    base_path = "/media/sitong/RWR_Team4/datasets"  # Modify this path as needed
 
     # Load topics to record (for demonstration, using hardcoded list)
     topics_to_record = ['/oakd_front_view/color', 

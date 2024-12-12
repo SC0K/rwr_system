@@ -2,6 +2,7 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch.actions import SetEnvironmentVariable
 import os
 from ament_index_python.packages import get_package_share_directory
 
@@ -33,6 +34,10 @@ def generate_launch_description():
             "policy_ckpt_path": policy_ckpt_path
         }]
     )
+
+    # Get the path to the virtual environment's site-packages directory
+    import site
+    venv_site_packages = site.getsitepackages()[0]
 
     # Return the LaunchDescription with all the launch arguments and nodes
     return LaunchDescription([
