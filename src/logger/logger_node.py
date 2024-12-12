@@ -185,7 +185,7 @@ class DemoLogger(Node):
 
 def main(args=None):
     # Define the base path for recordings
-    base_path = "/media/sitong/RWR_Team4/datasets"  # Modify this path as needed
+    base_path = "/media/sitong/WinToUSB/datasets"  # Modify this path as needed
 
     # Load topics to record (for demonstration, using hardcoded list)
     topics_to_record = ['/oakd_front_view/color', 
