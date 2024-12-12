@@ -9,7 +9,7 @@
 // #define SERIAL // debug disables Serial debugging
 bool serial = false;
 
-int publishing_period_ms = 50;
+int publishing_period_ms = 0;
 
 TCA9548 mp(0x70);
 
@@ -31,12 +31,14 @@ std_msgs__msg__Float32MultiArray msg;
 
 void setup()
 {
-    if (serial) {
+    if (serial)
+    {
         Serial.begin(115200);
     }
     Wire.begin();
 
-    if (!serial) {
+    if (!serial)
+    {
         set_microros_transports();
 
         rcl_allocator_t allocator = rcl_get_default_allocator();
@@ -98,7 +100,8 @@ void loop()
     msg.data.data[3] = press4;
     msg.data.data[4] = press5;
 
-    if (serial) {
+    if (serial)
+    {
         Serial.print(">pressure1:");
         Serial.println(press1);
         Serial.print(">pressure2:");
@@ -110,7 +113,8 @@ void loop()
         Serial.print(">pressure5:");
         Serial.println(press5);
     }
-    else {
+    else
+    {
         rcl_publish(&publisher, &msg, NULL);
     }
 
