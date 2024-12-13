@@ -87,7 +87,7 @@ class PolicyPlayerAgent(Node):
 
         self.policy = get_policy_from_ckpt(self.policy_ckpt_path)
         self.policy.reset_policy()
-        self.policy_run = self.create_timer(0.05, self.run_policy_cb)  # 20hz
+        self.policy_run = self.create_timer(0.04, self.run_policy_cb)  # 25hz
 
         hand_msg = numpy_to_float32_multiarray(np.zeros(self.hand_qpos_dim))
         self.hand_pub.publish(hand_msg)
@@ -122,7 +122,8 @@ class PolicyPlayerAgent(Node):
         self.current_hand_state = float32_multiarray_to_numpy(msg)
 
     def pressures_callback(self, msg: Float32MultiArray):
-        self.current_pressures_state = np.array(msg.data, dtype=np.float32).reshape(5)
+        self.current_pressures_state = np.array(
+            msg.data, dtype=np.float32).reshape(5)
 
     def get_current_observations(self):
         obs_dict = {}
