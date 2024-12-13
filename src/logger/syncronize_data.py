@@ -191,7 +191,7 @@ def process_folder(input_folder, sampling_frequency, compress, resize_to, topic_
     # Process each file
     for idx, input_file in enumerate(h5_files):
         try:
-            output_file = os.path.join(output_folder, f"{idx:04d}.h5")
+            output_file = os.path.join(output_folder, os.path.basename(input_folder) + f"_{idx:04d}.h5")
             print(f"Processing file: {input_file}")
             sample_and_sync_h5(input_file, output_file, sampling_frequency, compress, resize_to, topic_types)
             print(f"Processed file saved as: {output_file}")
