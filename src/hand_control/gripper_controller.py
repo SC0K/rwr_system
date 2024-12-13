@@ -241,6 +241,9 @@ class GripperController:
         cal_yaml_fname = os.path.join(os.path.dirname(
             os.path.abspath(__file__)), "cal.yaml")
         cal_exists = os.path.isfile(cal_yaml_fname)
+        desired_current = maxCurrent * np.ones(len(self.motor_ids))
+        desired_current[14] = 450
+
 
         if not calibrate and cal_exists:
 
@@ -251,8 +254,7 @@ class GripperController:
 
             # Set to current based position control mode
             self.set_operating_mode(5)
-            self.write_desired_motor_current(
-                maxCurrent * np.ones(len(self.motor_ids)))
+            self.write_desired_motor_current(desired_current)
             # print(self.motor_id2init_pos)
             self.write_desired_motor_pos(self.motor_id2init_pos)
             time.sleep(0.1)
@@ -296,8 +298,7 @@ class GripperController:
 
 
             # Set to current based position control mode with full current
-            self.write_desired_motor_current(
-                maxCurrent * np.ones(len(self.motor_ids)))
+            self.write_desired_motor_current(desired_current)
             time.sleep(0.2)
 
             self.motor_id2init_pos = self.get_motor_pos()
