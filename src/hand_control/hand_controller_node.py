@@ -18,7 +18,7 @@ class HandControllerNode(Node):
         port = self.get_parameter("hand_controller/port").value
         baudrate = self.get_parameter("hand_controller/baudrate").value
 
-        self._hc = GripperController(port=port, calibration=False)
+        self._hc = GripperController(port=port, calibration=False, maxCurrent=150)
         # self._hc.init_joints(calibrate=True)
 
         self.joint_angle_sub = self.create_subscription(

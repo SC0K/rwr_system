@@ -181,8 +181,11 @@ def process_folder(input_folder, sampling_frequency, compress, resize_to, topic_
         return
 
     # Create the output folder
-    output_folder = os.path.join(os.path.dirname(input_folder), 
+    # output_folder = os.path.join(os.path.dirname(input_folder), 
+    #                              os.path.basename(input_folder) + "_processed" + f"_{int(sampling_frequency)}hz")
+    output_folder = os.path.join("/home/ubuntu/Documents", 
                                  os.path.basename(input_folder) + "_processed" + f"_{int(sampling_frequency)}hz")
+
     if compress:
         output_folder += "_lzf"
     os.makedirs(output_folder, exist_ok=True)
