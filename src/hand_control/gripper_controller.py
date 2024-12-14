@@ -242,7 +242,8 @@ class GripperController:
             os.path.abspath(__file__)), "cal.yaml")
         cal_exists = os.path.isfile(cal_yaml_fname)
         desired_current = maxCurrent * np.ones(len(self.motor_ids))
-        desired_current[14] = 450
+        desired_current[14] = 450  # for wrist
+        desired_current[1] = 250 # for thumb pipj
 
 
         if not calibrate and cal_exists:
