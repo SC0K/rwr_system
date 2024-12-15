@@ -27,16 +27,51 @@ rcl_node_t node;
 
 // Function prototypes
 void write_servos(int pos1, int pos2, int pos3, int pos4, int pos5);
-void servo_positions_callback(const void *msg_in);
+void servo_positions_callback(const void * msg_in);
 float normalize(float value, float min_value, float max_value);
 float scale(float normalized, int min_pos, int max_pos);
 
+// Callback to handle received pressure values
+void servo_positions_callback(const void *msg_in) {
+    Serial2.println("Callback triggered!");
+    const std_msgs__msg__Float32MultiArray *msg = (const std_msgs__msg__Float32MultiArray *)msg_in;
+    
+    // Safely access message data
+    for (size_t i = 0; i < msg->data.size; i++) {
+        Serial2.printf("Data[%zu]: %f\n", i, msg->data.data[i]);
+    }
+}
+
+// Write positions to all servos
+void write_servos(int pos1, int pos2, int pos3, int pos4, int pos5) {
+    servo1.write(pos1);
+    servo2.write(pos2);
+    servo3.write(pos3);
+    servo4.write(pos4);
+    servo5.write(pos5);
+
+    Serial2.printf("Servo positions written: %d, %d, %d, %d, %d\n", pos1, pos2, pos3, pos4, pos5);
+}
+
+// Normalize a value between 0 and 1
+float normalize(float value, float min_value, float max_value) {
+    return (value - min_value) / (max_value - min_value);
+}
+
+// Scale a normalized value to the servo range
+float scale(float normalized, int min_pos, int max_pos) {
+    return min_pos + normalized * (max_pos - min_pos);
+}
+
 void setup() {
     // Initialize serial communication
-    Serial.begin(115200);
+    Serial2.begin(115200);
+    Serial2.println("Initializing Micro-ROS...");
+
+    
 
     // Initialize Micro-ROS
-    set_microros_transports(); // Ensure you have the correct transport setup
+    set_microros_transports();
     allocator = rcl_get_default_allocator();
 
     // Create support and node
@@ -44,11 +79,18 @@ void setup() {
     rclc_node_init_default(&node, "servo_controller_node", "", &support);
 
     // Initialize subscriber
-    rclc_subscription_init_default(
-        &subscriber,
+    rmw_qos_profile_t qos_profile = rmw_qos_profile_default;
+    qos_profile.history = RMW_QOS_POLICY_HISTORY_KEEP_ALL;
+    qos_profile.depth = 10;
+    qos_profile.reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
+    qos_profile.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
+
+    rclc_subscription_init(
+        &subscriber, 
         &node,
         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
-        "pressure_values"
+        "/sensor/pressures",
+        &qos_profile
     );
 
     // Initialize executor
@@ -60,6 +102,8 @@ void setup() {
         &servo_positions_callback,
         ON_NEW_DATA
     );
+
+    Serial2.println("Micro-ROS initialized successfully.");
 
     // Attach servos
     servo1.setPeriodHertz(50);
@@ -73,55 +117,15 @@ void setup() {
     servo3.attach(27, 500, 2400);
     servo4.attach(26, 500, 2400);
     servo5.attach(25, 500, 2400);
-
-    Serial.println("Setup complete.");
+    delay(1000);
+    Serial2.println("Servos attached and setup complete.");
 }
 
 void loop() {
-    // Spin the Micro-ROS executor
-    rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
-}
-
-// Callback to handle received pressure values
-void servo_positions_callback(const void *msg_in) {
-    const std_msgs__msg__Float32MultiArray *msg = (const std_msgs__msg__Float32MultiArray *)msg_in;
-
-    if (msg->data.size == 5) {
-        // Normalize and scale pressure values for each servo
-        int scaled_positions[5];
-        for (int i = 0; i < 5; i++) {
-            float normalized = normalize(msg->data.data[i], pressure_min[i], pressure_max[i]);
-            scaled_positions[i] = (int)scale(normalized, min_pos, max_pos);
-        }
-
-        // Write to servos
-        write_servos(
-            scaled_positions[0],
-            scaled_positions[1],
-            scaled_positions[2],
-            scaled_positions[3],
-            scaled_positions[4]
-        );
-    } else {
-        Serial.println("Received invalid data size!");
+    delay(100);
+    int feedback = rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
+    if(feedback != RCL_RET_OK){
+        Serial2.println("Error in spin_some()");
     }
-}
-
-// Write positions to all servos
-void write_servos(int pos1, int pos2, int pos3, int pos4, int pos5) {
-    servo1.write(pos1);
-    servo2.write(pos2);
-    servo3.write(pos3);
-    servo4.write(pos4);
-    servo5.write(pos5);
-}
-
-// Normalize a value between 0 and 1
-float normalize(float value, float min_value, float max_value) {
-    return (value - min_value) / (max_value - min_value);
-}
-
-// Scale a normalized value to the servo range
-float scale(float normalized, int min_pos, int max_pos) {
-    return min_pos + normalized * (max_pos - min_pos);
+    
 }
