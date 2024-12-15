@@ -18,12 +18,12 @@ float pressure_min[5] = {10.0, 20.0, 15.0, 5.0, 25.0};
 float pressure_max[5] = {100.0, 90.0, 80.0, 50.0, 120.0};
 
 // ROS-related objects
-rcl_subscription_t subscriber;
+rcl_subscription_t subscriber = rcl_get_zero_initialized_subscription();
 std_msgs__msg__Float32MultiArray msg;
-rclc_executor_t executor;
+rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
 rclc_support_t support;
 rcl_allocator_t allocator;
-rcl_node_t node;
+rcl_node_t node = rcl_get_zero_initialized_node();
 
 // Function prototypes
 void write_servos(int pos1, int pos2, int pos3, int pos4, int pos5);
@@ -34,12 +34,12 @@ float scale(float normalized, int min_pos, int max_pos);
 // Callback to handle received pressure values
 void servo_positions_callback(const void *msg_in) {
     Serial2.println("Callback triggered!");
-    const std_msgs__msg__Float32MultiArray *msg = (const std_msgs__msg__Float32MultiArray *)msg_in;
+    // const std_msgs__msg__Float32MultiArray *msg = (const std_msgs__msg__Float32MultiArray *)msg_in;
     
-    // Safely access message data
-    for (size_t i = 0; i < msg->data.size; i++) {
-        Serial2.printf("Data[%zu]: %f\n", i, msg->data.data[i]);
-    }
+    // // Safely access message data
+    // for (size_t i = 0; i < msg->data.size; i++) {
+    //     Serial2.printf("Data[%zu]: %f\n", i, msg->data.data[i]);
+    // }
 }
 
 // Write positions to all servos
@@ -68,8 +68,6 @@ void setup() {
     Serial2.begin(115200);
     Serial2.println("Initializing Micro-ROS...");
 
-    
-
     // Initialize Micro-ROS
     set_microros_transports();
     allocator = rcl_get_default_allocator();
@@ -78,20 +76,26 @@ void setup() {
     rclc_support_init(&support, 0, NULL, &allocator);
     rclc_node_init_default(&node, "servo_controller_node", "", &support);
 
-    // Initialize subscriber
-    rmw_qos_profile_t qos_profile = rmw_qos_profile_default;
-    qos_profile.history = RMW_QOS_POLICY_HISTORY_KEEP_ALL;
-    qos_profile.depth = 10;
-    qos_profile.reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
-    qos_profile.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
+    // // Initialize subscriber
+    // rmw_qos_profile_t qos_profile = rmw_qos_profile_default;
+    // qos_profile.history = RMW_QOS_POLICY_HISTORY_KEEP_ALL;
+    // qos_profile.depth = 10;
+    // qos_profile.reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
+    // qos_profile.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
 
-    rclc_subscription_init(
+    rclc_subscription_init_default(
         &subscriber, 
         &node,
         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
-        "/sensor/pressures",
-        &qos_profile
-    );
+        "/sensor/pressures");
+
+
+    // Allocate memory for the array (adjust size as needed)
+    size_t array_size = 5;  // Example: an array with 10 elements
+    msg.data.data = (float *)malloc(array_size * sizeof(float));
+    msg.data.capacity = array_size;
+    msg.data.size = 0;
+    
 
     // Initialize executor
     rclc_executor_init(&executor, &support.context, 1, &allocator);

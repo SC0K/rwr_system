@@ -5,12 +5,14 @@ from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray
 import math
 import time
+from rclpy.qos import QoSProfile, ReliabilityPolicy
 
 class SmoothPressurePublisher(Node):
     def __init__(self):
         super().__init__('smooth_pressure_publisher')
-        self.publisher_ = self.create_publisher(Float32MultiArray, 'pressure_values', 10)
-        self.timer = self.create_timer(0.1, self.publish_pressure_values)  # Publish every 0.1 seconds
+        qos_profile = QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT)
+        self.publisher_ = self.create_publisher(Float32MultiArray, '/sensor/pressures', qos_profile)
+        self.timer = self.create_timer(1.0, self.publish_pressure_values)  # Publish every 1 second
         self.start_time = time.time()
 
     def publish_pressure_values(self):
