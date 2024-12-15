@@ -66,7 +66,11 @@ void setup()
     if (!bmp5.begin())
         Serial.println("Failed to initialize BMP5!");
 
-    msg.data.capacity = 5;
+    msg.layout.dim.size = 1;
+    msg.layout.dim.data = (std_msgs__msg__MultiArrayDimension *)malloc(1 * sizeof(std_msgs__msg__MultiArrayDimension));
+    msg.layout.dim.data[0].size = 5;
+
+    // msg.data.capacity = 5;
     msg.data.size = 5;
     msg.data.data = (float *)malloc(5 * sizeof(float));
 }
