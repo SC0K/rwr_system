@@ -13,9 +13,15 @@ Servo servo1, servo2, servo3, servo4, servo5;
 int min_pos = 160;
 int max_pos = 70;
 
+bool press_init = true;
+unsigned long millis_init = 0xFFFFFFFF;
+
 // Pressure sensor min and max values (adjust as needed)
-float pressure_min[5] = {124674.0, 137000.0, 138261.0, 129000.0, 143000.0};
-float pressure_max[5] = {160000.0, 169000.0, 181000.0, 166000.0, 150000.0};
+//float pressure_min[5] = {124674.0, 137000.0, 138261.0, 129000.0, 143000.0};
+//float pressure_max[5] = {16000.0, 160000.0, 165000.0, 160000.0, 160000.0};
+
+float pressure_min[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
+float pressure_max[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
 
 float norm[5];
 int pos[5];
@@ -32,33 +38,59 @@ rcl_node_t node = rcl_get_zero_initialized_node();
 void write_servos(int pos1, int pos2, int pos3, int pos4, int pos5);
 void servo_positions_callback(const void * msg_in);
 float normalize(float value, float min_value, float max_value);
-float scale(float normalized, int min_pos, int max_pos);
+int scale(float normalized, int min_pos, int max_pos);
 
 // Callback to handle received pressure values
 void servo_positions_callback(const void *msg_in) {
 
-    // Debug message
     Serial2.println("Callback triggered!");
     const std_msgs__msg__Float32MultiArray *msg_copy = (const std_msgs__msg__Float32MultiArray *)msg_in;
+    // Debug message
+
     Serial2.printf("Received message with %zu elements\n", msg_copy->data.size);
     for (size_t i = 0; i < msg_copy->data.size; i++) {
         Serial2.printf("Data[%zu]: %f\n", i, msg_copy->data.data[i]);
     }
 
-    // Normalize and scale pressure values to servo positions
-    Serial2.print("Normalized values:");
-    for (size_t i = 0; i < 5; i++) {
-        norm[i] = normalize(msg_copy->data.data[i], pressure_min[i], pressure_max[i]);
-        Serial2.print(norm[i]);
-        Serial2.print(" ");
+
+    
+    if (millis_init == 0xFFFFFFFF){
+        millis_init = millis();
     }
 
-    for (size_t i = 0; i < 5; i++) {
-        pos[i] = scale(norm[i], min_pos, max_pos);
-    }
+    if (millis()< millis_init + 2000) {
 
-    write_servos(pos[0], pos[1], pos[2], pos[3], pos[4]);
-}
+        for (size_t i = 0; i < 5; i++) {
+            Serial2.println("Initializing pressure values... leave it alone!");
+            pressure_min[i] = max(msg_copy->data.data[i], pressure_min[i]);
+            pressure_max[i] = pressure_min[i] + 1000; 
+        }
+        
+    }else if(millis()< millis_init + 2000 + 10000){
+        
+       for (size_t i = 0; i < 5; i++) {
+            Serial2.println("Initializing pressure max values... piiiiiinch the fingertiiiips!!!");
+            pressure_max[i] = max(msg_copy->data.data[i], pressure_max[i]);
+        }
+    }
+    else
+    {
+    
+        // Normalize and scale pressure values to servo positions
+        Serial2.print("Normalized values:");
+        for (size_t i = 0; i < 5; i++) {
+            norm[i] = normalize(msg_copy->data.data[i], pressure_min[i], pressure_max[i]);
+            Serial2.print(norm[i]);
+            Serial2.print(" ");
+        }
+
+        for (size_t i = 0; i < 5; i++) {
+            pos[i] = scale(norm[i], min_pos, max_pos);
+        }
+
+        write_servos(pos[0], pos[1], pos[2], pos[3], pos[4]);
+    }
+    }
 
 // Write positions to all servos
 void write_servos(int pos1, int pos2, int pos3, int pos4, int pos5) {
@@ -77,8 +109,10 @@ float normalize(float value, float min_value, float max_value) {
 }
 
 // Scale a normalized value to the servo range
-float scale(float normalized, int min_pos, int max_pos) {
-    return min_pos + normalized * (max_pos - min_pos);
+int scale(float normalized, int min_pos, int max_pos) {
+    int val = int(min_pos + normalized * (max_pos - min_pos));
+    val = min(max(val , max_pos), min_pos); 
+    return val; 
 }
 
 void setup() {
@@ -132,7 +166,7 @@ void setup() {
     servo3.attach(27, 500, 2400);
     servo4.attach(26, 500, 2400);
     servo5.attach(25, 500, 2400);
-    delay(1000);
+
     Serial2.println("Servos attached and setup complete.");
 }
 
