@@ -10,17 +10,20 @@
 Servo servo1, servo2, servo3, servo4, servo5;
 
 // Servo position range
-int min_pos = 70;
-int max_pos = 160;
+int min_pos = 160;
+int max_pos = 70;
 
 // Pressure sensor min and max values (adjust as needed)
-float pressure_min[5] = {10.0, 20.0, 15.0, 5.0, 25.0};
-float pressure_max[5] = {100.0, 90.0, 80.0, 50.0, 120.0};
+float pressure_min[5] = {124674.0, 137000.0, 138261.0, 129000.0, 143000.0};
+float pressure_max[5] = {160000.0, 169000.0, 181000.0, 166000.0, 150000.0};
+
+float norm[5];
+int pos[5];
 
 // ROS-related objects
 rcl_subscription_t subscriber = rcl_get_zero_initialized_subscription();
-std_msgs__msg__Float32MultiArray msg;
 rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
+std_msgs__msg__Float32MultiArray msg;
 rclc_support_t support;
 rcl_allocator_t allocator;
 rcl_node_t node = rcl_get_zero_initialized_node();
@@ -33,13 +36,28 @@ float scale(float normalized, int min_pos, int max_pos);
 
 // Callback to handle received pressure values
 void servo_positions_callback(const void *msg_in) {
+
+    // Debug message
     Serial2.println("Callback triggered!");
-    // const std_msgs__msg__Float32MultiArray *msg = (const std_msgs__msg__Float32MultiArray *)msg_in;
-    
-    // // Safely access message data
-    // for (size_t i = 0; i < msg->data.size; i++) {
-    //     Serial2.printf("Data[%zu]: %f\n", i, msg->data.data[i]);
-    // }
+    const std_msgs__msg__Float32MultiArray *msg_copy = (const std_msgs__msg__Float32MultiArray *)msg_in;
+    Serial2.printf("Received message with %zu elements\n", msg_copy->data.size);
+    for (size_t i = 0; i < msg_copy->data.size; i++) {
+        Serial2.printf("Data[%zu]: %f\n", i, msg_copy->data.data[i]);
+    }
+
+    // Normalize and scale pressure values to servo positions
+    Serial2.print("Normalized values:");
+    for (size_t i = 0; i < 5; i++) {
+        norm[i] = normalize(msg_copy->data.data[i], pressure_min[i], pressure_max[i]);
+        Serial2.print(norm[i]);
+        Serial2.print(" ");
+    }
+
+    for (size_t i = 0; i < 5; i++) {
+        pos[i] = scale(norm[i], min_pos, max_pos);
+    }
+
+    write_servos(pos[0], pos[1], pos[2], pos[3], pos[4]);
 }
 
 // Write positions to all servos
@@ -76,13 +94,6 @@ void setup() {
     rclc_support_init(&support, 0, NULL, &allocator);
     rclc_node_init_default(&node, "servo_controller_node", "", &support);
 
-    // // Initialize subscriber
-    // rmw_qos_profile_t qos_profile = rmw_qos_profile_default;
-    // qos_profile.history = RMW_QOS_POLICY_HISTORY_KEEP_ALL;
-    // qos_profile.depth = 10;
-    // qos_profile.reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
-    // qos_profile.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
-
     rclc_subscription_init_default(
         &subscriber, 
         &node,
@@ -94,7 +105,7 @@ void setup() {
     size_t array_size = 5;  // Example: an array with 10 elements
     msg.data.data = (float *)malloc(array_size * sizeof(float));
     msg.data.capacity = array_size;
-    msg.data.size = 0;
+    msg.data.size = array_size;
     
 
     // Initialize executor
@@ -126,7 +137,6 @@ void setup() {
 }
 
 void loop() {
-    delay(100);
     int feedback = rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
     if(feedback != RCL_RET_OK){
         Serial2.println("Error in spin_some()");

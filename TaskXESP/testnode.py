@@ -2,7 +2,7 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Float32MultiArray, MultiArrayLayout, MultiArrayDimension
 import math
 import time
 from rclpy.qos import QoSProfile, ReliabilityPolicy
@@ -10,7 +10,7 @@ from rclpy.qos import QoSProfile, ReliabilityPolicy
 class SmoothPressurePublisher(Node):
     def __init__(self):
         super().__init__('smooth_pressure_publisher')
-        qos_profile = QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT)
+        qos_profile = QoSProfile(depth=10, reliability=ReliabilityPolicy.RELIABLE)
         self.publisher_ = self.create_publisher(Float32MultiArray, '/sensor/pressures', qos_profile)
         self.timer = self.create_timer(1.0, self.publish_pressure_values)  # Publish every 1 second
         self.start_time = time.time()
@@ -24,8 +24,18 @@ class SmoothPressurePublisher(Node):
             50 + 50 * math.sin(elapsed_time + i) for i in range(5)  # Offset each sensor by `i`
         ]
 
-        # Create and publish the message
+
+        dimension = MultiArrayDimension()
+        dimension.label = "pressure_values"  # Label for the dimension
+        dimension.size = 5                   # Number of elements in the array
+        dimension.stride = 5                 # Total stride (size of the array)
+
+        # Assign the dimension to the layout
         msg = Float32MultiArray()
+        msg.layout = MultiArrayLayout()
+        msg.layout.dim = [dimension]
+        msg.layout.data_offset = 0
+
         msg.data = pressure_values
         self.publisher_.publish(msg)
         self.get_logger().info(f"Published pressure values: {pressure_values}")
