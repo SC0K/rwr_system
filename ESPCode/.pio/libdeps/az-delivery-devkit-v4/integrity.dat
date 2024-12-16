@@ -1,4 +1,5 @@
-adafruit/Adafruit BMP085 Library@^1.2.4
-SPI
 robtillaart/TCA9548@^0.3.0
+SPI
 mirs240x/micro_ros_arduino@^2.0.7-humble
+adafruit/Adafruit BMP085 Library@^1.2.4
+https://github.com/micro-ROS/micro_ros_platformio
