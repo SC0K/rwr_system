@@ -11,7 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools', 'pyserial'],
+    install_requires=['setuptools', 'pyserial', 'dynamixel_sdk', 'numpy'],
     zip_safe=True,
     maintainer='ubuntu',
     maintainer_email='chooaron1@yahoo.com.sg',
@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'serial_subscriber = pressure_sub.serial_subscriber:main',
+            'motor_control = pressure_sub.motor_control:main',
         ],
     },
 )
