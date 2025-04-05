@@ -1,0 +1,2 @@
+Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/experiments': /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/experiments -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/experiments
+Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/experiments' returned '1': /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/experiments -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/experiments

@@ -1,0 +1,2 @@
+Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/logger': /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/logger
+Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/logger' returned '1': /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/logger

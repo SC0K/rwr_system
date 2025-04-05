@@ -1,0 +1,33 @@
+[0.020s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/logger': PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/logger
+[0.088s] -- The C compiler identification is GNU 11.4.0
+[0.156s] -- The CXX compiler identification is GNU 11.4.0
+[0.168s] -- Detecting C compiler ABI info
+[0.261s] -- Detecting C compiler ABI info - done
+[0.269s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.270s] -- Detecting C compile features
+[0.270s] -- Detecting C compile features - done
+[0.274s] -- Detecting CXX compiler ABI info
+[0.382s] -- Detecting CXX compiler ABI info - done
+[0.390s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.391s] -- Detecting CXX compile features
+[0.391s] -- Detecting CXX compile features - done
+[0.406s] [31mCMake Error at CMakeLists.txt:12 (find_package):
+[0.406s]   By not providing "Findrclpy.cmake" in CMAKE_MODULE_PATH this project has
+[0.406s]   asked CMake to find a package configuration file provided by "rclpy", but
+[0.406s]   CMake did not find one.
+[0.406s] 
+[0.406s]   Could not find a package configuration file provided by "rclpy" with any of
+[0.406s]   the following names:
+[0.406s] 
+[0.406s]     rclpyConfig.cmake
+[0.407s]     rclpy-config.cmake
+[0.407s] 
+[0.407s]   Add the installation prefix of "rclpy" to CMAKE_PREFIX_PATH or set
+[0.407s]   "rclpy_DIR" to a directory containing one of the above files.  If "rclpy"
+[0.407s]   provides a separate development package or SDK, be sure it has been
+[0.407s]   installed.
+[0.407s] 
+[0.407s] [0m
+[0.407s] -- Configuring incomplete, errors occurred!
+[0.407s] See also "/home/sitong/RWR_ros2_ws/src/rwr_system/build/logger/CMakeFiles/CMakeOutput.log".
+[0.414s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/logger' returned '1': PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/logger

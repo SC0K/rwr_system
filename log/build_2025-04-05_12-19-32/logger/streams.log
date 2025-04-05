@@ -1,0 +1,21 @@
+[0.020s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/logger': PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/logger
+[0.050s] -- Configuring incomplete, errors occurred!
+[0.051s] See also "/home/sitong/RWR_ros2_ws/src/rwr_system/build/logger/CMakeFiles/CMakeOutput.log".
+[0.051s] [31mCMake Error at CMakeLists.txt:12 (find_package):
+[0.052s]   By not providing "Findrclpy.cmake" in CMAKE_MODULE_PATH this project has
+[0.053s]   asked CMake to find a package configuration file provided by "rclpy", but
+[0.054s]   CMake did not find one.
+[0.054s] 
+[0.054s]   Could not find a package configuration file provided by "rclpy" with any of
+[0.054s]   the following names:
+[0.055s] 
+[0.055s]     rclpyConfig.cmake
+[0.055s]     rclpy-config.cmake
+[0.055s] 
+[0.055s]   Add the installation prefix of "rclpy" to CMAKE_PREFIX_PATH or set
+[0.055s]   "rclpy_DIR" to a directory containing one of the above files.  If "rclpy"
+[0.055s]   provides a separate development package or SDK, be sure it has been
+[0.055s]   installed.
+[0.055s] 
+[0.056s] [0m
+[0.059s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/logger' returned '1': PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/logger

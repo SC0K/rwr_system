@@ -1,0 +1,33 @@
+[0.020s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter': /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/retargeter -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter
+[0.086s] -- The C compiler identification is GNU 11.4.0
+[0.152s] -- The CXX compiler identification is GNU 11.4.0
+[0.161s] -- Detecting C compiler ABI info
+[0.237s] -- Detecting C compiler ABI info - done
+[0.245s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.246s] -- Detecting C compile features
+[0.246s] -- Detecting C compile features - done
+[0.250s] -- Detecting CXX compiler ABI info
+[0.341s] -- Detecting CXX compiler ABI info - done
+[0.349s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.349s] -- Detecting CXX compile features
+[0.350s] -- Detecting CXX compile features - done
+[0.365s] [31mCMake Error at CMakeLists.txt:12 (find_package):
+[0.366s]   By not providing "Findrclpy.cmake" in CMAKE_MODULE_PATH this project has
+[0.366s]   asked CMake to find a package configuration file provided by "rclpy", but
+[0.366s]   CMake did not find one.
+[0.366s] 
+[0.366s]   Could not find a package configuration file provided by "rclpy" with any of
+[0.366s]   the following names:
+[0.366s] 
+[0.366s]     rclpyConfig.cmake
+[0.367s]     rclpy-config.cmake
+[0.367s] 
+[0.367s]   Add the installation prefix of "rclpy" to CMAKE_PREFIX_PATH or set
+[0.368s]   "rclpy_DIR" to a directory containing one of the above files.  If "rclpy"
+[0.368s]   provides a separate development package or SDK, be sure it has been
+[0.369s]   installed.
+[0.369s] 
+[0.369s] [0m
+[0.369s] -- Configuring incomplete, errors occurred!
+[0.369s] See also "/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter/CMakeFiles/CMakeOutput.log".
+[0.377s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter' returned '1': /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/retargeter -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter
