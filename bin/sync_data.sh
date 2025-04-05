@@ -7,4 +7,4 @@ fi
 
 folder_name=$1  # The first argument is stored in the variable 'name'
 
-ros2 run logger syncronize_data.py /home/ubuntu/WinToUSB/datasets/$folder_name --sampling_freq 20 --resize_to "(224, 224)" --compress
+ros2 run logger syncronize_data.py /media/sitong/WinToUSB/datasets/$folder_name --sampling_freq 20 --resize_to "(224, 224)" --compress

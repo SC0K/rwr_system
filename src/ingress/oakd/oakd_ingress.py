@@ -317,6 +317,6 @@ class OakDDriver:
 
 
 if __name__ == "__main__":
-    OakDDriver(None, visualize=True, device_mxid="18443010212EE4F400")
+    OakDDriver(None, visualize=True, device_mxid="1844301071E8870E00")
     while True:
         time.sleep(1)

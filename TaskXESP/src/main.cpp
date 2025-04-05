@@ -63,7 +63,7 @@ void servo_positions_callback(const void *msg_in) {
         for (size_t i = 0; i < 5; i++) {
             Serial2.println("Initializing pressure values... leave it alone!");
             pressure_min[i] = max(msg_copy->data.data[i], pressure_min[i]);
-            pressure_max[i] = pressure_min[i] + 1000; 
+            pressure_max[i] = pressure_min[i] + 0; 
         }
         
     }else if(millis()< millis_init + 2000 + 10000){

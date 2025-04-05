@@ -333,6 +333,6 @@ if __name__ == "__main__":
     gc = GripperController("/dev/ttyUSB0")
     # gc.connect_to_dynamixels()
 
-    gc.init_joints(calibrate=True)
+    gc.init_joints(calibrate=False)
 
     time.sleep(3.0)
