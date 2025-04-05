@@ -10,16 +10,17 @@ import time
 DXL_IDS = [0, 1, 3, 11, 12]  # IDs of the 5 Dynamixel motors
 BAUDRATE = 57600
 DEVICENAME = "/dev/ttyUSB0"
-CURRENT_LIMIT = 250  # Max current/torque limit for each motor
+CURRENT_LIMIT = 50  # Max current/torque limit for each motor
 
 class DynamixelController(Node):
     def __init__(self):
         super().__init__('dynamixel_controller')
 
+        self.motor_ids = DXL_IDS
         self.motor_lock = RLock()  # lock to read / write motor information
 
         # initialize and connect dynamixels
-        self._dxc = DynamixelClient(DXL_IDS, DEVICENAME, BAUDRATE)
+        self._dxc = DynamixelClient(self.motor_ids, DEVICENAME, BAUDRATE)
         self.connect_to_dynamixels()
 
         self.set_operating_mode(0)  # Set the operating mode to 0 (current control)
@@ -72,11 +73,11 @@ class DynamixelController(Node):
             return
         
         pressures = np.array(msg.data)
-        torques = pressures  # Or apply your scaling here
 
-        currents = np.clip(torques, 0, CURRENT_LIMIT)
+        currents = pressures  # Or apply your scaling here
+        currents = np.clip(currents, 0, CURRENT_LIMIT)
 
-        self.set_motor_current(DXL_IDS, currents)
+        self.set_motor_current(self.motor_ids, currents)
 
     def set_motor_current(self, motor_ids, current):
         """
