@@ -1,0 +1,16 @@
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/ubuntu/miniforge3/envs/ros_env/bin/aarch64-conda-linux-gnu-cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/ubuntu/miniforge3/envs/ros_env/bin/aarch64-conda-linux-gnu-c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found rclpy: 3.3.11 (/home/ubuntu/miniforge3/envs/ros_env/share/rclpy/cmake)
+-- Found std_msgs: 4.2.3 (/home/ubuntu/miniforge3/envs/ros_env/share/std_msgs/cmake)
+-- Found Python3: /home/ubuntu/miniforge3/envs/ros_env/bin/python3.11 (found version "3.11.8") found components: Interpreter 
+-- Configuring incomplete, errors occurred!

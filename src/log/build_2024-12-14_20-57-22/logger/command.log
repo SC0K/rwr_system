@@ -1,0 +1,2 @@
+Invoking command in '/home/ubuntu/ros2_ws/src/rwr_system/src/build/logger': CONDA_PROMPT_MODIFIER=(ros_env) /home/ubuntu/miniforge3/envs/ros_env/bin/cmake /home/ubuntu/ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/rwr_system/src/install/logger
+Invoked command in '/home/ubuntu/ros2_ws/src/rwr_system/src/build/logger' returned '1': CONDA_PROMPT_MODIFIER=(ros_env) /home/ubuntu/miniforge3/envs/ros_env/bin/cmake /home/ubuntu/ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/rwr_system/src/install/logger

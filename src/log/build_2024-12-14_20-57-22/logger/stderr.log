@@ -1,0 +1,26 @@
+[31mCMake Error at /home/ubuntu/miniforge3/envs/ros_env/lib/cmake/fastcdr/fastcdr-dynamic-targets.cmake:80 (message):
+  The imported target "fastcdr" references the file
+
+     "/home/ubuntu/miniforge3/envs/ros_env/lib/libfastcdr.so.1.0.24"
+
+  but this file does not exist.  Possible reasons include:
+
+  * The file was deleted, renamed, or moved to another location.
+
+  * An install or uninstall procedure did not complete successfully.
+
+  * The installation package was faulty and contained
+
+     "/home/ubuntu/miniforge3/envs/ros_env/lib/cmake/fastcdr/fastcdr-dynamic-targets.cmake"
+
+  but not all the files it references.
+
+Call Stack (most recent call first):
+  /home/ubuntu/miniforge3/envs/ros_env/lib/cmake/fastcdr/fastcdr-config.cmake:52 (include)
+  /home/ubuntu/miniforge3/envs/ros_env/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/ubuntu/miniforge3/envs/ros_env/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)
+  /home/ubuntu/miniforge3/envs/ros_env/share/std_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /home/ubuntu/miniforge3/envs/ros_env/share/std_msgs/cmake/std_msgsConfig.cmake:41 (include)
+  CMakeLists.txt:13 (find_package)
+
+[0m

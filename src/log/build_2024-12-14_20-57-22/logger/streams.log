@@ -1,0 +1,44 @@
+[0.014s] Invoking command in '/home/ubuntu/ros2_ws/src/rwr_system/src/build/logger': CONDA_PROMPT_MODIFIER=(ros_env) /home/ubuntu/miniforge3/envs/ros_env/bin/cmake /home/ubuntu/ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/rwr_system/src/install/logger
+[0.065s] -- The C compiler identification is GNU 13.3.0
+[0.138s] -- The CXX compiler identification is GNU 13.3.0
+[0.147s] -- Detecting C compiler ABI info
+[0.201s] -- Detecting C compiler ABI info - done
+[0.217s] -- Check for working C compiler: /home/ubuntu/miniforge3/envs/ros_env/bin/aarch64-conda-linux-gnu-cc - skipped
+[0.218s] -- Detecting C compile features
+[0.218s] -- Detecting C compile features - done
+[0.222s] -- Detecting CXX compiler ABI info
+[0.294s] -- Detecting CXX compiler ABI info - done
+[0.304s] -- Check for working CXX compiler: /home/ubuntu/miniforge3/envs/ros_env/bin/aarch64-conda-linux-gnu-c++ - skipped
+[0.304s] -- Detecting CXX compile features
+[0.305s] -- Detecting CXX compile features - done
+[0.307s] -- Found rclpy: 3.3.11 (/home/ubuntu/miniforge3/envs/ros_env/share/rclpy/cmake)
+[0.310s] -- Found std_msgs: 4.2.3 (/home/ubuntu/miniforge3/envs/ros_env/share/std_msgs/cmake)
+[0.448s] -- Found Python3: /home/ubuntu/miniforge3/envs/ros_env/bin/python3.11 (found version "3.11.8") found components: Interpreter 
+[0.551s] [31mCMake Error at /home/ubuntu/miniforge3/envs/ros_env/lib/cmake/fastcdr/fastcdr-dynamic-targets.cmake:80 (message):
+[0.551s]   The imported target "fastcdr" references the file
+[0.551s] 
+[0.551s]      "/home/ubuntu/miniforge3/envs/ros_env/lib/libfastcdr.so.1.0.24"
+[0.551s] 
+[0.551s]   but this file does not exist.  Possible reasons include:
+[0.551s] 
+[0.551s]   * The file was deleted, renamed, or moved to another location.
+[0.551s] 
+[0.551s]   * An install or uninstall procedure did not complete successfully.
+[0.551s] 
+[0.551s]   * The installation package was faulty and contained
+[0.551s] 
+[0.551s]      "/home/ubuntu/miniforge3/envs/ros_env/lib/cmake/fastcdr/fastcdr-dynamic-targets.cmake"
+[0.551s] 
+[0.551s]   but not all the files it references.
+[0.551s] 
+[0.551s] Call Stack (most recent call first):
+[0.551s]   /home/ubuntu/miniforge3/envs/ros_env/lib/cmake/fastcdr/fastcdr-config.cmake:52 (include)
+[0.551s]   /home/ubuntu/miniforge3/envs/ros_env/share/builtin_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+[0.551s]   /home/ubuntu/miniforge3/envs/ros_env/share/builtin_interfaces/cmake/builtin_interfacesConfig.cmake:41 (include)
+[0.551s]   /home/ubuntu/miniforge3/envs/ros_env/share/std_msgs/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+[0.552s]   /home/ubuntu/miniforge3/envs/ros_env/share/std_msgs/cmake/std_msgsConfig.cmake:41 (include)
+[0.552s]   CMakeLists.txt:13 (find_package)
+[0.552s] 
+[0.552s] [0m
+[0.552s] -- Configuring incomplete, errors occurred!
+[0.553s] Invoked command in '/home/ubuntu/ros2_ws/src/rwr_system/src/build/logger' returned '1': CONDA_PROMPT_MODIFIER=(ros_env) /home/ubuntu/miniforge3/envs/ros_env/bin/cmake /home/ubuntu/ros2_ws/src/rwr_system/src/logger -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/rwr_system/src/install/logger
