@@ -1,0 +1,7 @@
+<mujoco model="titans_hand">
+    <compiler angle="radian"/>
+    <include file="meta_titans.xml"/>
+    <worldbody>
+    <include file="structure_titans.xml"/>
+    </worldbody>
+</mujoco>

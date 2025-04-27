@@ -1,0 +1,8 @@
+source;share/retargeter/hook/cmake_prefix_path.ps1
+source;share/retargeter/hook/cmake_prefix_path.dsv
+source;share/retargeter/hook/cmake_prefix_path.sh
+source;share/retargeter/local_setup.bash
+source;share/retargeter/local_setup.dsv
+source;share/retargeter/local_setup.ps1
+source;share/retargeter/local_setup.sh
+source;share/retargeter/local_setup.zsh

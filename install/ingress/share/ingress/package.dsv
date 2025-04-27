@@ -1,0 +1,8 @@
+source;share/ingress/hook/cmake_prefix_path.ps1
+source;share/ingress/hook/cmake_prefix_path.dsv
+source;share/ingress/hook/cmake_prefix_path.sh
+source;share/ingress/local_setup.bash
+source;share/ingress/local_setup.dsv
+source;share/ingress/local_setup.ps1
+source;share/ingress/local_setup.sh
+source;share/ingress/local_setup.zsh

@@ -1,0 +1,46 @@
+-- Found rclpy: 3.3.16 (/opt/ros/humble/share/rclpy/cmake)
+-- Found std_msgs: 4.8.0 (/opt/ros/humble/share/std_msgs/cmake)
+-- Found Python3: /home/sitong/Virtual_environments/RWR_ros_venv/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+-- Found tf2_eigen: 0.25.12 (/opt/ros/humble/share/tf2_eigen/cmake)
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress
+-- Install configuration: ""
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/oakd_node.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/oakd_ingress.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/oakd_utils.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/rokoko_node.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/rokoko_ingress.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/webcam_mediapipe_ingress.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/mediapipe_node.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ament_index/resource_index/package_run_dependencies/ingress
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ament_index/resource_index/parent_prefix_path/ingress
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/environment/ament_prefix_path.sh
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/environment/ament_prefix_path.dsv
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/environment/path.sh
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/environment/path.dsv
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/local_setup.bash
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/local_setup.sh
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/local_setup.zsh
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/local_setup.dsv
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/package.dsv
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ament_index/resource_index/packages/ingress
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/cmake/ingressConfig.cmake
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/cmake/ingressConfig-version.cmake
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/package.xml

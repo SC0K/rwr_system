@@ -1,0 +1,112 @@
+<mujoco>
+    <compiler angle="radian" />
+    <default>
+        <joint type="hinge" limited="true" damping="0.1" armature="0.001" margin="0.01" frictionloss="0.001"/>
+        <geom rgba="1 1 1 1" type="mesh" friction="1 0.005 0.001" condim="3" margin="0.0005" contype="1" conaffinity="1"/>
+        <position ctrllimited="true" forcelimited="true" forcerange="-1 1" kp="2."/>
+    </default>
+
+    <asset>
+        <mesh name="connector" file="mesh_titans/handWrist_v6_connector.stl"/>
+        <mesh name="palm" file="mesh_titans/handWrist_v6_palm.stl"/>
+        <mesh name="thumbHinge" file="mesh_titans/handWrist_v6_thumb_hinge.stl"/>
+        <mesh name="f_proximal_thumb" file="mesh_titans/handWrist_v6_proximal_thumb.stl"/>
+        <mesh name="f_medial_thumb" file="mesh_titans/handWrist_v6_medial_thumb.stl"/>
+        <mesh name="f_distal_thumb" file="mesh_titans/handWrist_v6_distal_thumb.stl"/>
+        <mesh name="f_base_1" file="mesh_titans/handWrist_v6_base_1.stl"/>
+        <mesh name="f_joint_1" file="mesh_titans/handWrist_v6_joint_1.stl"/>
+        <mesh name="f_proximal_1" file="mesh_titans/handWrist_v6_proximal_1.stl"/>
+        <mesh name="f_medial_1" file="mesh_titans/handWrist_v6_medial_1.stl"/>
+        <mesh name="f_distal_1" file="mesh_titans/handWrist_v6_distal_1.stl"/>
+        <mesh name="f_base_2" file="mesh_titans/handWrist_v6_base_2.stl"/>
+        <mesh name="f_joint_2" file="mesh_titans/handWrist_v6_joint_2.stl"/>
+        <mesh name="f_proximal_2" file="mesh_titans/handWrist_v6_proximal_2.stl"/>
+        <mesh name="f_medial_2" file="mesh_titans/handWrist_v6_medial_2.stl"/>
+        <mesh name="f_distal_2" file="mesh_titans/handWrist_v6_distal_2.stl"/>
+        <mesh name="f_base_3" file="mesh_titans/handWrist_v6_base_3.stl"/>
+        <mesh name="f_joint_3" file="mesh_titans/handWrist_v6_joint_3.stl"/>
+        <mesh name="f_proximal_3" file="mesh_titans/handWrist_v6_proximal_3.stl"/>
+        <mesh name="f_medial_3" file="mesh_titans/handWrist_v6_medial_3.stl"/>
+        <mesh name="f_distal_3" file="mesh_titans/handWrist_v6_distal_3.stl"/>
+        <mesh name="f_base_4" file="mesh_titans/handWrist_v6_base_4.stl"/>
+        <mesh name="f_joint_4" file="mesh_titans/handWrist_v6_joint_4.stl"/>
+        <mesh name="f_proximal_4" file="mesh_titans/handWrist_v6_proximal_4.stl"/>
+        <mesh name="f_medial_4" file="mesh_titans/handWrist_v6_medial_4.stl"/>
+        <mesh name="f_distal_4" file="mesh_titans/handWrist_v6_distal_4.stl"/>
+    </asset>
+
+    <contact>
+        <exclude body1="f_proximal_1" body2="f_medial_1"/>
+        <exclude body1="f_proximal_1" body2="f_distal_1"/>
+        <exclude body1="f_medial_1" body2="f_distal_1"/>
+        
+        <exclude body1="f_proximal_2" body2="f_medial_2"/>
+        <exclude body1="f_proximal_2" body2="f_distal_2"/>
+        <exclude body1="f_medial_2" body2="f_distal_2"/>
+        
+        <exclude body1="f_proximal_3" body2="f_medial_3"/>
+        <exclude body1="f_proximal_3" body2="f_distal_3"/>
+        <exclude body1="f_medial_3" body2="f_distal_3"/>
+        
+        <exclude body1="f_proximal_4" body2="f_medial_4"/>
+        <exclude body1="f_proximal_4" body2="f_distal_4"/>
+        <exclude body1="f_medial_4" body2="f_distal_4"/>
+
+        <exclude body1="thumb" body2="f_proximal_thumb"/>
+        <exclude body1 = "f_proximal_thumb" body2="hand"/>
+        <exclude body1="f_proximal_thumb" body2="f_medial_thumb"/>
+        <exclude body1="f_proximal_thumb" body2="f_distal_thumb"/>
+        <exclude body1="f_medial_thumb" body2="f_distal_thumb"/>
+
+        <exclude body1="base" body2="hand"/>
+        <exclude body1="base" body2="thumb"/>
+
+    </contact>
+
+    <actuator>
+        <!-- Actuatprs for the palm -->
+        <position ctrlrange="-1.3 1.3" joint="revolute_base_hand" name="actuator_base_hand" kp="4"/>
+
+        <!-- Actuators for the thumb -->
+        <position ctrlrange="-1.5 1.5" joint="revolute_thumb" name="actuator_thumb" kp="4" />
+        <position ctrlrange="-3 1" joint="revolute_proximal_thumb" name="actuator_proximal_thumb" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_medial_thumb" name="actuator_medial_thumb" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_distal_thumb" name="actuator_distal_thumb" kp="2" />
+    
+        <!-- Actuators for finger 1 -->
+        <position ctrlrange="-1 1" joint="revolute_joint_1" name="actuator_joint_1" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_proximal_1" name="actuator_proximal_1" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_medial_1" name="actuator_medial_1" kp="2" />
+    
+        <!-- Actuators for finger 2 -->
+        <position ctrlrange="-1 1" joint="revolute_joint_2" name="actuator_joint_2" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_proximal_2" name="actuator_proximal_2" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_medial_2" name="actuator_medial_2" kp="2" />
+    
+        <!-- Actuators for finger 3 -->
+        <position ctrlrange="-1 1" joint="revolute_joint_3" name="actuator_joint_3" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_proximal_3" name="actuator_proximal_3" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_medial_3" name="actuator_medial_3" kp="2" />
+    
+        <!-- Actuators for finger 4 -->
+        <position ctrlrange="-1 1" joint="revolute_joint_4" name="actuator_joint_4" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_proximal_4" name="actuator_proximal_4" kp="2" />
+        <position ctrlrange="-1 1" joint="revolute_medial_4" name="actuator_medial_4" kp="2" />
+    </actuator>
+
+    
+    <equality>
+        <!-- Finger 1 -->
+        <joint joint1="revolute_distal_1" joint2="revolute_medial_1" polycoef="0 1" />
+        
+        <!-- Finger 2 -->
+        <joint joint1="revolute_distal_2" joint2="revolute_medial_2" polycoef="0 1" />
+        
+        <!-- Finger 3 -->
+        <joint joint1="revolute_distal_3" joint2="revolute_medial_3" polycoef="0 1" />
+        
+        <!-- Finger 4 -->
+        <joint joint1="revolute_distal_4" joint2="revolute_medial_4" polycoef="0 1" />
+    </equality>
+
+</mujoco>

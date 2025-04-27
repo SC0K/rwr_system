@@ -2,7 +2,7 @@ import rclpy
 import rclpy.logging
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray
-from .dynamixel_client import *
+from dynamixel_client import *
 from threading import RLock
 import time
 
@@ -10,7 +10,7 @@ import time
 DXL_IDS = [0, 1, 3, 11, 12]  # IDs of the 5 Dynamixel motors
 BAUDRATE = 57600
 DEVICENAME = "/dev/ttyUSB0"
-CURRENT_LIMIT = 50  # Max current/torque limit for each motor
+CURRENT_LIMIT = 100  # Max current/torque limit for each motor
 
 class DynamixelController(Node):
     def __init__(self):
@@ -72,10 +72,14 @@ class DynamixelController(Node):
             self.get_logger().error("Pressure data array must have exactly 5 elements!")
             return
         
+        max_pressure = 60000
+        current_offset = 10.0  # Offset for the current calculation
         pressures = np.array(msg.data)
+        pressures = np.clip(pressures, 0, max_pressure)  # Clip pressures to a maximum value
+        
+        currents = (CURRENT_LIMIT-current_offset)/max_pressure  * pressures # Or apply your scaling here
 
-        currents = pressures  # Or apply your scaling here
-        currents = np.clip(currents, 0, CURRENT_LIMIT)
+        currents = np.clip(currents + current_offset, current_offset, CURRENT_LIMIT)
 
         self.set_motor_current(self.motor_ids, currents)
 

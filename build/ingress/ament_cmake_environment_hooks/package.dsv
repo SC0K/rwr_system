@@ -1,0 +1,4 @@
+source;share/ingress/local_setup.bash
+source;share/ingress/local_setup.dsv
+source;share/ingress/local_setup.sh
+source;share/ingress/local_setup.zsh

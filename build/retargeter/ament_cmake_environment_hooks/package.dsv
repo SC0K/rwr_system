@@ -1,0 +1,4 @@
+source;share/retargeter/local_setup.bash
+source;share/retargeter/local_setup.dsv
+source;share/retargeter/local_setup.sh
+source;share/retargeter/local_setup.zsh

@@ -1,0 +1,37 @@
+[0.569s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/src/pressure_sub': PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/prefix_override:/home/sitong/Virtual_environments/RWR_ros_venv/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /home/sitong/Virtual_environments/RWR_ros_venv/bin/python3.10 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/pressure_sub build --build-base /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build install --record /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/install.log --single-version-externally-managed install_data
+[0.773s] running egg_info
+[0.774s] creating ../../build/pressure_sub/pressure_sub.egg-info
+[0.774s] writing ../../build/pressure_sub/pressure_sub.egg-info/PKG-INFO
+[0.774s] writing dependency_links to ../../build/pressure_sub/pressure_sub.egg-info/dependency_links.txt
+[0.774s] writing entry points to ../../build/pressure_sub/pressure_sub.egg-info/entry_points.txt
+[0.774s] writing requirements to ../../build/pressure_sub/pressure_sub.egg-info/requires.txt
+[0.774s] writing top-level names to ../../build/pressure_sub/pressure_sub.egg-info/top_level.txt
+[0.774s] writing manifest file '../../build/pressure_sub/pressure_sub.egg-info/SOURCES.txt'
+[0.776s] reading manifest file '../../build/pressure_sub/pressure_sub.egg-info/SOURCES.txt'
+[0.777s] writing manifest file '../../build/pressure_sub/pressure_sub.egg-info/SOURCES.txt'
+[0.777s] running build
+[0.777s] running build_py
+[0.777s] creating /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build
+[0.777s] creating /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build/lib
+[0.777s] creating /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build/lib/pressure_sub
+[0.777s] copying pressure_sub/__init__.py -> /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build/lib/pressure_sub
+[0.778s] copying pressure_sub/serial_subscriber.py -> /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build/lib/pressure_sub
+[0.778s] running install
+[0.778s] running install_lib
+[0.778s] creating /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/python3.10/site-packages/pressure_sub
+[0.779s] copying /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build/lib/pressure_sub/__init__.py -> /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/python3.10/site-packages/pressure_sub
+[0.779s] copying /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build/lib/pressure_sub/serial_subscriber.py -> /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/python3.10/site-packages/pressure_sub
+[0.779s] byte-compiling /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/python3.10/site-packages/pressure_sub/__init__.py to __init__.cpython-310.pyc
+[0.779s] byte-compiling /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/python3.10/site-packages/pressure_sub/serial_subscriber.py to serial_subscriber.cpython-310.pyc
+[0.780s] running install_data
+[0.780s] creating /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/share/ament_index
+[0.780s] creating /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/share/ament_index/resource_index
+[0.780s] creating /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/share/ament_index/resource_index/packages
+[0.780s] copying resource/pressure_sub -> /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/share/ament_index/resource_index/packages
+[0.781s] copying package.xml -> /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/share/pressure_sub
+[0.781s] running install_egg_info
+[0.783s] Copying ../../build/pressure_sub/pressure_sub.egg-info to /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/python3.10/site-packages/pressure_sub-0.0.0-py3.10.egg-info
+[0.784s] running install_scripts
+[0.802s] Installing serial_subscriber script to /home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/pressure_sub
+[0.802s] writing list of installed files to '/home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/install.log'
+[0.834s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/src/pressure_sub' returned '0': PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/prefix_override:/home/sitong/Virtual_environments/RWR_ros_venv/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/sitong/RWR_ros2_ws/src/rwr_system/install/pressure_sub/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /home/sitong/Virtual_environments/RWR_ros_venv/bin/python3.10 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/pressure_sub build --build-base /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/build install --record /home/sitong/RWR_ros2_ws/src/rwr_system/build/pressure_sub/install.log --single-version-externally-managed install_data

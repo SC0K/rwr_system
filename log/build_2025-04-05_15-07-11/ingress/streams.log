@@ -1,0 +1,52 @@
+[0.020s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/ingress -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress
+[0.236s] -- Found rclpy: 3.3.16 (/opt/ros/humble/share/rclpy/cmake)
+[0.237s] -- Found std_msgs: 4.8.0 (/opt/ros/humble/share/std_msgs/cmake)
+[0.237s] -- Found Python3: /home/sitong/Virtual_environments/RWR_ros_venv/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.296s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.301s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.310s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.322s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.338s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.363s] -- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.396s] -- Found tf2_eigen: 0.25.12 (/opt/ros/humble/share/tf2_eigen/cmake)
+[0.506s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.509s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.612s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.636s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.678s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.686s] -- Looking for pthread.h
+[0.775s] -- Looking for pthread.h - found
+[0.775s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.850s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.851s] -- Found Threads: TRUE  
+[1.024s] -- Configuring done
+[1.029s] -- Generating done
+[1.031s] -- Build files have been written to: /home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress
+[1.038s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/ingress -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress
+[1.039s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --build /home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress -- -j16 -l16
+[1.081s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --build /home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress -- -j16 -l16
+[1.103s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --install /home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress
+[1.110s] -- Install configuration: ""
+[1.110s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/oakd_node.py
+[1.111s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/oakd_ingress.py
+[1.111s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/oakd_utils.py
+[1.111s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/rokoko_node.py
+[1.111s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/rokoko_ingress.py
+[1.111s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/webcam_mediapipe_ingress.py
+[1.111s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/lib/ingress/mediapipe_node.py
+[1.111s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ament_index/resource_index/package_run_dependencies/ingress
+[1.112s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ament_index/resource_index/parent_prefix_path/ingress
+[1.112s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/environment/ament_prefix_path.sh
+[1.112s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/environment/ament_prefix_path.dsv
+[1.112s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/environment/path.sh
+[1.112s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/environment/path.dsv
+[1.112s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/local_setup.bash
+[1.112s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/local_setup.sh
+[1.112s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/local_setup.zsh
+[1.113s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/local_setup.dsv
+[1.113s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/package.dsv
+[1.113s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ament_index/resource_index/packages/ingress
+[1.113s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/cmake/ingressConfig.cmake
+[1.113s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/cmake/ingressConfig-version.cmake
+[1.113s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/ingress/share/ingress/package.xml
+[1.115s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --install /home/sitong/RWR_ros2_ws/src/rwr_system/build/ingress

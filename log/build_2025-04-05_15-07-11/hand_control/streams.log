@@ -1,0 +1,37 @@
+[0.021s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/hand_control -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control
+[0.238s] -- Found rclpy: 3.3.16 (/opt/ros/humble/share/rclpy/cmake)
+[0.238s] -- Found std_msgs: 4.8.0 (/opt/ros/humble/share/std_msgs/cmake)
+[0.238s] -- Found Python3: /home/sitong/Virtual_environments/RWR_ros_venv/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.298s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.303s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.312s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.325s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.341s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.366s] -- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.511s] -- Configuring done
+[0.515s] -- Generating done
+[0.517s] -- Build files have been written to: /home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control
+[0.523s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/hand_control -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control
+[0.525s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --build /home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control -- -j16 -l16
+[0.566s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --build /home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control -- -j16 -l16
+[0.589s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --install /home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control
+[0.597s] -- Install configuration: ""
+[0.597s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/lib/hand_control/hand_controller_node.py
+[0.597s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/launch
+[0.597s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/launch/hand_controller_launch.yaml
+[0.597s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/ament_index/resource_index/package_run_dependencies/hand_control
+[0.598s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/ament_index/resource_index/parent_prefix_path/hand_control
+[0.598s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/environment/ament_prefix_path.sh
+[0.598s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/environment/ament_prefix_path.dsv
+[0.598s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/environment/path.sh
+[0.598s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/environment/path.dsv
+[0.599s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/local_setup.bash
+[0.599s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/local_setup.sh
+[0.599s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/local_setup.zsh
+[0.599s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/local_setup.dsv
+[0.599s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/package.dsv
+[0.600s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/ament_index/resource_index/packages/hand_control
+[0.600s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/cmake/hand_controlConfig.cmake
+[0.600s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/cmake/hand_controlConfig-version.cmake
+[0.600s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/package.xml
+[0.604s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --install /home/sitong/RWR_ros2_ws/src/rwr_system/build/hand_control

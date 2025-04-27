@@ -1,0 +1,171 @@
+<mujoco>
+    <compiler angle="radian" />
+    <option timestep="0.001" />
+
+    <default>
+        <joint type="hinge" limited="true" damping="0.01" armature="0.001" margin="0.001" frictionloss="0.001"/>
+        <geom rgba="1 1 1 1" type="mesh" friction="1 0.005 0.001" condim="3" margin="0.00001" contype="1" conaffinity="1"/>
+        <position ctrllimited="true" forcelimited="true" forcerange="-1 1" kp="0.2"/>
+    </default>
+
+    <asset>
+        <mesh name="connector_base" file="mesh_titans_new/handWrist_v6_connector_base.stl"/>
+        <mesh name="wrist" file="mesh_titans_new/handWrist_v6_wrist.stl"/>
+        <mesh name="palm" file="mesh_titans_new/handWrist_v6_palm.stl"/>
+
+        <mesh name="thumb_hinge" file="mesh_titans_new/handWrist_v6_thumb_hinge.stl"/>
+        <mesh name="thumb_pp" file="mesh_titans_new/handWrist_v6_proximal_thumb.stl"/>
+        <mesh name="thumb_mp" file="mesh_titans_new/handWrist_v6_medial_thumb.stl"/>
+        <mesh name="thumb_dp" file="mesh_titans_new/handWrist_v6_distal_thumb.stl"/>
+        
+        <mesh name="index_base" file="mesh_titans_new/finger_base.stl"/>
+        <mesh name="index_um" file="mesh_titans_new/finger_joint.stl"/>
+        <mesh name="index_pp" file="mesh_titans_new/finger_proximal.stl"/>
+        <mesh name="index_mp" file="mesh_titans_new/finger_medial.stl"/>
+        <mesh name="index_dp" file="mesh_titans_new/finger_distal.stl"/>
+
+        <mesh name="middle_base" file="mesh_titans_new/finger_base.stl"/>
+        <mesh name="middle_um" file="mesh_titans_new/finger_joint.stl"/>
+        <mesh name="middle_pp" file="mesh_titans_new/finger_proximal.stl"/>
+        <mesh name="middle_mp" file="mesh_titans_new/finger_medial.stl"/>
+        <mesh name="middle_dp" file="mesh_titans_new/finger_distal.stl"/>
+
+        <mesh name="ring_base" file="mesh_titans_new/finger_base.stl"/>
+        <mesh name="ring_um" file="mesh_titans_new/finger_joint.stl"/>
+        <mesh name="ring_pp" file="mesh_titans_new/finger_proximal.stl"/>
+        <mesh name="ring_mp" file="mesh_titans_new/finger_medial.stl"/>
+        <mesh name="ring_dp" file="mesh_titans_new/finger_distal.stl"/>
+
+        <mesh name="pinky_base" file="mesh_titans_new/finger_base.stl"/>
+        <mesh name="pinky_um" file="mesh_titans_new/finger_joint.stl"/>
+        <mesh name="pinky_pp" file="mesh_titans_new/finger_proximal.stl"/>
+        <mesh name="pinky_mp" file="mesh_titans_new/finger_medial.stl"/>
+        <mesh name="pinky_dp" file="mesh_titans_new/finger_distal.stl"/>
+
+    </asset>
+
+    <contact>
+        <exclude body1="thumb_base" body2="thumb_pp"/>
+        <exclude body1="thumb_pp" body2="thumb_mp"/>
+        <exclude body1="thumb_mp" body2="thumb_dp"/>
+        <exclude body1="thumb_base" body2="palm"/>
+
+        <exclude body1="palm" body2="index_base"/>
+        <exclude body1="index_base" body2="index_um"/>
+        <exclude body1="index_um" body2="index_pp"/>
+        <exclude body1="index_pp" body2="index_mp"/>
+        <exclude body1="index_mp" body2="index_dp"/>
+
+        <exclude body1="palm" body2="middle_base"/>
+        <exclude body1="middle_base" body2="middle_um"/>
+        <exclude body1="middle_um" body2="middle_pp"/>
+        <exclude body1="middle_pp" body2="middle_mp"/>
+        <exclude body1="middle_mp" body2="middle_dp"/>
+
+        <exclude body1="palm" body2="ring_base"/>
+        <exclude body1="ring_base" body2="ring_um"/>
+        <exclude body1="ring_um" body2="ring_pp"/>
+        <exclude body1="ring_pp" body2="ring_mp"/>
+        <exclude body1="ring_mp" body2="ring_dp"/>
+
+        <exclude body1="palm" body2="pinky_base"/>
+        <exclude body1="pinky_base" body2="pinky_um"/>
+        <exclude body1="pinky_um" body2="pinky_pp"/>
+        <exclude body1="pinky_pp" body2="pinky_mp"/>
+        <exclude body1="pinky_mp" body2="pinky_dp"/>
+
+        <exclude body1="wrist" body2="palm"/>
+        <exclude body1="connector_base" body2="palm"/>
+        <exclude body1="connector_base" body2="wrist"/>
+        <exclude body1="connector_base" body2="thumb_base"/>
+        <!-- <exclude body1="palm" body2="thumb_pp"/> -->
+
+    </contact>
+
+    <sensor>
+        <jointpos name="revolute_base_hand" joint="revolute_base_hand"/>
+
+        <jointpos name="root2thumb_base" joint="thumb_hinge"/>
+        <jointpos name="thumb_base2pp" joint="thumb_base2pp"/>
+        <jointpos name="thumb_pp2mp" joint="thumb_pp2mp"/>
+        <jointpos name="thumb_mp2dp" joint="thumb_mp2dp"/>
+        
+        <jointpos name="index_abd" joint="index_abd"/>
+        <jointpos name="root2index_pp" joint="root2index_pp"/>
+        <jointpos name="index_pp2mp" joint="index_pp2mp"/>
+        <jointpos name="index_mp2dp" joint="index_mp2dp"/>
+
+        <jointpos name="middle_abd" joint="middle_abd"/>
+        <jointpos name="root2middle_pp" joint="root2middle_pp"/>
+        <jointpos name="middle_pp2mp" joint="middle_pp2mp"/>
+        <jointpos name="middle_mp2dp" joint="middle_mp2dp"/>
+
+        <jointpos name="ring_abd" joint="ring_abd"/>
+        <jointpos name="root2ring_pp" joint="root2ring_pp"/>
+        <jointpos name="ring_pp2mp" joint="ring_pp2mp"/>
+        <jointpos name="ring_mp2dp" joint="ring_mp2dp"/>
+
+        <jointpos name="pinky_abd" joint="pinky_abd"/>
+        <jointpos name="root2pinky_pp" joint="root2pinky_pp"/>
+        <jointpos name="pinky_pp2mp" joint="pinky_pp2mp"/>
+        <jointpos name="pinky_mp2dp" joint="pinky_mp2dp"/>
+    </sensor>
+
+
+    <actuator>
+        <!-- Actuatprs for the palm -->
+        <position ctrlrange="-1 1" joint="revolute_base_hand" name="actuator_base_hand" kp="0.5"/>
+        
+        <position name="thumb_hinge" joint="thumb_hinge" ctrlrange="-0.1 1.75" gear = "-1"/>
+        <position name="thumb_base2pp" joint="thumb_base2pp" ctrlrange="-1.35 0.2" gear = "-1"/> <!-- REMEMBER INVERT IN RETARGETER DESCRIPTION! -->
+        <position name="thumb_pp2mp" joint="thumb_pp2mp" ctrlrange="-0.157 0.829"/>
+        <position name="thumb_mp2dp" joint="thumb_mp2dp" ctrlrange="-0.131 0.960"/>
+
+
+        <position name="index_abd" joint="index_abd" ctrlrange="-0.264 0.264"/>
+        <position name="root2index_pp" joint="root2index_pp" ctrlrange="-0.157 0.829"/>
+        <position name="index_pp2mp" joint="index_pp2mp" ctrlrange="-0.131 0.960"/>
+
+        <position name="middle_abd" joint="middle_abd" ctrlrange="-0.264 0.264"/>
+        <position name="root2middle_pp" joint="root2middle_pp" ctrlrange="-0.157 0.829"/>
+        <position name="middle_pp2mp" joint="middle_pp2mp" ctrlrange="-0.131 0.960"/>
+
+        <position name="ring_abd" joint="ring_abd" ctrlrange="-0.264 0.264"/>
+        <position name="root2ring_pp" joint="root2ring_pp" ctrlrange="-0.157 0.829" />
+        <position name="ring_pp2mp" joint="ring_pp2mp" ctrlrange="-0.131 0.960"/>
+
+        <position name="pinky_abd" joint="pinky_abd" ctrlrange="-0.264 0.264"/>
+        <position name="root2pinky_pp" joint="root2pinky_pp" ctrlrange="-0.157 0.829"/>
+        <position name="pinky_pp2mp" joint="pinky_pp2mp" ctrlrange="-0.131 0.960"/>
+    </actuator>
+
+    
+    <equality>
+        <joint joint1 = "thumb_pp2mp" joint2 = "thumb_pp2mp_virt" polycoef="0 1"/>
+        <joint joint1 = "thumb_mp2dp" joint2 = "thumb_mp2dp_virt" polycoef="0 1"/>
+
+        <joint joint1 = "index_abd_virt" joint2 = "index_abd" polycoef="0 1"/>
+        <joint joint1 = "root2index_pp_virt" joint2 = "root2index_pp" polycoef="0 1"/>
+        <joint joint1 = "index_pp2mp_virt" joint2 = "index_pp2mp" polycoef="0 1"/>
+        <joint joint1 = "index_mp2dp_virt" joint2 = "index_pp2mp" polycoef="0 0.71"/>
+        <joint joint1 = "index_mp2dp" joint2 = "index_mp2dp_virt" polycoef="0 1"/>
+
+        <joint joint1 = "middle_abd_virt" joint2 = "middle_abd" polycoef="0 1"/>
+        <joint joint1 = "root2middle_pp_virt" joint2 = "root2middle_pp" polycoef="0 1"/>
+        <joint joint1 = "middle_pp2mp_virt" joint2 = "middle_pp2mp" polycoef="0 1"/>
+        <joint joint1 = "middle_mp2dp_virt" joint2 = "middle_pp2mp" polycoef="0 0.71"/>
+        <joint joint1 = "middle_mp2dp" joint2 = "middle_mp2dp_virt" polycoef="0 1"/>
+
+        <joint joint1 = "ring_abd_virt" joint2 = "ring_abd" polycoef="0 1"/>
+        <joint joint1 = "root2ring_pp_virt" joint2 = "root2ring_pp" polycoef="0 1"/>
+        <joint joint1 = "ring_pp2mp_virt" joint2 = "ring_pp2mp" polycoef="0 1"/>
+        <joint joint1 = "ring_mp2dp_virt" joint2 = "ring_pp2mp" polycoef="0 0.71"/>
+        <joint joint1 = "ring_mp2dp" joint2 = "ring_mp2dp_virt" polycoef="0 1"/>
+
+        <joint joint1 = "pinky_abd_virt" joint2 = "pinky_abd" polycoef="0 1"/>
+        <joint joint1 = "root2pinky_pp_virt" joint2 = "root2pinky_pp" polycoef="0 1"/>
+        <joint joint1 = "pinky_pp2mp_virt" joint2 = "pinky_pp2mp" polycoef="0 1"/>
+        <joint joint1 = "pinky_mp2dp_virt" joint2 = "pinky_pp2mp" polycoef="0 0.71"/>
+        <joint joint1 = "pinky_mp2dp" joint2 = "pinky_mp2dp_virt" polycoef="0 1"/>
+    </equality>
+</mujoco>

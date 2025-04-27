@@ -1,0 +1,43 @@
+-- Found rclpy: 3.3.16 (/opt/ros/humble/share/rclpy/cmake)
+-- Found std_msgs: 4.8.0 (/opt/ros/humble/share/std_msgs/cmake)
+-- Found Python3: /home/sitong/Virtual_environments/RWR_ros_venv/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+-- Found tf2_eigen: 0.25.12 (/opt/ros/humble/share/tf2_eigen/cmake)
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter
+-- Install configuration: ""
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/lib/retargeter/retargeter_node.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/lib/retargeter/retargeter_node_titans.py
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/launch
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/launch/rokoko_retarget_launch.yaml
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/ament_index/resource_index/package_run_dependencies/retargeter
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/ament_index/resource_index/parent_prefix_path/retargeter
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/environment/ament_prefix_path.sh
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/environment/ament_prefix_path.dsv
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/environment/path.sh
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/environment/path.dsv
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/local_setup.bash
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/local_setup.sh
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/local_setup.zsh
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/local_setup.dsv
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/package.dsv
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/ament_index/resource_index/packages/retargeter
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/cmake/retargeterConfig.cmake
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/cmake/retargeterConfig-version.cmake
+-- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/package.xml

@@ -1,0 +1,17 @@
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/lib/hand_control/hand_controller_node.py
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/launch/hand_controller_launch.yaml
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/ament_index/resource_index/package_run_dependencies/hand_control
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/ament_index/resource_index/parent_prefix_path/hand_control
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/environment/ament_prefix_path.sh
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/environment/ament_prefix_path.dsv
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/environment/path.sh
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/environment/path.dsv
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/local_setup.bash
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/local_setup.sh
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/local_setup.zsh
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/local_setup.dsv
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/package.dsv
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/ament_index/resource_index/packages/hand_control
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/cmake/hand_controlConfig.cmake
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/cmake/hand_controlConfig-version.cmake
+/home/sitong/RWR_ros2_ws/src/rwr_system/install/hand_control/share/hand_control/package.xml

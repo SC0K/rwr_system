@@ -1,0 +1,49 @@
+[0.225s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/retargeter -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter
+[0.237s] -- Found rclpy: 3.3.16 (/opt/ros/humble/share/rclpy/cmake)
+[0.237s] -- Found std_msgs: 4.8.0 (/opt/ros/humble/share/std_msgs/cmake)
+[0.401s] -- Found Python3: /home/sitong/Virtual_environments/RWR_ros_venv/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.541s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.544s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.551s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.561s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.573s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.595s] -- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.619s] -- Found tf2_eigen: 0.25.12 (/opt/ros/humble/share/tf2_eigen/cmake)
+[0.685s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.687s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.766s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.794s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.835s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.840s] -- Looking for pthread.h
+[0.910s] -- Looking for pthread.h - found
+[0.910s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.977s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.978s] -- Found Threads: TRUE  
+[1.132s] -- Configuring done
+[1.138s] -- Generating done
+[1.140s] -- Build files have been written to: /home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter
+[1.149s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake /home/sitong/RWR_ros2_ws/src/rwr_system/src/retargeter -DCMAKE_INSTALL_PREFIX=/home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter
+[1.150s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --build /home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter -- -j16 -l16
+[1.195s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --build /home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter -- -j16 -l16
+[1.217s] Invoking command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --install /home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter
+[1.225s] -- Install configuration: ""
+[1.225s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/lib/retargeter/retargeter_node.py
+[1.225s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/lib/retargeter/retargeter_node_titans.py
+[1.226s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/launch
+[1.226s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/launch/rokoko_retarget_launch.yaml
+[1.226s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/ament_index/resource_index/package_run_dependencies/retargeter
+[1.227s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/ament_index/resource_index/parent_prefix_path/retargeter
+[1.227s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/environment/ament_prefix_path.sh
+[1.227s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/environment/ament_prefix_path.dsv
+[1.227s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/environment/path.sh
+[1.227s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/environment/path.dsv
+[1.227s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/local_setup.bash
+[1.227s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/local_setup.sh
+[1.228s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/local_setup.zsh
+[1.228s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/local_setup.dsv
+[1.228s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/package.dsv
+[1.228s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/ament_index/resource_index/packages/retargeter
+[1.228s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/cmake/retargeterConfig.cmake
+[1.228s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/cmake/retargeterConfig-version.cmake
+[1.229s] -- Installing: /home/sitong/RWR_ros2_ws/src/rwr_system/install/retargeter/share/retargeter/package.xml
+[1.231s] Invoked command in '/home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=(RWR_ros_venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(RWR_ros_venv) /usr/bin/cmake --install /home/sitong/RWR_ros2_ws/src/rwr_system/build/retargeter

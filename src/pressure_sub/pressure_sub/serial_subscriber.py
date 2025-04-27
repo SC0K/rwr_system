@@ -11,7 +11,7 @@ class SerialFloatPublisher(Node):
         self.serial_port = '/dev/ttyACM0'  # Replace with your serial port
         self.baud_rate = 115200
         self.ser = serial.Serial(self.serial_port, self.baud_rate, timeout=1)
-        self.timer = self.create_timer(0.1, self.timer_callback)  # Read every 0.1 seconds
+        self.timer = self.create_timer(0.01, self.timer_callback)  # Read every 0.1 seconds
 
         # Variables for baseline calculation
         self.baseline = [0.0] * 5
