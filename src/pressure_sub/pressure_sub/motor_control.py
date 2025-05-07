@@ -72,7 +72,7 @@ class DynamixelController(Node):
             self.get_logger().error("Pressure data array must have exactly 5 elements!")
             return
         
-        max_pressure = 60000
+        max_pressure = 60000    # Maximum pressure value READ from the sensor
         current_offset = 10.0  # Offset for the current calculation
         pressures = np.array(msg.data)
         pressures = np.clip(pressures, 0, max_pressure)  # Clip pressures to a maximum value
